@@ -1,0 +1,55 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Use custom format
+format = """
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$character\
+"""
+
+# Enable right prompt
+right_format = """
+$status\
+$cmd_duration\
+$time\
+"""
+
+[directory]
+truncation_length = 5
+truncate_to_repo = true
+style = "blue"
+truncation_symbol = "…/"
+# fish_style_pwd_dir_length = 3
+repo_root_style = "bold purple"
+before_repo_root_style = "blue"
+
+[git_branch]
+format = 'on [$symbol$branch]($style) '
+symbol = '󰘬 '
+style = "purple"
+
+[git_status]
+style = "yellow"
+
+[character]
+success_symbol = '[❯](bold green)'
+error_symbol = '[❯](bold red)'
+
+[status]
+disabled = false
+symbol = '[✗](bold red) '
+
+[cmd_duration]
+min_time = 1
+format = '[ $duration](bright-black) '
+
+[time]
+time_format = "%T"
+format = "󰅐 $time"
+disabled = false

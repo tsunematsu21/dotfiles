@@ -1,0 +1,17 @@
+# HomeBrew
+Brewfile.lock.json
+
+# Git
+git/.config/git/**/*
+!git/.config/git/config
+!git/.config/git/ignore
+
+# SSH
+ssh/.ssh/**/*
+!ssh/.ssh/config
+!ssh/.ssh/conf.d
+
+# AWS
+aws/.aws/**/*
+
+!**/*/.gitkeep
