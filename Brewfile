@@ -12,6 +12,7 @@ brew "gh"
 brew "git"
 brew "jq"
 brew "mas"
+brew "peco"
 brew "starship"
 brew "stow"
 
