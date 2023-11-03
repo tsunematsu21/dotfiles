@@ -47,11 +47,13 @@ SAVEHIST=1000000
 setopt hist_reduce_blanks
 setopt hist_verify
 setopt share_history
+setopt hist_ignore_all_dups
 
 # Other options
+setopt interactive_comments
 setopt print_exit_value
 
-# Functions
+# Useful functions
 get_ec2_instance_id() {
   aws ec2 describe-instances | \
     jq -r '.[][].Instances[] | [.InstanceId, [.Tags[] | select(.Key == "Name").Value][], .InstanceType, .NetworkInterfaces[].PrivateIpAddress, .State.Name] | @tsv' | \
