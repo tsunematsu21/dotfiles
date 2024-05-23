@@ -1,7 +1,4 @@
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-fonts"
-tap "homebrew/core"
 
 cask_args appdir: "~/Applications"
 
@@ -24,5 +21,3 @@ cask "notion"
 cask "raycast"
 cask "visual-studio-code"
 cask "warp"
-
-cask "font-fira-code-nerd-font"
