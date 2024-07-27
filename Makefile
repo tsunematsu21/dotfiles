@@ -7,23 +7,45 @@ all: $(shell cat $(MAKEFILE_LIST) | awk -F':' '/^[a-z0-9_-]+:/ && !/^all:/ {prin
 
 defaults:
 	defaults write NSGlobalDomain AppleMenuBarVisibleInFullscreen -int 1
-	defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
-	defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 	defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+	defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 	defaults write NSGlobalDomain InitialKeyRepeat -int 15
 	defaults write NSGlobalDomain KeyRepeat -int 2
+	defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+	defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float "0"
+
+	defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+	defaults write NSGlobalDomain com.apple.mouse.scaling -float "3"
 	defaults write NSGlobalDomain com.apple.trackpad.scaling -int 3
 
-	defaults write com.apple.screencapture disable-shadow -bool true
+	defaults write com.apple.ActivityMonitor "IconType" -int "5"
+
+	defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 0
+	defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+
 	defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 
+	defaults write com.apple.dock autohide -bool true
+	defaults write com.apple.dock mineffect -string "suck"
+	defaults write com.apple.dock mru-spaces -bool false
+	defaults write com.apple.dock show-process-indicators -bool true
+	defaults write com.apple.dock tilesize -int 50
+	killall Dock
+
+	defaults write com.apple.finder _FXSortFoldersFirst -bool true
+	defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true
 	defaults write com.apple.finder AppleShowAllFiles -bool true
+	defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+	defaults write com.apple.finder FXRemoveOldTrashItems -bool "true"
 	defaults write com.apple.finder ShowStatusBar -bool true
 	defaults write com.apple.finder ShowPathbar -bool true
 	killall Finder
 
-	defaults write com.apple.dock mru-spaces -bool false
-	killall Dock
+	defaults write com.apple.HIToolbox AppleFnUsageType -int "1"
+
+	defaults write com.apple.screencapture disable-shadow -bool true
+	defaults write com.apple.screencapture location -string "~/Pictures"
+	killall SystemUIServer
 
 rosetta:
 	sudo softwareupdate --install-rosetta --agree-to-license
