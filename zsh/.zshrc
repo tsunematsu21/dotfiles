@@ -9,6 +9,7 @@ eval "$(direnv hook zsh)"
 
 # Environment variables
 export LANG=ja_JP.UTF-8
+export PATH="$(go env GOPATH)/bin:$PATH"
 
 # Auto load
 autoload -Uz compinit && compinit
