@@ -60,4 +60,8 @@ brew bundle cleanup --file=./Brewfile --force
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf install nodejs lts
 asdf global nodejs lts
+
+corepack enable
+corepack prepare pnpm@latest --activate
+asdf reshim nodejs
 ```

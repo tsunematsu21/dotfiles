@@ -17,8 +17,6 @@ autoload -Uz compinit && compinit
 # Alias
 alias ls='ls -GF'
 alias ll='ls -lGF'
-alias cdk='npx aws-cdk'
-alias cdk-init='npx aws-cdk init --language typescript'
 alias account='defaults read MobileMeAccounts Accounts | grep AccountID | cut -d \" -f2'
 
 # Suffix alias
