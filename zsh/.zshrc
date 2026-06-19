@@ -2,7 +2,7 @@
 eval "$(starship init zsh)"
 
 # asdf
-. "$(brew --prefix asdf)/libexec/asdf.sh"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 # direnv
 eval "$(direnv hook zsh)"
