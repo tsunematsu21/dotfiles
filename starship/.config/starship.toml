@@ -1,55 +1,42 @@
-# Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Inserts a blank line between shell prompts
-add_newline = true
-
-# Use custom format
 format = """
 $directory\
 $git_branch\
 $git_state\
 $git_status\
-$character\
-"""
-
-# Enable right prompt
-right_format = """
-$status\
+$fill\
 $cmd_duration\
-$time\
-"""
+$line_break\
+$character"""
 
 [directory]
-truncation_length = 5
-truncate_to_repo = true
-style = "blue"
-truncation_symbol = "…/"
-# fish_style_pwd_dir_length = 3
-repo_root_style = "bold purple"
-before_repo_root_style = "blue"
+truncation_length = 3
+truncate_to_repo = false
+format = '[$path]($style) '
+style = "bold cyan"
+repo_root_style = "bold green"
+fish_style_pwd_dir_length = 5
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
 
 [git_branch]
-format = 'on [$symbol$branch]($style) '
-symbol = '󰘬 '
-style = "purple"
+format = "on [ $branch]($style) "
+style = "bold green"
 
 [git_status]
 style = "yellow"
 
-[character]
-success_symbol = '[❯](bold green)'
-error_symbol = '[❯](bold red)'
+[git_state]
+style = "bright-black"
 
-[status]
-disabled = false
-symbol = '[✗](bold red) '
+[fill]
+symbol = " "
 
 [cmd_duration]
-min_time = 1
-format = '[ $duration](bright-black) '
-
-[time]
-time_format = "%T"
-format = "󰅐 $time"
-disabled = false
+min_time = 0
+show_milliseconds = true
+format = '[\($duration\)]($style) '
+style = "bright-black"

@@ -15,8 +15,10 @@ brew "starship"
 brew "stow"
 
 cask "chatgpt"
-cask "docker"
+cask "docker-desktop"
+cask "ghostty"
 cask "notion"
 cask "raycast"
 cask "visual-studio-code"
-cask "warp"
+
+cask "font-ubuntu-mono-nerd-font"
