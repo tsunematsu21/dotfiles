@@ -74,4 +74,4 @@ aws: brew
 dotfiles: brew
 	mkdir -p ~/.config
 	mkdir -p ~/Developments
-	stow -v -t ~ -S aws gh git ssh starship zsh ghostty
+	stow -v -t ~ -S aws gh git ssh starship zsh ghostty sheldon

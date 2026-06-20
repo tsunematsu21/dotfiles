@@ -1,14 +1,15 @@
-# starship
-eval "$(starship init zsh)"
+# Sheldon
+eval "$(sheldon source)"
 
-# asdf
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# Starship
+eval "$(starship init zsh)"
 
 # direnv
 eval "$(direnv hook zsh)"
 
 # Environment variables
 export LANG=ja_JP.UTF-8
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 
 # Auto load

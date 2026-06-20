@@ -11,6 +11,7 @@ brew "go"
 brew "jq"
 brew "mas"
 brew "peco"
+brew "sheldon"
 brew "starship"
 brew "stow"
 

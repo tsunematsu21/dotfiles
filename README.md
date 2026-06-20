@@ -49,8 +49,8 @@ Configure application settings.
 ## Useful commands
 ```sh
 # Unstow(-D)/Restow(-R) the dotfiles.
-stow -v -t ~ -D aws gh git ssh starship zsh ghostty
-stow -v -t ~ -R aws gh git ssh starship zsh ghostty
+stow -v -t ~ -D aws gh git ssh starship zsh ghostty sheldon
+stow -v -t ~ -R aws gh git ssh starship zsh ghostty sheldon
 
 # List/Uninstall(--force) all dependencies not listed from the Brewfile.
 brew bundle cleanup --file=./Brewfile
