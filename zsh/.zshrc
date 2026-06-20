@@ -15,6 +15,10 @@ export PATH="$(go env GOPATH)/bin:$PATH"
 # Auto load
 autoload -Uz compinit && compinit
 
+# Completion
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
 # Alias
 alias ls='ls -GF'
 alias ll='ls -lGF'
