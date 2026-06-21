@@ -16,6 +16,8 @@ brew "starship"
 brew "stow"
 
 cask "chatgpt"
+cask "codex"
+cask "codex-app"
 cask "docker-desktop"
 cask "ghostty"
 cask "notion"
