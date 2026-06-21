@@ -1,19 +1,19 @@
 # Sheldon
-eval "$(sheldon source)"
+(( $+commands[sheldon] )) && eval "$(sheldon source)"
 
 # Starship
-eval "$(starship init zsh)"
+(( $+commands[starship] )) && eval "$(starship init zsh)"
 
 # direnv
-eval "$(direnv hook zsh)"
+(( $+commands[direnv] )) && eval "$(direnv hook zsh)"
 
 # fzf
-source <(fzf --zsh)
+(( $+commands[fzf] )) && source <(fzf --zsh)
 
 # Environment variables
 export LANG=ja_JP.UTF-8
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-export PATH="$(go env GOPATH)/bin:$PATH"
+(( $+commands[go] )) && export PATH="$(go env GOPATH)/bin:$PATH"
 
 # Auto load
 autoload -Uz compinit && compinit
