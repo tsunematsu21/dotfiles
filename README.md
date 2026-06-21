@@ -6,7 +6,7 @@ My macOS dotfiles.
 Most operations are performed automatically by Makefile, but some operations must be performed manually.
 ```sh
 # Get this repository
-git clone ~/dotfiles
+git clone https://github.com/tsunematsu21/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
 # Setup system preferences, Install packages, Deploy dotfiles
@@ -25,7 +25,7 @@ ssh-add --apple-use-keychain ~/.ssh/id_ed25519_tsunematsu21
 # Login to GitHub using CLI
 gh auth login
 
-# Add singing key to GitHub
+# Add signing key to GitHub
 gh auth refresh -h github.com -s admin:ssh_signing_key
 gh ssh-key add ~/.ssh/id_ed25519_tsunematsu21.pub \
   --title tsunematsu21.pub-`date '+%Y%m%d'` \
