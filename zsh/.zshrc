@@ -7,6 +7,9 @@ eval "$(starship init zsh)"
 # direnv
 eval "$(direnv hook zsh)"
 
+# fzf
+source <(fzf --zsh)
+
 # Environment variables
 export LANG=ja_JP.UTF-8
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
@@ -18,6 +21,7 @@ autoload -Uz compinit && compinit
 # Completion
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+_comp_options+=(globdots)
 
 # Alias
 alias ls='ls -GF'
@@ -28,6 +32,7 @@ alias account='defaults read MobileMeAccounts Accounts | grep AccountID | cut -d
 alias -s {tar.gz,tgz}='tar -xzvf'
 alias -s zip='unzip'
 alias -s html='open'
+alias history='history -i'
 
 # Global alias
 alias -g A='| awk'
@@ -42,7 +47,6 @@ alias -g T='| tail'
 setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
-cdpath=(.. ~ ~/Developments)
 
 # History
 HISTFILE=~/.zsh_history
@@ -50,29 +54,10 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 setopt hist_reduce_blanks
 setopt hist_verify
-setopt share_history
 setopt hist_ignore_all_dups
+setopt share_history
+setopt extended_history
 
 # Other options
 setopt interactive_comments
 setopt print_exit_value
-
-# Useful functions
-get_ec2_instance_id() {
-  aws ec2 describe-instances | \
-    jq -r '.[][].Instances[] | [.InstanceId, [.Tags[] | select(.Key == "Name").Value][], .InstanceType, .NetworkInterfaces[].PrivateIpAddress, .State.Name] | @tsv' | \
-    column -t | peco | cut -d ' ' -f 1
-}
-
-get_ec2_launch_template_id() {
-  aws ec2 describe-launch-templates | \
-    jq -r '.[][] | [.LaunchTemplateId, .LaunchTemplateName, .CreateTime] | @tsv' | \
-    column -t | peco | cut -d ' ' -f 1
-}
-
-run_ec2_instance_from_launch_template() {
-  local launch_template_id=`get_ec2_launch_template_id`
-  if [ -n "$launch_template_id" ]; then
-    aws ec2 run-instances --launch-template LaunchTemplateId=$launch_template_id $@
-  fi
-}

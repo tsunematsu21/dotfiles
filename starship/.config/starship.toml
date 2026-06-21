@@ -11,12 +11,12 @@ $line_break\
 $character"""
 
 [directory]
-truncation_length = 3
+truncation_length = 2
 truncate_to_repo = false
 format = '[$path]($style) '
-style = "bold cyan"
-repo_root_style = "bold green"
+style = "cyan"
 fish_style_pwd_dir_length = 5
+use_logical_path = false
 
 [character]
 success_symbol = "[❯](green)"
