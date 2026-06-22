@@ -1,5 +1,7 @@
 SHELL=/bin/zsh
 
+STOW_PACKAGES := $(patsubst %/,%,$(wildcard */))
+
 .ONESHELL:
 .PHONY: $(shell cat $(MAKEFILE_LIST) | awk -F':' '/^[a-z0-9_-]+:/ {print $$1}')
 
@@ -74,4 +76,4 @@ aws: brew
 dotfiles: brew
 	mkdir -p ~/.config
 	mkdir -p ~/Developments
-	stow -v -t ~ -S aws gh git ssh starship zsh ghostty sheldon
+	stow -v -t ~ -S $(STOW_PACKAGE)
