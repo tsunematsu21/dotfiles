@@ -5,8 +5,10 @@ STOW_PACKAGES := $(patsubst %/,%,$(wildcard */))
 .ONESHELL:
 .PHONY: $(shell cat $(MAKEFILE_LIST) | awk -F':' '/^[a-z0-9_-]+:/ {print $$1}')
 
+# Run all setup tasks.
 all: $(shell cat $(MAKEFILE_LIST) | awk -F':' '/^[a-z0-9_-]+:/ && !/^all:/ {print $$1}' )
 
+# Configure macOS system preferences.
 defaults:
 	defaults write NSGlobalDomain AppleMenuBarVisibleInFullscreen -int 1
 	defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -57,9 +59,11 @@ defaults:
 	defaults write com.apple.screencapture location -string "~/Pictures"
 	killall SystemUIServer
 
+# Install Rosetta 2.
 rosetta:
 	sudo softwareupdate --install-rosetta --agree-to-license
 
+# Install Homebrew and packages from the Brewfile.
 brew:
 	which brew > /dev/null || /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	brew analytics off
@@ -68,12 +72,14 @@ brew:
 	brew cleanup
 	brew bundle --file=./Brewfile
 
+# Install the AWS Session Manager plugin.
 aws: brew
 	curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/mac/session-manager-plugin.pkg" -o "/tmp/session-manager-plugin.pkg"
 	sudo installer -pkg /tmp/session-manager-plugin.pkg -target /
 	sudo ln -s /usr/local/sessionmanagerplugin/bin/session-manager-plugin /usr/local/bin/session-manager-plugin
 
+# Deploy all dotfile packages with Stow.
 dotfiles: brew
 	mkdir -p ~/.config
 	mkdir -p ~/Developments
-	stow -v -t ~ -S $(STOW_PACKAGE)
+	stow -v -t ~ -S $(STOW_PACKAGES)
