@@ -1,19 +1,19 @@
 # Sheldon
-(( $+commands[sheldon] )) && eval "$(sheldon source)"
+eval "$(sheldon source)"
 
 # Starship
-(( $+commands[starship] )) && eval "$(starship init zsh)"
+eval "$(starship init zsh)"
 
 # direnv
-(( $+commands[direnv] )) && eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
 
 # fzf
-(( $+commands[fzf] )) && source <(fzf --zsh)
+source <(fzf --zsh)
 
 # Environment variables
 export LANG=ja_JP.UTF-8
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-(( $+commands[go] )) && export PATH="$(go env GOPATH)/bin:$PATH"
+export PATH="$(go env GOPATH)/bin:$PATH"
 
 # Completion
 setopt extendedglob
