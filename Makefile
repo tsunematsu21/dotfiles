@@ -61,7 +61,8 @@ defaults:
 
 # Install Rosetta 2.
 rosetta:
-	sudo softwareupdate --install-rosetta --agree-to-license
+	pkgutil --pkg-info com.apple.pkg.RosettaUpdateAuto > /dev/null 2>&1 || \
+		sudo softwareupdate --install-rosetta --agree-to-license
 
 # Install Homebrew and packages from the Brewfile.
 brew:
