@@ -57,7 +57,7 @@ defaults:
 	defaults write com.apple.HIToolbox AppleFnUsageType -int "1"
 
 	defaults write com.apple.screencapture disable-shadow -bool true
-	defaults write com.apple.screencapture location -string "~/Pictures"
+	defaults write com.apple.screencapture location -string "$$HOME/Pictures"
 	killall SystemUIServer
 
 # Install Rosetta 2.
