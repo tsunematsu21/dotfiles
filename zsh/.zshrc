@@ -15,10 +15,19 @@ export LANG=ja_JP.UTF-8
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 (( $+commands[go] )) && export PATH="$(go env GOPATH)/bin:$PATH"
 
-# Auto load
-autoload -Uz compinit && compinit
-
 # Completion
+setopt extendedglob
+
+typeset -g ZCOMPDUMP="${ZDOTDIR:-$HOME}/.zcompdump"
+
+autoload -Uz compinit
+if [[ -n "${ZCOMPDUMP}"(#qN.mh+24) ]]; then
+  compinit
+  touch "${ZCOMPDUMP}"
+else
+  compinit -C
+fi
+
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 _comp_options+=(globdots)
