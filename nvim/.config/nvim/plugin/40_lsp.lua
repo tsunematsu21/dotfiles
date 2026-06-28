@@ -38,10 +38,6 @@ later(function()
       'ts_ls',
     }
   }
-  -- for name, server in pairs(servers) do
-  --   vim.lsp.config(name, server)
-  --   vim.lsp.enable(name)
-  -- end
 end)
 
 -- Auto Completion

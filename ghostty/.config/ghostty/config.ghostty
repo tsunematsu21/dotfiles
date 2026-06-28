@@ -1,4 +1,7 @@
 font-family = HackGen35 Console NF
 font-size = 16
-window-padding-x = 24
-window-padding-y = 16
+window-padding-x = 16
+window-padding-y = 0
+window-padding-balance = true
+window-padding-color = extend
+mouse-hide-while-typing = true

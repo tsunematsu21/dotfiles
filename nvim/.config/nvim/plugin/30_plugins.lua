@@ -16,20 +16,24 @@ end)
 
 -- Color
 now(function()
-  require('mini.hues').setup({ background = '#282c34', foreground = '#c0c8cc' })
+  require('mini.hues').setup({ background = '#282c34', foreground = '#dedede' })
 end)
 
+-- Mode
 later(function()
-  vim.pack.add({ 'https://github.com/mvllow/modes.nvim' })
-
   local palette = require('mini.hues').get_palette()
+
+  vim.pack.add({ 'https://github.com/mvllow/modes.nvim' })
   require('modes').setup({
     colors = {
+      bg = palette.bg,
       copy = palette.yellow,
       delete = palette.red,
+      change = palette.red,
       format = palette.orange,
       insert = palette.green,
-      replace = palette.azure,
+      replace = palette.blue,
+      select = palette.purple,
       visual = palette.purple,
     },
   })
@@ -38,7 +42,6 @@ end)
 -- Status line
 now(function()
   vim.pack.add({ 'https://github.com/nvim-lualine/lualine.nvim' })
-
   require('lualine').setup({})
 end)
 
@@ -49,14 +52,18 @@ now(function()
     'https://github.com/rcarriga/nvim-notify',
     'https://github.com/folke/noice.nvim',
   })
-
   require("noice").setup({})
+end)
+
+-- Scroll
+later(function()
+  vim.pack.add({ 'https://github.com/karb94/neoscroll.nvim' })
+  require('neoscroll').setup({})
 end)
 
 -- Diagnostic
 later(function()
   vim.pack.add({ 'https://github.com/rachartier/tiny-inline-diagnostic.nvim' })
-
   require("tiny-inline-diagnostic").setup({
     options = {
       multilines = {
@@ -69,16 +76,15 @@ end)
 -- Terminal
 later(function()
   vim.pack.add({ 'https://github.com/akinsho/toggleterm.nvim' })
-
   require('toggleterm').setup({
-    open_mapping = [[<c-t>]],
+    open_mapping = [[<c-j>]],
+    shade_terminals = false,
   })
 end)
 
 -- AI Agent
 later(function()
   vim.pack.add({ 'https://github.com/folke/sidekick.nvim' })
-
   require('sidekick').setup({})
 
   local cli = require('sidekick.cli')
