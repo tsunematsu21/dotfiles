@@ -22,3 +22,12 @@ later(function()
     gs.reset_hunk { vim.fn.line("."), vim.fn.line("v") }
   end, { desc = 'Reset hunk' })
 end)
+
+later(function()
+  vim.pack.add({
+    'https://github.com/nvim-lua/plenary.nvim',
+    'https://github.com/kdheepak/lazygit.nvim',
+  })
+
+  vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = 'Open LazyGit' })
+end)
