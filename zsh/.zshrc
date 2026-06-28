@@ -14,6 +14,7 @@ source <(fzf --zsh)
 export LANG=ja_JP.UTF-8
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
+export EDITOR="nvim"
 
 # Completion
 setopt extendedglob
@@ -70,3 +71,11 @@ setopt extended_history
 # Other options
 setopt interactive_comments
 setopt print_exit_value
+
+# pnpm
+export PNPM_HOME="/Users/masato.tsunematsu/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

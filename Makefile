@@ -85,3 +85,6 @@ dotfiles: brew
 	mkdir -p ~/.config
 	mkdir -p ~/Developments
 	stow -v -t ~ -S $(STOW_PACKAGES)
+
+rust:
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
