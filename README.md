@@ -49,19 +49,13 @@ Configure application settings.
 ## Useful commands
 ```sh
 # Unstow(-D)/Restow(-R) the dotfiles.
-stow -v -t ~ -D aws gh git ssh starship zsh ghostty sheldon
-stow -v -t ~ -R aws gh git ssh starship zsh ghostty sheldon
+stow -v -t ~ -D aws gh git ssh starship zsh ghostty sheldon mise
+stow -v -t ~ -R aws gh git ssh starship zsh ghostty sheldon mise
 
 # List/Uninstall(--force) all dependencies not listed from the Brewfile.
 brew bundle cleanup --file=./Brewfile
 brew bundle cleanup --file=./Brewfile --force
 
-# Install LTS Node.js to global by asdf, and activate pnpm
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs lts
-asdf global nodejs lts
-
-corepack enable
-corepack prepare pnpm@latest --activate
-asdf reshim nodejs
+# Install global tools by mise
+mise install
 ```

@@ -7,12 +7,16 @@ eval "$(starship init zsh)"
 # direnv
 eval "$(direnv hook zsh)"
 
+# mise
+if command -v mise > /dev/null; then
+  eval "$(mise activate zsh)"
+fi
+
 # fzf
 source <(fzf --zsh)
 
 # Environment variables
 export LANG=ja_JP.UTF-8
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 export EDITOR="nvim"
 
@@ -28,6 +32,8 @@ if [[ -n "${ZCOMPDUMP}"(#qN.mh+24) ]]; then
 else
   compinit -C
 fi
+
+source <(mise completion zsh)
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -71,11 +77,3 @@ setopt extended_history
 # Other options
 setopt interactive_comments
 setopt print_exit_value
-
-# pnpm
-export PNPM_HOME="/Users/masato.tsunematsu/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
