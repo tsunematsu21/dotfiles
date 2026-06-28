@@ -39,6 +39,9 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 _comp_options+=(globdots)
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#555555,underline"
+ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history)
+
 # Alias
 alias ls='ls -GF'
 alias ll='ls -lGF'

@@ -16,26 +16,53 @@ end)
 
 -- Color
 now(function()
-  require('mini.hues').setup({ background = '#282c34', foreground = '#dedede' })
+  vim.pack.add({ 'https://github.com/rebelot/kanagawa.nvim' })
+  require('kanagawa').setup({
+    theme = 'dragon',
+    commentStyle = { italic = false },
+    keywordStyle = { italic = false },
+    statementStyle = { bold = false },
+    colors = {
+      theme = {
+        all = {
+          ui = {
+            bg_gutter = 'none' -- Remove gutter background
+          }
+        }
+      }
+    },
+  })
+  vim.cmd.colorscheme('kanagawa')
+end)
+
+later(function()
+  require('mini.indentscope').setup({})
+
+  vim.api.nvim_create_autocmd('TermOpen', {
+    pattern = '*',
+    callback = function()
+      vim.b.miniindentscope_disable = true
+    end,
+  })
 end)
 
 -- Mode
 later(function()
-  local palette = require('mini.hues').get_palette()
+  local palette = require('kanagawa.colors').setup().palette
 
   vim.pack.add({ 'https://github.com/mvllow/modes.nvim' })
   require('modes').setup({
     colors = {
-      bg = palette.bg,
-      copy = palette.yellow,
-      delete = palette.red,
-      change = palette.red,
-      format = palette.orange,
-      insert = palette.green,
-      replace = palette.blue,
-      select = palette.purple,
-      visual = palette.purple,
+      copy = palette.autumnYellow,
+      delete = palette.autumnRed,
+      change = palette.autumnRed,
+      format = palette.surimiOrange,
+      insert = palette.springGreen,
+      replace = palette.crystalBlue,
+      select = palette.oniViolet,
+      visual = palette.oniViolet,
     },
+    line_opacity = 0.2 ,
   })
 end)
 
