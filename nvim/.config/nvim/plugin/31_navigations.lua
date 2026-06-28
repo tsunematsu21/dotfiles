@@ -1,4 +1,4 @@
-local now = Config.now
+local now, later = Config.now, Config.later
 
 -- Explorer
 now(function()
@@ -27,7 +27,7 @@ now(function()
 end)
 
 -- Fuzzy finder
-now(function()
+later(function()
   vim.pack.add({ 'https://github.com/ibhagwan/fzf-lua' })
 
   local fzf = require('fzf-lua')

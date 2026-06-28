@@ -85,5 +85,4 @@ later(function()
   vim.keymap.set({ 'n', 't', 'i', 'x' }, '<c-.>', function() cli.focus() end, { desc = 'Sidekick Focus' })
   vim.keymap.set('n', '<leader>aa', function() cli.toggle() end, { desc = 'Sidekick Toggle CLI' })
   vim.keymap.set('n', '<leader>as', function() cli.select() end, { desc = 'Select CLI' })
-
 end)
