@@ -18,6 +18,11 @@ now(function()
   require('oil').setup({
     view_options = {
       show_hidden = true,
+      is_always_hidden = function(name, _)
+        if name == '.git' then
+          return true
+        end
+      end,
     },
     win_options = {
       winbar = "%!v:lua.get_oil_winbar()",
@@ -34,7 +39,8 @@ later(function()
   fzf.setup({
     grep = {
       hidden = true,
-    }
+    },
+    ui_select = true,
   })
 
   -- Find
@@ -70,8 +76,12 @@ later(function()
   vim.keymap.set('n', '<leader>gH', function() fzf.git_diff() end, { desc = 'Git Diff' })
 
   -- LSP
+  vim.keymap.set('n', '<leader>la', function() fzf.lsp_code_actions() end, { desc = 'Code Actions' })
+  vim.keymap.set('n', '<leader>ll', function() fzf.lsp_finder() end, { desc = 'LSP Finder' })
   vim.keymap.set('n', '<leader>ld', function() fzf.lsp_definitions() end, { desc = 'Goto Definition' })
   vim.keymap.set('n', '<leader>lD', function() fzf.lsp_declarations() end, { desc = 'Goto Declarations' })
+  vim.keymap.set('n', '<leader>ls', function() fzf.lsp_document_symbols() end, { desc = 'LSP Symbols (buffer)' })
+  vim.keymap.set('n', '<leader>lS', function() fzf.lsp_workspace_symbols() end, { desc = 'LSP Symbols (workspace)' })
   vim.keymap.set('n', '<leader>lg', function() fzf.diagnostics_document() end, { desc = 'Buffer Diagnostics' })
   vim.keymap.set('n', '<leader>lG', function() fzf.diagnostics_workspace() end, { desc = 'Workspace Diagnostics' })
 end)

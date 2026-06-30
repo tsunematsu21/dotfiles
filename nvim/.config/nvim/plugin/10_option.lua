@@ -3,6 +3,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.o.number = true
+vim.o.cursorline = true
 vim.o.mouse = 'a'
 
 -- Tab
@@ -35,3 +36,5 @@ vim.opt.listchars = {
   extends = '❯',
   precedes = '❮',
 }
+
+require("vim._core.ui2").enable({})

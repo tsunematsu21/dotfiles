@@ -1,24 +1,8 @@
 {
   "plugins": {
-    "blink.cmp": {
-      "rev": "bda905a4bf1b3edfa708b0be193b8c63d8620c96",
-      "src": "https://github.com/saghen/blink.cmp"
-    },
     "blink.indent": {
       "rev": "8b69b9262891fe81fe728fe6a52fa2a84dd5d5e0",
       "src": "https://github.com/saghen/blink.indent"
-    },
-    "blink.lib": {
-      "rev": "5876dd95deeb70aadbe9f1c0b7117a135061cdac",
-      "src": "https://github.com/saghen/blink.lib"
-    },
-    "dropbar.nvim": {
-      "rev": "808ba31cde89aec8833e9789f5e04557cd31c9e1",
-      "src": "https://github.com/Bekaboo/dropbar.nvim"
-    },
-    "fidget.nvim": {
-      "rev": "6f793b2bcd2d35e201c09520f698bb763220908a",
-      "src": "https://github.com/j-hui/fidget.nvim"
     },
     "fzf-lua": {
       "rev": "b6f0392fe1645973c795b5bbbd8d6db466a5a25a",
@@ -52,29 +36,21 @@
       "rev": "c248713d3530710f67ec804cfbdfcd5b02b19dee",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
-    "modes.nvim": {
-      "rev": "2badf8771dbb2d1e1066fd6a5dddaad2fc836e72",
-      "src": "https://github.com/mvllow/modes.nvim"
-    },
     "neoscroll.nvim": {
       "rev": "c8d29979cb0cb3a2437a8e0ae683fd82f340d3b8",
       "src": "https://github.com/karb94/neoscroll.nvim"
     },
-    "noice.nvim": {
-      "rev": "7bfd942445fb63089b59f97ca487d605e715f155",
-      "src": "https://github.com/folke/noice.nvim"
-    },
-    "nui.nvim": {
-      "rev": "de740991c12411b663994b2860f1a4fd0937c130",
-      "src": "https://github.com/MunifTanjim/nui.nvim.git"
+    "no-neck-pain.nvim": {
+      "rev": "4bc52782524fd50c5658685d584df6fa48fe49f9",
+      "src": "https://github.com/shortcuts/no-neck-pain.nvim"
     },
     "nvim-lspconfig": {
       "rev": "3371bf298c1f56efc26771ee961f461176958fb5",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
-    "nvim-notify": {
-      "rev": "8701bece920b38ea289b457f902e2ad184131a5d",
-      "src": "https://github.com/rcarriga/nvim-notify"
+    "nvim-scrollbar": {
+      "rev": "f8e87b96cd6362ef8579be456afee3b38fd7e2a8",
+      "src": "https://github.com/petertriho/nvim-scrollbar"
     },
     "oil.nvim": {
       "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
@@ -88,21 +64,17 @@
       "rev": "208e1c5b8170c01fd1d07df0139322a76479b235",
       "src": "https://github.com/folke/sidekick.nvim"
     },
+    "tiny-cmdline.nvim": {
+      "rev": "e247d9ee4c980734f8f8bf616d31e0ab7c27485d",
+      "src": "https://github.com/rachartier/tiny-cmdline.nvim"
+    },
     "tiny-inline-diagnostic.nvim": {
       "rev": "e930d0a46031645040d5492595b46cdf6ab3514f",
       "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
     },
-    "todo-comments.nvim": {
-      "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
-      "src": "https://github.com/folke/todo-comments.nvim"
-    },
     "toggleterm.nvim": {
       "rev": "9a88eae817ef395952e08650b3283726786fb5fb",
       "src": "https://github.com/akinsho/toggleterm.nvim"
-    },
-    "which-key.nvim": {
-      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
-      "src": "https://github.com/folke/which-key.nvim"
     }
   }
 }

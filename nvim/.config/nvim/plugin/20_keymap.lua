@@ -54,17 +54,64 @@ vim.keymap.set('n', 'gx', open_cfile, { desc = 'Open file under cursor' })
 
 -- Keymap suggest
 later(function()
-  vim.pack.add({ 'https://github.com/folke/which-key.nvim' })
+  local miniclue = require('mini.clue')
+  miniclue.setup({
+    triggers = {
+      -- Leader triggers
+      { mode = { 'n', 'x' }, keys = '<Leader>' },
 
-  require('which-key').setup {
-    preset = 'helix',
-    delay = 0,
-    spec = {
-      { '<leader>a', group = 'AI Agent', mode = { 'n', 't', 'i', 'x' } },
-      { '<leader>f', group = 'Find', mode = { 'n', 'v' } },
-      { '<leader>g', group = 'Git', mode = { 'n', 'v' } },
-      { '<leader>h', group = 'Git Hunks', mode = { 'n', 'v' } },
-      { '<leader>l', group = 'LSP', mode = { 'n', 'v' } },
+      -- `[` and `]` keys
+      { mode = 'n', keys = '[' },
+      { mode = 'n', keys = ']' },
+
+      -- Built-in completion
+      { mode = 'i', keys = '<C-x>' },
+
+      -- `g` key
+      { mode = { 'n', 'x' }, keys = 'g' },
+
+      -- Marks
+      { mode = { 'n', 'x' }, keys = "'" },
+      { mode = { 'n', 'x' }, keys = '`' },
+
+      -- Registers
+      { mode = { 'n', 'x' }, keys = '"' },
+      { mode = { 'i', 'c' }, keys = '<C-r>' },
+
+      -- Window commands
+      { mode = 'n', keys = '<C-w>' },
+
+      -- `z` key
+      { mode = { 'n', 'x' }, keys = 'z' },
+
+      -- mini.surround
+      { mode = { 'n', 'x' }, keys = 's' },
+
+      -- text object
+      { mode = 'x', keys = 'i' },
+      { mode = 'x', keys = 'a' },
+      { mode = 'o', keys = 'i' },
+      { mode = 'o', keys = 'a' },
     },
-  }
+
+    clues = {
+      { mode = { 'n', 't', 'i', 'x' }, keys = '<Leader>a', desc = '+AI Agent' },
+      { mode = { 'n', 'v' }, keys = '<Leader>f', desc = '+Find' },
+      { mode = { 'n', 'v' }, keys = '<Leader>g', desc = '+Git' },
+      { mode = { 'n', 'v' }, keys = '<Leader>h', desc = '+Git Hunk' },
+      { mode = { 'n', 'v' }, keys = '<Leader>l', desc = '+LSP' },
+
+      -- Enhance this by adding descriptions for <Leader> mapping groups
+      miniclue.gen_clues.square_brackets(),
+      miniclue.gen_clues.builtin_completion(),
+      miniclue.gen_clues.g(),
+      miniclue.gen_clues.marks(),
+      miniclue.gen_clues.registers(),
+      miniclue.gen_clues.windows(),
+      miniclue.gen_clues.z(),
+    },
+    window = {
+      delay = 0,
+    },
+  })
 end)

@@ -1,5 +1,6 @@
 local later = Config.later
 
+-- Git signs
 later(function()
   vim.pack.add({ 'https://github.com/lewis6991/gitsigns.nvim' })
 
@@ -21,8 +22,12 @@ later(function()
   vim.keymap.set('v', '<leader>hr', function()
     gs.reset_hunk { vim.fn.line("."), vim.fn.line("v") }
   end, { desc = 'Reset hunk' })
+
+  -- Scrollbar integration
+  require("scrollbar.handlers.gitsigns").setup()
 end)
 
+-- LazyGit
 later(function()
   vim.pack.add({
     'https://github.com/nvim-lua/plenary.nvim',
@@ -30,4 +35,29 @@ later(function()
   })
 
   vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = 'Open LazyGit' })
+end)
+
+-- Terminal
+later(function()
+  vim.pack.add({ 'https://github.com/akinsho/toggleterm.nvim' })
+  require('toggleterm').setup({
+    open_mapping = [[<c-t>]],
+  })
+end)
+
+-- AI Agent
+later(function()
+  vim.pack.add({ 'https://github.com/folke/sidekick.nvim' })
+  require('sidekick').setup({
+    cli = {
+      win = {
+        layout = 'left',
+      },
+    },
+  })
+
+  local cli = require('sidekick.cli')
+  vim.keymap.set({ 'n', 't', 'i', 'x' }, '<c-.>', function() cli.focus() end, { desc = 'Sidekick Focus' })
+  vim.keymap.set('n', '<leader>aa', function() cli.toggle() end, { desc = 'Sidekick Toggle CLI' })
+  vim.keymap.set('n', '<leader>as', function() cli.select() end, { desc = 'Select CLI' })
 end)

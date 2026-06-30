@@ -3,6 +3,14 @@ vim.loader.enable()
 -- Define config table to be able to pass data between scripts
 _G.Config = {}
 
+
+-- Define custom autocommand group and helper to create an autocommand.
+local gr = vim.api.nvim_create_augroup('custom-config', {})
+Config.new_autocmd = function(event, pattern, callback, desc)
+  local opts = { group = gr, pattern = pattern, callback = callback, desc = desc }
+  vim.api.nvim_create_autocmd(event, opts)
+end
+
 -- Loading helpers used to organize config into fail-safe parts.
 vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
 local misc = require('mini.misc')
