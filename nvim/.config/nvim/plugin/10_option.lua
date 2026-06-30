@@ -1,10 +1,18 @@
+local new_autocmd = Config.new_autocmd
+
+require("vim._core.ui2").enable({})
+
 -- Leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.o.number = true
-vim.o.cursorline = true
 vim.o.mouse = 'a'
+vim.o.clipboard = 'unnamedplus'
+
+-- Gutter
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.signcolumn = 'yes'
 
 -- Tab
 vim.o.expandtab = true
@@ -18,11 +26,8 @@ vim.o.smartcase = true
 vim.o.ignorecase = true
 
 vim.o.wrap = true
-vim.o.signcolumn = 'yes'
-vim.o.clipboard = 'unnamedplus'
 vim.o.splitbelow = true
 vim.o.splitright = true
-
 vim.o.cmdheight = 1
 vim.o.showtabline = 0
 vim.o.laststatus = 3
@@ -37,4 +42,11 @@ vim.opt.listchars = {
   precedes = '❮',
 }
 
-require("vim._core.ui2").enable({})
+-- Cursor line
+vim.o.cursorline = true
+new_autocmd('InsertEnter', nil, function()
+  vim.o.cursorline = false
+end, 'Disable cursorline')
+new_autocmd('InsertLeave', nil, function()
+  vim.o.cursorline = true
+end, 'Enable cursorline')

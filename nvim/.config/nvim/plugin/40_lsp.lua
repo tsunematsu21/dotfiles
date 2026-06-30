@@ -5,6 +5,12 @@ now_if_args(function()
   local callback = function(ev)
     vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'noinsert', 'fuzzy', 'popup' }
 
+    -- Diagnostic
+    vim.diagnostic.config({
+      virtual_text = true,
+      underline = true,
+    })
+
     -- Keymaps
     local map = function(mode, lhs, rhs, desc)
       vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
