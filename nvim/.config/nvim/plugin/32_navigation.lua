@@ -26,7 +26,9 @@ now(function()
     },
     win_options = {
       winbar = "%!v:lua.get_oil_winbar()",
-    }
+    },
+    delete_to_trash = true,
+    skip_confirm_for_simple_edits = true,
   })
   vim.keymap.set('n', '<leader>e', '<cmd>Oil<cr>', { desc = 'File explorer' })
 end)

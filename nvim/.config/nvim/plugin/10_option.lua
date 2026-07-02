@@ -32,6 +32,9 @@ vim.o.cmdheight = 1
 vim.o.showtabline = 0
 vim.o.laststatus = 3
 
+vim.o.autoread = true
+vim.o.swapfile = false
+
 -- listchars
 vim.o.list = true
 vim.opt.listchars = {

@@ -6,11 +6,6 @@ now(function()
   MiniMisc.setup_restore_cursor() ---@diagnostic disable-line: undefined-global
 end)
 
--- Cursor word
-later(function()
-  require('mini.cursorword').setup({})
-end)
-
 -- Text objects
 later(function()
   require('mini.surround').setup()
@@ -28,6 +23,7 @@ later(function()
     },
   })
 end)
+
 -- Scroll
 later(function()
   vim.pack.add({ 'https://github.com/karb94/neoscroll.nvim' })

@@ -15,6 +15,9 @@ make
 # Refresh shell
 exec -l $SHELL
 
+# Install global tools by mise
+mise install
+
 # Create SSH key with passphrase
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_tsunematsu21
 
@@ -56,6 +59,6 @@ stow -v -t ~ -R aws gh git ssh starship zsh ghostty sheldon mise
 brew bundle cleanup --file=./Brewfile
 brew bundle cleanup --file=./Brewfile --force
 
-# Install global tools by mise
-mise install
+# Install only
+brew bundle install --file=./Brewfile --no-upgrade
 ```

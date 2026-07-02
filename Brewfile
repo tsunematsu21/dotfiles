@@ -18,6 +18,7 @@ brew "ripgrep"
 brew "sheldon"
 brew "starship"
 brew "stow"
+brew "tmux"
 
 cask "chatgpt"
 cask "codex"
@@ -29,4 +30,4 @@ cask "notion"
 cask "raycast"
 cask "visual-studio-code"
 
-cask "font-maple-mono-nf-cn"
+cask "font-hackgen-nerd"

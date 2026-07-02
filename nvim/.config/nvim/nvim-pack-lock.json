@@ -60,6 +60,10 @@
       "rev": "208e1c5b8170c01fd1d07df0139322a76479b235",
       "src": "https://github.com/folke/sidekick.nvim"
     },
+    "smart-splits.nvim": {
+      "rev": "0e5bc00d2a32e6c782cd279cb96ab6c7ae49cd94",
+      "src": "https://github.com/mrjones2014/smart-splits.nvim"
+    },
     "tiny-cmdline.nvim": {
       "rev": "e247d9ee4c980734f8f8bf616d31e0ab7c27485d",
       "src": "https://github.com/rachartier/tiny-cmdline.nvim"

@@ -1,4 +1,4 @@
-local later = Config.later
+local now, later = Config.now, Config.later
 
 -- Git signs
 later(function()
@@ -58,6 +58,28 @@ later(function()
 
   local cli = require('sidekick.cli')
   vim.keymap.set({ 'n', 't', 'i', 'x' }, '<c-.>', function() cli.focus() end, { desc = 'Sidekick Focus' })
-  vim.keymap.set('n', '<leader>aa', function() cli.toggle() end, { desc = 'Sidekick Toggle CLI' })
-  vim.keymap.set('n', '<leader>as', function() cli.select() end, { desc = 'Select CLI' })
+  vim.keymap.set('n', '<leader>.a', function() cli.toggle() end, { desc = 'Sidekick Toggle CLI' })
+  vim.keymap.set('n', '<leader>.s', function() cli.select() end, { desc = 'Select CLI' })
+  vim.keymap.set('n', '<leader>.d', function() cli.close() end, { desc = 'Detach a CLI Session' })
+  vim.keymap.set({ 'n', 'x' }, '<leader>at', function() cli.send({ msg = '{this}' }) end, { desc = 'Send This' })
+  vim.keymap.set('n', '<leader>.f', function() cli.send({ msg = '{file}' }) end, { desc = 'Send File' })
+  vim.keymap.set('x', '<leader>.v', function() cli.send({ msg = '{selection}' }) end, { desc = 'Send Visual Selection' })
+end)
+
+-- Tmux
+now(function()
+  vim.pack.add({ 'https://github.com/mrjones2014/smart-splits.nvim' })
+  require('smart-splits').setup({})
+
+  -- moving between splits
+  vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
+  vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down)
+  vim.keymap.set('n', '<A-k>', require('smart-splits').resize_up)
+  vim.keymap.set('n', '<A-l>', require('smart-splits').resize_right)
+
+  vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)
+  vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
+  vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
+  vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
+  vim.keymap.set('n', '<C-\\>', require('smart-splits').move_cursor_previous)
 end)
