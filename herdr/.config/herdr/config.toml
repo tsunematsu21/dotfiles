@@ -1,3 +1,5 @@
+onboarding = false
+
 [keys]
 prefix = "ctrl+b"
 
@@ -10,6 +12,7 @@ delivery = "terminal"
 
 [experimental]
 kitty_graphics = true
+switch_ascii_input_source_in_prefix = true
 
 [[keys.command]]
 key = "alt+g"
