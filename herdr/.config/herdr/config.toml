@@ -1,11 +1,9 @@
-onboarding = false
-
-[keys]
-prefix = "ctrl+b"
-
 [theme]
 name = "kanagawa"
 auto_switch = true
+
+[ui]
+prompt_new_tab_name = false
 
 [ui.toast]
 delivery = "terminal"
@@ -13,6 +11,41 @@ delivery = "terminal"
 [experimental]
 kitty_graphics = true
 switch_ascii_input_source_in_prefix = true
+
+[keys]
+prefix = "ctrl+b"
+focus_pane_left = "ctrl+h"
+focus_pane_down = "ctrl+j"
+focus_pane_up = "ctrl+k"
+focus_pane_right = "ctrl+l"
+new_tab = "alt+t"
+close_tab = "alt+w"
+next_tab = "alt+tab"
+previous_tab = "alt+shift+tab"
+
+[[keys.command]]
+key = "alt+h"
+type = "shell"
+command = "herdr pane resize --current --direction left --amount 0.05"
+description = "resize pane left"
+
+[[keys.command]]
+key = "alt+j"
+type = "shell"
+command = "herdr pane resize --current --direction down --amount 0.05"
+description = "resize pane down"
+
+[[keys.command]]
+key = "alt+k"
+type = "shell"
+command = "herdr pane resize --current --direction up --amount 0.05"
+description = "resize pane up"
+
+[[keys.command]]
+key = "alt+l"
+type = "shell"
+command = "herdr pane resize --current --direction right --amount 0.05"
+description = "resize pane right"
 
 [[keys.command]]
 key = "alt+g"
