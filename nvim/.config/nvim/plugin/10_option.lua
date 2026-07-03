@@ -28,7 +28,7 @@ vim.o.ignorecase = true
 vim.o.wrap = true
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.cmdheight = 1
+vim.o.cmdheight = 0
 vim.o.showtabline = 0
 vim.o.laststatus = 3
 

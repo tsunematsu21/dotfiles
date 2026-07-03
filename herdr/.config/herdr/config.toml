@@ -1,0 +1,18 @@
+[keys]
+prefix = "ctrl+b"
+
+[theme]
+name = "kanagawa"
+auto_switch = true
+
+[ui.toast]
+delivery = "terminal"
+
+[experimental]
+kitty_graphics = true
+
+[[keys.command]]
+key = "alt+g"
+type = "pane"
+command = "lazygit"
+description = "run lazygit"

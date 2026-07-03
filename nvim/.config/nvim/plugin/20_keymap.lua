@@ -95,7 +95,7 @@ later(function()
     },
 
     clues = {
-      { mode = { 'n', 't', 'i', 'x' }, keys = '<Leader>.', desc = '+AI Agent' },
+      { mode = { 'n', 't', 'i', 'x' }, keys = '<Leader>;', desc = '+AI Agent' },
       { mode = { 'n', 'v' }, keys = '<Leader>f', desc = '+Find' },
       { mode = { 'n', 'v' }, keys = '<Leader>g', desc = '+Git' },
       { mode = { 'n', 'v' }, keys = '<Leader>h', desc = '+Git Hunk' },

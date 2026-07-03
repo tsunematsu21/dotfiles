@@ -18,7 +18,6 @@ now(function()
   vim.pack.add({ 'https://github.com/rebelot/kanagawa.nvim' })
   require('kanagawa').setup({
     transparent = true,
-    dimInactive = true,
     colors = {
       theme = {
         all = {

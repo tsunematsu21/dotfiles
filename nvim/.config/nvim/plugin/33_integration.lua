@@ -41,7 +41,7 @@ end)
 later(function()
   vim.pack.add({ 'https://github.com/akinsho/toggleterm.nvim' })
   require('toggleterm').setup({
-    open_mapping = [[<c-t>]],
+    open_mapping = [[<c-.>]],
   })
 end)
 
@@ -51,19 +51,67 @@ later(function()
   require('sidekick').setup({
     cli = {
       win = {
-        layout = 'left',
+        layout = 'right',
       },
     },
   })
 
   local cli = require('sidekick.cli')
-  vim.keymap.set({ 'n', 't', 'i', 'x' }, '<c-.>', function() cli.focus() end, { desc = 'Sidekick Focus' })
-  vim.keymap.set('n', '<leader>.a', function() cli.toggle() end, { desc = 'Sidekick Toggle CLI' })
-  vim.keymap.set('n', '<leader>.s', function() cli.select() end, { desc = 'Select CLI' })
-  vim.keymap.set('n', '<leader>.d', function() cli.close() end, { desc = 'Detach a CLI Session' })
-  vim.keymap.set({ 'n', 'x' }, '<leader>at', function() cli.send({ msg = '{this}' }) end, { desc = 'Send This' })
-  vim.keymap.set('n', '<leader>.f', function() cli.send({ msg = '{file}' }) end, { desc = 'Send File' })
-  vim.keymap.set('x', '<leader>.v', function() cli.send({ msg = '{selection}' }) end, { desc = 'Send Visual Selection' })
+  vim.keymap.set({ 'n', 't', 'i', 'x' }, '<c-;>', function() cli.toggle() end, { desc = 'Sidekick Focus' })
+  vim.keymap.set('n', '<leader>;a', function() cli.toggle() end, { desc = 'Sidekick Toggle CLI' })
+  vim.keymap.set('n', '<leader>;s', function() cli.select() end, { desc = 'Select CLI' })
+  vim.keymap.set('n', '<leader>;d', function() cli.close() end, { desc = 'Detach a CLI Session' })
+  vim.keymap.set({ 'n', 'x' }, '<leader>;t', function() cli.send({ msg = '{this}' }) end, { desc = 'Send This' })
+  vim.keymap.set('n', '<leader>;f', function() cli.send({ msg = '{file}' }) end, { desc = 'Send File' })
+  vim.keymap.set('x', '<leader>;v', function() cli.send({ msg = '{selection}' }) end, { desc = 'Send Visual Selection' })
+
+  local function herdr_codex_target()
+    return vim.g.herdr_codex_target or vim.env.HERDR_CODEX_TARGET or 'codex'
+  end
+
+  local function herdr_send_to_codex(text)
+    if not text or text == '' then
+      vim.notify('Nothing to send to Codex', vim.log.levels.WARN)
+      return
+    end
+
+    if vim.g.herdr_codex_submit ~= false then
+      text = text .. '\n'
+    end
+
+    vim.system({ 'herdr', 'agent', 'send', herdr_codex_target(), text }, { text = true }, function(result)
+      vim.schedule(function()
+        if result.code == 0 then
+          vim.notify('Sent to Codex via Herdr', vim.log.levels.INFO)
+        else
+          local stderr = vim.trim(result.stderr or '')
+          vim.notify(stderr ~= '' and stderr or 'Failed to send to Codex via Herdr', vim.log.levels.ERROR)
+        end
+      end)
+    end)
+  end
+
+  local function current_file_path()
+    local path = vim.api.nvim_buf_get_name(0)
+    if path == '' then
+      vim.notify('Current buffer has no file path', vim.log.levels.WARN)
+      return nil
+    end
+    return vim.fn.fnamemodify(path, ':p')
+  end
+
+  local function visual_selection()
+    local lines = vim.fn.getregion(vim.fn.getpos('v'), vim.fn.getpos('.'), { type = vim.fn.mode() })
+    return table.concat(lines, '\n')
+  end
+
+  vim.keymap.set('n', '<leader>;hf', function()
+    herdr_send_to_codex(current_file_path())
+  end, { desc = 'Herdr Send File Path to Codex' })
+
+  vim.keymap.set('x', '<leader>;hv', function()
+    herdr_send_to_codex(visual_selection())
+  end, { desc = 'Herdr Send Visual Selection to Codex' })
 end)
 
 -- Tmux
