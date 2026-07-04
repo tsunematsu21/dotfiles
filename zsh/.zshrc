@@ -14,6 +14,10 @@ fi
 
 # fzf
 source <(fzf --zsh)
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+
+# zoxide
+eval "$(zoxide init zsh --cmd cd)"
 
 # Environment variables
 export LANG=ja_JP.UTF-8
@@ -38,6 +42,8 @@ source <(mise completion zsh)
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 _comp_options+=(globdots)
+zstyle ':completion:*:make:*:targets' call-command true
+zstyle ':completion:*:*:make:*' tag-order 'targets'
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#555555,underline"
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history)
