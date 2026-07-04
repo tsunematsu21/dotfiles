@@ -2,27 +2,35 @@ tap "homebrew/bundle"
 
 cask_args appdir: "~/Applications"
 
-brew "awscli"
-brew "direnv"
-brew "fastfetch"
+# Shell and terminal tools
 brew "fd"
 brew "fzf"
-brew "gh"
-brew "git"
-brew "go"
-brew "herdr"
 brew "jq"
-brew "lazygit"
-brew "mas"
-brew "mise"
-brew "neovim"
 brew "ripgrep"
+brew "zoxide"
+brew "direnv"
 brew "sheldon"
 brew "starship"
-brew "stow"
+brew "fastfetch"
+brew "herdr"
 brew "tmux"
-brew "zoxide"
+brew "stow"
 
+# Development tools
+brew "gh"
+brew "git"
+brew "lazygit"
+brew "neovim"
+
+# Languages and tool version management
+brew "go"
+brew "mise"
+
+# Cloud and app store CLIs
+brew "awscli"
+brew "mas"
+
+# Applications
 cask "chatgpt"
 cask "codex"
 cask "codex-app"
@@ -33,4 +41,5 @@ cask "notion"
 cask "raycast"
 cask "visual-studio-code"
 
+# Fonts
 cask "font-hackgen-nerd"
