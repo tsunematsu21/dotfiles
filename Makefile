@@ -2,14 +2,10 @@ SHELL=/bin/zsh
 .SHELLFLAGS := -eu -o pipefail -c
 
 STOW_PACKAGES := $(patsubst %/,%,$(wildcard */))
-DOTFILES_LINK_TARGETS := $(addprefix dotfiles-link-,$(STOW_PACKAGES))
-DOTFILES_UNLINK_TARGETS := $(addprefix dotfiles-unlink-,$(STOW_PACKAGES))
 SETUP_TARGETS := $(shell awk -F':' '/^[a-z0-9_]+:/ && $$1 != "all" {print $$1}' $(MAKEFILE_LIST))
 
 .ONESHELL:
 .PHONY: $(shell cat $(MAKEFILE_LIST) | awk -F':' '/^[a-z0-9_-]+:/ {print $$1}')
-.PHONY: $(DOTFILES_LINK_TARGETS)
-.PHONY: $(DOTFILES_UNLINK_TARGETS)
 
 # Run all setup tasks.
 all: $(SETUP_TARGETS)
@@ -98,10 +94,10 @@ dotfiles: brew
 	mkdir -p ~/Developments
 	stow -v -t ~ -S $(STOW_PACKAGES)
 
-$(DOTFILES_LINK_TARGETS): dotfiles-link-%:
+$(addprefix stow-,$(STOW_PACKAGES)): stow-%:
 	stow -v -t ~ -S $*
 
-$(DOTFILES_UNLINK_TARGETS): dotfiles-unlink-%:
+$(addprefix unstow-,$(STOW_PACKAGES)): unstow-%:
 	stow -v -t ~ -D $*
 
 mise: dotfiles
