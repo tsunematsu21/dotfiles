@@ -75,6 +75,7 @@ now_if_args(function()
     ensure_installed = {
       'lua_ls',
       'ts_ls',
+      'yamlls',
     }
   }
 end)

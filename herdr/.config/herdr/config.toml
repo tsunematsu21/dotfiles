@@ -1,6 +1,6 @@
 [theme]
 name = "kanagawa"
-auto_switch = true
+auto_switch = false
 
 [ui]
 prompt_new_tab_name = false
@@ -14,31 +14,31 @@ switch_ascii_input_source_in_prefix = true
 
 [keys]
 prefix = "ctrl+b"
-focus_pane_left = "ctrl+h"
-focus_pane_down = "ctrl+j"
-focus_pane_up = "ctrl+k"
-focus_pane_right = "ctrl+l"
+focus_pane_left = "alt+h"
+focus_pane_down = "alt+j"
+focus_pane_up = "alt+k"
+focus_pane_right = "alt+l"
 
 [[keys.command]]
-key = "alt+h"
+key = "alt+H"
 type = "shell"
 command = "herdr pane resize --current --direction left --amount 0.05"
 description = "resize pane left"
 
 [[keys.command]]
-key = "alt+j"
+key = "alt+J"
 type = "shell"
 command = "herdr pane resize --current --direction down --amount 0.05"
 description = "resize pane down"
 
 [[keys.command]]
-key = "alt+k"
+key = "alt+K"
 type = "shell"
 command = "herdr pane resize --current --direction up --amount 0.05"
 description = "resize pane up"
 
 [[keys.command]]
-key = "alt+l"
+key = "alt+L"
 type = "shell"
 command = "herdr pane resize --current --direction right --amount 0.05"
 description = "resize pane right"
