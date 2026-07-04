@@ -2,12 +2,17 @@ SHELL=/bin/zsh
 .SHELLFLAGS := -eu -o pipefail -c
 
 STOW_PACKAGES := $(patsubst %/,%,$(wildcard */))
+DOTFILES_LINK_TARGETS := $(addprefix dotfiles-link-,$(STOW_PACKAGES))
+DOTFILES_UNLINK_TARGETS := $(addprefix dotfiles-unlink-,$(STOW_PACKAGES))
+SETUP_TARGETS := $(shell awk -F':' '/^[a-z0-9_]+:/ && $$1 != "all" {print $$1}' $(MAKEFILE_LIST))
 
 .ONESHELL:
 .PHONY: $(shell cat $(MAKEFILE_LIST) | awk -F':' '/^[a-z0-9_-]+:/ {print $$1}')
+.PHONY: $(DOTFILES_LINK_TARGETS)
+.PHONY: $(DOTFILES_UNLINK_TARGETS)
 
 # Run all setup tasks.
-all: $(shell cat $(MAKEFILE_LIST) | awk -F':' '/^[a-z0-9_-]+:/ && !/^all:/ {print $$1}' )
+all: $(SETUP_TARGETS)
 
 # Configure macOS system preferences.
 defaults:
@@ -69,10 +74,17 @@ rosetta:
 brew:
 	which brew > /dev/null || /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	brew analytics off
+	brew bundle install --file=./Brewfile --no-upgrade
+
+# Update Homebrew and installed packages.
+brew-update: brew
 	brew update
 	brew upgrade
-	brew cleanup
 	brew bundle --file=./Brewfile
+	brew cleanup
+
+brew-cleanup:
+	brew bundle cleanup --file=./Brewfile --force
 
 # Install the AWS Session Manager plugin.
 aws: brew
@@ -85,6 +97,15 @@ dotfiles: brew
 	mkdir -p ~/.config
 	mkdir -p ~/Developments
 	stow -v -t ~ -S $(STOW_PACKAGES)
+
+$(DOTFILES_LINK_TARGETS): dotfiles-link-%:
+	stow -v -t ~ -S $*
+
+$(DOTFILES_UNLINK_TARGETS): dotfiles-unlink-%:
+	stow -v -t ~ -D $*
+
+mise: dotfiles
+	mise install
 
 rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
