@@ -74,7 +74,7 @@ now(function()
       lualine_b = { 'branch', 'diff', 'diagnostics' },
       lualine_c = { 'filename' },
       lualine_x = { { 'encoding', show_bomb = true } },
-      lualine_y = { { 'filetype', icon_only = true } },
+      lualine_y = { 'filetype' },
       lualine_z = { 'location' },
     },
     inactive_sections = {},
@@ -97,6 +97,15 @@ end)
 now_if_args(function()
   vim.pack.add({ 'https://github.com/petertriho/nvim-scrollbar' })
   require("scrollbar").setup({})
+end)
+
+-- Dim
+later(function()
+  vim.pack.add({ 'https://github.com/TaDaa/vimade' })
+  require('vimade').setup({
+    recipe = { 'default', { animate = true } },
+    fadelevel = 0.4,
+  })
 end)
 
 -- ui2
