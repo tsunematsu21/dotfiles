@@ -53,3 +53,4 @@ new_autocmd('InsertLeave', nil, function()
 end, 'Enable cursorline')
 
 vim.o.pumborder = 'rounded'
+vim.o.winborder = 'rounded'

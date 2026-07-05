@@ -1,5 +1,23 @@
 local new_autocmd, now_if_args = Config.new_autocmd, Config.now_if_args
 
+do
+  local complete_set = vim.api.nvim__complete_set
+  ---@diagnostic disable-next-line: duplicate-set-field
+  vim.api.nvim__complete_set = function(index, opts)
+    local windata = complete_set(index, opts)
+    if
+        opts
+        and opts.info
+        and windata
+        and windata.winid
+        and vim.api.nvim_win_is_valid(windata.winid)
+    then
+      pcall(vim.api.nvim_win_set_config, windata.winid, { border = vim.o.pumborder })
+    end
+    return windata
+  end
+end
+
 -- Auto completion
 now_if_args(function()
   local callback = function(ev)
@@ -35,7 +53,7 @@ now_if_args(function()
     client.server_capabilities.completionProvider.triggerCharacters = chars
     vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
 
-    vim.keymap.set('i', '<CR>',  'pumvisible() ? "<C-y>" : "<CR>"',  { silent = true, expr = true })
+    vim.keymap.set('i', '<CR>', 'pumvisible() ? "<C-y>" : "<CR>"', { silent = true, expr = true })
     vim.keymap.set('i', '<C-j>', 'pumvisible() ? "<C-n>" : "<C-j>"', { silent = true, expr = true })
     vim.keymap.set('i', '<C-k>', 'pumvisible() ? "<C-p>" : "<C-k>"', { silent = true, expr = true })
   end
