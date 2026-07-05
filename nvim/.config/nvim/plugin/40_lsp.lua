@@ -1,4 +1,4 @@
-local new_autocmd, now_if_args = Config.new_autocmd, Config.now_if_args
+local now_if_args = Config.now_if_args
 
 do
   local complete_set = vim.api.nvim__complete_set
@@ -58,7 +58,11 @@ now_if_args(function()
     vim.keymap.set('i', '<C-k>', 'pumvisible() ? "<C-p>" : "<C-k>"', { silent = true, expr = true })
   end
 
-  new_autocmd('LspAttach', nil, callback, 'Enable completion')
+  vim.api.nvim_create_autocmd('LspAttach', {
+    group = Config.augroup,
+    callback = callback,
+    desc = 'Enable completion',
+  })
 end)
 
 -- LSP progress handler
@@ -75,7 +79,11 @@ now_if_args(function()
     })
   end
 
-  new_autocmd('LspProgress', nil, callback, 'Show LSP progress')
+  vim.api.nvim_create_autocmd('LspProgress', {
+    group = Config.augroup,
+    callback = callback,
+    desc = 'Show LSP progress',
+  })
 end)
 
 -- LSP settings

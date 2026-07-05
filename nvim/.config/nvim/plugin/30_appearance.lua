@@ -1,9 +1,13 @@
-local now, later, now_if_args, new_autocmd = Config.now, Config.later, Config.now_if_args, Config.new_autocmd
+local now, later, now_if_args = Config.now, Config.later, Config.now_if_args
 
 -- On yank
-new_autocmd('TextYankPost', nil, function()
-  vim.highlight.on_yank({ timeout = 300 })
-end, 'Highlight on yank')
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = Config.augroup,
+  callback = function()
+    vim.highlight.on_yank({ timeout = 300 })
+  end,
+  desc = 'Highlight on yank',
+})
 
 -- Icons
 now(function()

@@ -1,5 +1,3 @@
-local new_autocmd = Config.new_autocmd
-
 -- Leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -45,12 +43,20 @@ vim.opt.listchars = {
 
 -- Cursor line
 vim.o.cursorline = true
-new_autocmd('InsertEnter', nil, function()
-  vim.o.cursorline = false
-end, 'Disable cursorline')
-new_autocmd('InsertLeave', nil, function()
-  vim.o.cursorline = true
-end, 'Enable cursorline')
+vim.api.nvim_create_autocmd('InsertEnter', {
+  group = Config.augroup,
+  callback = function()
+    vim.o.cursorline = false
+  end,
+  desc = 'Disable cursorline',
+})
+vim.api.nvim_create_autocmd('InsertLeave', {
+  group = Config.augroup,
+  callback = function()
+    vim.o.cursorline = true
+  end,
+  desc = 'Enable cursorline',
+})
 
 vim.o.pumborder = 'rounded'
 vim.o.winborder = 'rounded'

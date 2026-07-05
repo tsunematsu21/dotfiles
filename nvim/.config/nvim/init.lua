@@ -4,12 +4,8 @@ vim.loader.enable()
 _G.Config = {}
 
 
--- Define custom autocommand group and helper to create an autocommand.
-local gr = vim.api.nvim_create_augroup('custom-config', {})
-Config.new_autocmd = function(event, pattern, callback, desc)
-  local opts = { group = gr, pattern = pattern, callback = callback, desc = desc }
-  vim.api.nvim_create_autocmd(event, opts)
-end
+-- Define custom autocommand group.
+Config.augroup = vim.api.nvim_create_augroup('custom-config', {})
 
 -- Loading helpers used to organize config into fail-safe parts.
 vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
