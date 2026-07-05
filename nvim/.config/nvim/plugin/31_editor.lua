@@ -32,18 +32,7 @@ end)
 
 -- Indent guide
 later(function()
-  vim.pack.add({ 'https://github.com/saghen/blink.indent' })
-  require('blink.indent').setup({
-    static = {
-      char = '▏',
-      highlights = { 'BlinkIndent' },
-    },
-    scope = {
-      indend_at_cursor = true,
-      char = '▏',
-      highlights = { 'BlinkIndentScope' },
-    },
-  })
+  require('mini.indentscope').setup({})
 end)
 
 -- Quickfix list
@@ -58,6 +47,7 @@ now(function()
   vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'noinsert', 'fuzzy', 'popup' }
 end)
 
+-- Command line
 now(function()
   require('mini.cmdline').setup({})
 end)
