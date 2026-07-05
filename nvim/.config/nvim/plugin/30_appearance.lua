@@ -1,5 +1,7 @@
 local now, later, now_if_args = Config.now, Config.later, Config.now_if_args
 
+require("vim._core.ui2").enable({})
+
 -- On yank
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = Config.augroup,
@@ -47,12 +49,7 @@ now(function()
         FloatBorder = { bg = 'none' },
         FloatTitle = { bg = 'none' },
 
-        -- https://github.com/rachartier/tiny-cmdline.nvim
-        TinyCmdlineBorder = { bg = 'none' },
-        TinyCmdlineNormal = { bg = 'none' },
-        TinyCmdlineTitle = { bg = 'none' },
-
-        -- https://github.com/saghen/blink.indent
+       -- https://github.com/saghen/blink.indent
         BlinkIndent = { fg = theme.ui.bg_p1 },
         BlinkIndentScope = { fg = theme.ui.bg_p2 },
       }
@@ -81,18 +78,6 @@ now(function()
   })
 end)
 
--- Command line
-now(function()
-  vim.pack.add({ 'https://github.com/rachartier/tiny-cmdline.nvim' })
-  vim.o.cmdheight = 0
-  require('tiny-cmdline').setup({
-    native_types = {},
-    title = {
-      enabled = true,
-    },
-  })
-end)
-
 -- Scrollbar
 now_if_args(function()
   vim.pack.add({ 'https://github.com/petertriho/nvim-scrollbar' })
@@ -104,85 +89,11 @@ later(function()
   vim.pack.add({ 'https://github.com/TaDaa/vimade' })
   require('vimade').setup({
     recipe = { 'default', { animate = true } },
-    fadelevel = 0.4,
+    fadelevel = 0.6,
   })
 end)
 
--- ui2
-require("vim._core.ui2").enable({
-  enable = true,
-  msg = {
-    targets = {
-      [""] = "msg",
-      empty = "cmd",
-      bufwrite = "msg",
-      confirm = "cmd",
-      emsg = "pager",
-      echo = "msg",
-      echomsg = "msg",
-      echoerr = "pager",
-      completion = "cmd",
-      list_cmd = "pager",
-      lua_error = "pager",
-      lua_print = "msg",
-      progress = "pager",
-      rpc_error = "pager",
-      quickfix = "msg",
-      search_cmd = "cmd",
-      search_count = "cmd",
-      shell_cmd = "pager",
-      shell_err = "pager",
-      shell_out = "pager",
-      shell_ret = "msg",
-      undo = "msg",
-      verbose = "pager",
-      wildlist = "cmd",
-      wmsg = "msg",
-      typed_cmd = "cmd",
-    },
-    cmd = {
-      height = 0.5,
-    },
-    dialog = {
-      height = 0.5,
-    },
-    msg = {
-      height = 0.3,
-      timeout = 5000,
-    },
-    pager = {
-      height = 0.5,
-    },
-  },
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "msg",
-  callback = function()
-    local ui2 = require("vim._core.ui2")
-    local win = ui2.wins and ui2.wins.msg
-    if win and vim.api.nvim_win_is_valid(win) then
-      vim.api.nvim_set_option_value(
-        "winhighlight",
-        "Normal:NormalFloat,FloatBorder:FloatBorder",
-        { scope = "local", win = win }
-      )
-    end
-  end,
-})
-
-local ui2 = require("vim._core.ui2")
-local msgs = require("vim._core.ui2.messages")
-local orig_set_pos = msgs.set_pos
-msgs.set_pos = function(tgt)
-  orig_set_pos(tgt)
-  if (tgt == "msg" or tgt == nil) and vim.api.nvim_win_is_valid(ui2.wins.msg) then
-    pcall(vim.api.nvim_win_set_config, ui2.wins.msg, {
-      relative = "editor",
-      anchor = "NE",
-      row = 1,
-      col = vim.o.columns - 1,
-      border = "rounded",
-    })
-  end
-end
+-- Notification
+now(function()
+  require('mini.notify').setup({})
+end)

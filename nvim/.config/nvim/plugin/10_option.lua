@@ -24,9 +24,11 @@ vim.o.ignorecase = true
 vim.o.wrap = true
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.cmdheight = 0
+vim.o.cmdheight = 1
 vim.o.showtabline = 0
 vim.o.laststatus = 3
+vim.o.pumborder = 'rounded'
+vim.o.winborder = 'rounded'
 
 vim.o.autoread = true
 vim.o.swapfile = false
@@ -57,6 +59,3 @@ vim.api.nvim_create_autocmd('InsertLeave', {
   end,
   desc = 'Enable cursorline',
 })
-
-vim.o.pumborder = 'rounded'
-vim.o.winborder = 'rounded'

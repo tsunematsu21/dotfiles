@@ -51,3 +51,13 @@ later(function()
   vim.pack.add({ 'https://github.com/stevearc/quicker.nvim' })
   require("quicker").setup()
 end)
+
+-- Completion
+now(function()
+  require('mini.completion').setup({})
+  vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'noinsert', 'fuzzy', 'popup' }
+end)
+
+now(function()
+  require('mini.cmdline').setup({})
+end)
