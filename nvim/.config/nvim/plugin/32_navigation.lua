@@ -80,6 +80,7 @@ later(function()
   -- LSP
   vim.keymap.set('n', '<leader>la', function() fzf.lsp_code_actions() end, { desc = 'Code Actions' })
   vim.keymap.set('n', '<leader>ll', function() fzf.lsp_finder() end, { desc = 'LSP Finder' })
+  vim.keymap.set('n', '<leader>lr', function() fzf.lsp_references() end, { desc = 'Goto Reference' })
   vim.keymap.set('n', '<leader>ld', function() fzf.lsp_definitions() end, { desc = 'Goto Definition' })
   vim.keymap.set('n', '<leader>lD', function() fzf.lsp_declarations() end, { desc = 'Goto Declarations' })
   vim.keymap.set('n', '<leader>ls', function() fzf.lsp_document_symbols() end, { desc = 'LSP Symbols (buffer)' })

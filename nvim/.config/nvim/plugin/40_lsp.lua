@@ -18,7 +18,6 @@ now_if_args(function()
 
     map('n', 'K', vim.lsp.buf.hover, 'LSP hover')
     map('n', 'gr', vim.lsp.buf.references, 'LSP references')
-    map('n', '<leader>lr', vim.lsp.buf.rename, 'Rename symbol')
     map('n', '<leader>lf', function()
       vim.lsp.buf.format({ async = true })
     end, 'Format buffer')

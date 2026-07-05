@@ -1,7 +1,5 @@
 local new_autocmd = Config.new_autocmd
 
-require("vim._core.ui2").enable({})
-
 -- Leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -53,3 +51,5 @@ end, 'Disable cursorline')
 new_autocmd('InsertLeave', nil, function()
   vim.o.cursorline = true
 end, 'Enable cursorline')
+
+vim.o.pumborder = 'rounded'
