@@ -1,4 +1,8 @@
 onboarding = false
+
+[terminal]
+shell_mode = "auto"
+
 [theme]
 name = "kanagawa"
 auto_switch = false
@@ -49,3 +53,9 @@ key = "alt+g"
 type = "pane"
 command = "lazygit"
 description = "run lazygit"
+
+[[keys.command]]
+key = "alt+,"
+type = "pane"
+command = "cd ~/dotfiles; nvim ~/dotfiles"
+description = "edit dotfiles"

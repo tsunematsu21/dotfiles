@@ -24,12 +24,6 @@ later(function()
   })
 end)
 
--- Scroll
-later(function()
-  vim.pack.add({ 'https://github.com/karb94/neoscroll.nvim' })
-  require('neoscroll').setup({})
-end)
-
 -- Indent guide
 later(function()
   require('mini.indentscope').setup({})

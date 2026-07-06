@@ -4,13 +4,8 @@ eval "$(sheldon source)"
 # Starship
 eval "$(starship init zsh)"
 
-# direnv
-eval "$(direnv hook zsh)"
-
 # mise
-if command -v mise > /dev/null; then
-  eval "$(mise activate zsh)"
-fi
+eval "$(mise activate zsh --shims)"
 
 # fzf
 source <(fzf --zsh)
@@ -38,7 +33,12 @@ else
   compinit -C
 fi
 
+autoload -Uz bashcompinit && bashcompinit
+
+complete -C aws_completer aws
 source <(mise completion zsh)
+source <(npm completion zsh)
+source <(pnpm completion zsh)
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'

@@ -22,9 +22,6 @@ later(function()
   vim.keymap.set('v', '<leader>hr', function()
     gs.reset_hunk { vim.fn.line("."), vim.fn.line("v") }
   end, { desc = 'Reset hunk' })
-
-  -- Scrollbar integration
-  require("scrollbar.handlers.gitsigns").setup()
 end)
 
 -- Terminal

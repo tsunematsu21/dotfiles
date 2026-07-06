@@ -14,45 +14,6 @@ vim.keymap.set('n', '<leader>q', '<cmd>quit<cr>', { desc = 'Quit' })
 vim.keymap.set('n', '<leader>Q', '<cmd>quitall<cr>', { desc = 'Quit All' })
 vim.keymap.set('n', '<leader>R', '<cmd>restart<cr>', { desc = 'Restart' })
 
-local function open_cfile()
-  local target = vim.fn.expand('<cfile>')
-  if target == '' then
-    return
-  end
-
-  if target:match('^%a[%w+.-]*://') and not target:match('^file://') then
-    vim.ui.open(target)
-    return
-  end
-
-  local file, line, col = target, nil, nil
-  file, line, col = target:match('^(.+):(%d+):(%d+)$')
-  if not file then
-    file, line = target:match('^(.+):(%d+)$')
-  end
-  file = file or target
-
-  if file:match('^file://') then
-    file = vim.uri_to_fname(file)
-  end
-
-  if vim.bo.buftype == 'terminal' then
-    local terminal_win = vim.api.nvim_get_current_win()
-    vim.cmd.wincmd('p')
-    if vim.api.nvim_get_current_win() == terminal_win or vim.bo.buftype == 'terminal' then
-      vim.api.nvim_set_current_win(terminal_win)
-      vim.cmd.split()
-    end
-  end
-
-  vim.cmd.edit(vim.fn.fnameescape(file))
-  if line then
-    vim.api.nvim_win_set_cursor(0, { tonumber(line), math.max((tonumber(col) or 1) - 1, 0) })
-  end
-end
-
-vim.keymap.set('n', 'gx', open_cfile, { desc = 'Open file under cursor' })
-
 -- Keymap suggest
 later(function()
   local miniclue = require('mini.clue')

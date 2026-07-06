@@ -78,12 +78,6 @@ now(function()
   })
 end)
 
--- Scrollbar
-now_if_args(function()
-  vim.pack.add({ 'https://github.com/petertriho/nvim-scrollbar' })
-  require("scrollbar").setup({})
-end)
-
 -- Dim
 later(function()
   vim.pack.add({ 'https://github.com/TaDaa/vimade' })

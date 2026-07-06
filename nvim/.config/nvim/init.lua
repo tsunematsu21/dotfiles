@@ -3,7 +3,6 @@ vim.loader.enable()
 -- Define config table to be able to pass data between scripts
 _G.Config = {}
 
-
 -- Define custom autocommand group.
 Config.augroup = vim.api.nvim_create_augroup('custom-config', {})
 
