@@ -1,4 +1,4 @@
-local later = Config.now
+local later = Config.later
 
 -- Git signs
 later(function()
@@ -30,4 +30,14 @@ later(function()
   require('toggleterm').setup({
     open_mapping = [[<c-.>]],
   })
+end)
+
+-- yazi
+later(function()
+  vim.pack.add({
+    'https://github.com/mikavilpas/yazi.nvim',
+    'https://github.com/nvim-lua/plenary.nvim',
+  })
+  require('yazi').setup({})
+  vim.keymap.set("n", "<leader>y", function() require("yazi").yazi() end, { desc = 'Open yazi' })
 end)

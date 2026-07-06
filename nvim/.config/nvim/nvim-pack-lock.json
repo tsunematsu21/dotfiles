@@ -44,6 +44,10 @@
       "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
       "src": "https://github.com/stevearc/oil.nvim"
     },
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
     "quicker.nvim": {
       "rev": "4a6883cb13fe097a20a046eb55f6dffd239276e3",
       "src": "https://github.com/stevearc/quicker.nvim"
@@ -55,6 +59,10 @@
     "vimade": {
       "rev": "a5323f4930e3f1f48c0329e50bd218ba61577aaf",
       "src": "https://github.com/TaDaa/vimade"
+    },
+    "yazi.nvim": {
+      "rev": "8d6c25cb4e7c5702d6cd5a263cb36129fa78aa4c",
+      "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }
 }

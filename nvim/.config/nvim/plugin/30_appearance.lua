@@ -1,4 +1,4 @@
-local now, later, now_if_args = Config.now, Config.later, Config.now_if_args
+local now, later = Config.now, Config.later
 
 require("vim._core.ui2").enable({})
 
@@ -6,7 +6,7 @@ require("vim._core.ui2").enable({})
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = Config.augroup,
   callback = function()
-    vim.highlight.on_yank({ timeout = 300 })
+    vim.highlight.on_yank({ timeout = 500 })
   end,
   desc = 'Highlight on yank',
 })

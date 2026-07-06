@@ -1,7 +1,7 @@
 local now_if_args = Config.now_if_args
 
 vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('user-lsp-keymaps', { clear = true }),
+  group = Config.augroup,
   callback = function(event)
     local map = function(mode, lhs, rhs, desc)
       vim.keymap.set(mode, lhs, rhs, { buffer = event.buf, desc = desc })
@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.buf.format({ async = true })
     end, 'Format buffer')
   end,
+  desc = 'LSP keymaps',
 })
 
 -- LSP settings
