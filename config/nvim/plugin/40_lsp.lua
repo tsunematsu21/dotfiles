@@ -32,6 +32,7 @@ now_if_args(function()
       'ts_ls',
       'yamlls',
       'taplo',
+      'nil_ls', -- Nix
     }
   }
 end)

@@ -1,7 +1,6 @@
 SHELL=/bin/zsh
 .SHELLFLAGS := -eu -o pipefail -c
 
-STOW_PACKAGES := $(patsubst %/,%,$(wildcard */))
 SETUP_TARGETS := $(shell awk -F':' '/^[a-z0-9_]+:/ && $$1 != "all" {print $$1}' $(MAKEFILE_LIST))
 DEFAULTS_TARGETS := $(shell awk -F':' '/^defaults-[a-z0-9_-]+:/ {print $$1}' $(MAKEFILE_LIST))
 
@@ -70,7 +69,6 @@ defaults-other:
 	defaults write com.apple.HIToolbox AppleFnUsageType -int 1
 
 # Install Rosetta 2.
-rosetta:
 	pkgutil --pkg-info com.apple.pkg.RosettaUpdateAuto > /dev/null 2>&1 || \
 		sudo softwareupdate --install-rosetta --agree-to-license
 
@@ -96,17 +94,8 @@ aws: brew
 	sudo installer -pkg /tmp/session-manager-plugin.pkg -target /
 	sudo ln -sfn /usr/local/sessionmanagerplugin/bin/session-manager-plugin /usr/local/bin/session-manager-plugin
 
-# Deploy all dotfile packages with Stow.
-dotfiles: brew
-	mkdir -p ~/.config
-	mkdir -p ~/Developments
-	stow -v -t ~ -S $(STOW_PACKAGES)
-
-$(addprefix stow-,$(STOW_PACKAGES)): stow-%:
-	stow -v -t ~ -S $*
-
-$(addprefix unstow-,$(STOW_PACKAGES)): unstow-%:
-	stow -v -t ~ -D $*
-
-mise: dotfiles
+mise:
 	mise install
+
+rust:
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

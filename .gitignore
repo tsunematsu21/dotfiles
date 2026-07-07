@@ -2,19 +2,21 @@
 Brewfile.lock.json
 
 # Git
-git/.config/git/**/*
-!git/.config/git/config
-!git/.config/git/ignore
+config/git/**/*
+!config/git/config
+!config/git/ignore
 
 # SSH
-ssh/.ssh/**/*
-!ssh/.ssh/config
-!ssh/.ssh/conf.d
+config/ssh/**/*
+!config/ssh/config
+!config/ssh/conf.d
 
 # AWS
-aws/.aws/**/*
+config/aws/**/*
 
+# Herdr
+config/herdr/**/*
+!config/herdr/config.toml
+
+# .gitkeep
 !**/*/.gitkeep
-
-# Tmux plugins
-tmux/.config/tmux/plugins
