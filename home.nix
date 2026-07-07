@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, lib, username, homeDirectory, ... }:
 let
   dotfilesPath = "${config.home.homeDirectory}/dotfiles";
   mkLink = path: config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/${path}";
@@ -6,8 +6,8 @@ in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "masato.tsunematsu";
-  home.homeDirectory = "/Users/masato.tsunematsu";
+  home.username = username;
+  home.homeDirectory = homeDirectory;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -17,10 +17,6 @@ in
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "26.05"; # Please read the comment before changing.
-
-  nixpkgs.overlays = [
-    inputs.llm-agents.overlays.default
-  ];
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -34,7 +30,6 @@ in
     sheldon
     starship
     fastfetch
-    # herdr
     stow
     tlrc
     poppler
@@ -76,6 +71,12 @@ in
     "lazygit".source = mkLink "config/lazygit";
     "yazi".source = mkLink "config/yazi";
     "nvim".source = mkLink "config/nvim";
+  };
+
+  home.activation = {
+    runMiseInstall = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      ${pkgs.mise}/bin/mise install
+    '';
   };
 
 

@@ -9,16 +9,8 @@ Most operations are performed automatically by Makefile, but some operations mus
 git clone https://github.com/tsunematsu21/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
-# Install Nix
-curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
-exec -l $SHELL
-nix --version
-
-# Install Home Manager
-nix run home-manager/master -- switch --flake .
-
 # Setup system preferences, Install packages, Deploy dotfiles
-make
+make install
 
 # Refresh shell
 exec -l $SHELL
@@ -48,12 +40,3 @@ Configure application settings.
 * **Raycast**
   * Settings > Advanced
     * Import / Export: Import the exported `.rayconfig` file
-
-# TBD: nix
-## Setup instructions
-```sh
-# Get this repository
-git clone https://github.com/tsunematsu21/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-# 
-```
