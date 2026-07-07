@@ -18,40 +18,10 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      home-manager,
-      nix-darwin,
-      nix-homebrew,
-      llm-agents,
-      ...
-    }:
-    let
-      hostname = "MacBook-Air";
-      system = "aarch64-darwin";
-      username = "masato.tsunematsu";
-      homeDirectory = "/Users/${username}";
-    in
+    inputs@{ self, ... }:
     {
-      darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
-        specialArgs = { inherit self system username nix-homebrew; };
-        modules = [
-          ./nix/darwin.nix
-          home-manager.darwinModules.home-manager
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            nixpkgs.overlays = [
-              llm-agents.overlays.default
-            ];
-            users.users.${username}.home = homeDirectory;
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs username homeDirectory; };
-              users.${username} = import ./nix/home.nix;
-            };
-          }
-        ];
+      darwinConfigurations.MacBook-Air = import ./nix/host/MacBook-Air.nix {
+        inherit inputs self;
       };
     };
 }
