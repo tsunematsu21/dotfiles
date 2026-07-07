@@ -10,10 +10,13 @@ help: ## Display help
 install: ## Install nix and run nix-darwin/rebuild
 	curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
 	. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh && \
-	sudo -E nix run 'nix-darwin/master#darwin-rebuild' -- switch --flake .
+	sudo -E nix run 'nix-darwin/master#darwin-rebuild' -- switch --flake .#mac
+
+check: ## Check flake outputs without building
+	nix flake check --no-build
 
 rebuild: ## Run darwin-rebuild
-	sudo darwin-rebuild switch --flake .
+	sudo darwin-rebuild switch --flake .#mac
 
 upgrade: ## Upgrade nix
 	sudo -i nix upgrade-nix

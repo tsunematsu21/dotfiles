@@ -20,7 +20,7 @@
   outputs =
     inputs@{ self, ... }:
     {
-      darwinConfigurations.MacBook-Air = import ./nix/host/MacBook-Air.nix {
+      darwinConfigurations.mac = import ./nix/host/mac.nix {
         inherit inputs self;
       };
     };
