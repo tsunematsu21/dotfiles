@@ -24,6 +24,8 @@
   homebrew = {
     enable = true;
     user = username;
+    # See: https://mynixos.com/nix-darwin/option/homebrew.onActivation.cleanup
+    onActivation.cleanup = "none";
     casks = [
       "chatgpt"
       "codex-app"

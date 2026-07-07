@@ -27,12 +27,13 @@
       ...
     }:
     let
+      hostname = "MacBook-Air";
       system = "aarch64-darwin";
       username = "masato.tsunematsu";
       homeDirectory = "/Users/${username}";
     in
     {
-      darwinConfigurations."MacBook-Air" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit self system username nix-homebrew; };
         modules = [
           ./darwin.nix
