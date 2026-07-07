@@ -45,6 +45,7 @@ in
     # Languages and tool version management
     go
     mise
+    rustup
 
     # from llm-agents.nix
     codex
