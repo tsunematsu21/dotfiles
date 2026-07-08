@@ -41,6 +41,8 @@ in
     git
     lazygit
     neovim
+    lefthook
+    betterleaks
 
     # Languages and tool version management
     go
