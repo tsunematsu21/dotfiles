@@ -1,7 +1,11 @@
-{ inputs, self, ... }:
+{
+  inputs,
+  self,
+  system,
+  ...
+}:
 
 let
-  system = "aarch64-darwin";
   username = "masato.tsunematsu";
   homeDirectory = "/Users/${username}";
 in

@@ -1,4 +1,7 @@
 pre-commit:
   jobs:
+    - name: format
+      run: nix fmt -- {staged_files}
+      stage_fixed: true
     - name: betterleaks
       run: betterleaks git --pre-commit --redact --staged --verbose

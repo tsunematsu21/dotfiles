@@ -1,4 +1,11 @@
-{ config, pkgs, lib, username, homeDirectory, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  username,
+  homeDirectory,
+  ...
+}:
 let
   dotfilesPath = "${config.home.homeDirectory}/dotfiles";
   mkLink = path: config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/${path}";
@@ -79,13 +86,12 @@ in
   };
 
   home.activation = {
-    runMiseInstall = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    runMiseInstall = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       ${pkgs.safe-chain}/bin/safe-chain setup-ci
       export PATH="$HOME/.safe-chain/shims:${pkgs.mise}/bin:$PATH"
       ${pkgs.mise}/bin/mise install
     '';
   };
-
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a

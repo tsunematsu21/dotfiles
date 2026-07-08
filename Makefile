@@ -16,6 +16,9 @@ install: ## Install nix and run nix-darwin/rebuild
 check: ## Check flake outputs without building
 	nix flake check --no-build
 
+format: ## Format files
+	nix fmt
+
 update: ## Update flake inputs and Homebrew packages
 	nix flake update
 	brew update
