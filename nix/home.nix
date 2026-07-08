@@ -44,6 +44,7 @@ in
     lefthook
     betterleaks
     czg
+    safe-chain
 
     # Languages and tool version management
     go
@@ -79,7 +80,8 @@ in
 
   home.activation = {
     runMiseInstall = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      export PATH="${pkgs.mise}/bin:$PATH"
+      ${pkgs.safe-chain}/bin/safe-chain setup-ci
+      export PATH="$HOME/.safe-chain/shims:${pkgs.mise}/bin:$PATH"
       ${pkgs.mise}/bin/mise install
     '';
   };

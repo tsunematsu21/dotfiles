@@ -20,6 +20,7 @@ inputs.nix-darwin.lib.darwinSystem {
         inputs.llm-agents.overlays.default
         (final: _prev: {
           czg = final.callPackage ../packages/czg.nix { };
+          safe-chain = final.callPackage ../packages/safe-chain.nix { };
         })
       ];
       users.users.${username}.home = homeDirectory;

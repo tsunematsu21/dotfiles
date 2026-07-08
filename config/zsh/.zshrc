@@ -7,6 +7,9 @@ eval "$(starship init zsh)"
 # mise
 eval "$(mise activate zsh --shims)"
 
+# Safe Chain
+export PATH="$HOME/.safe-chain/shims:$PATH"
+
 # fzf
 source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
