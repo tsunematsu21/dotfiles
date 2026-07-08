@@ -7,3 +7,9 @@ gui:
       - bold
 git:
   parseEmoji: true
+customCommands:
+  - key: C
+    context: files
+    description: Commit with czg
+    command: czg
+    output: terminal

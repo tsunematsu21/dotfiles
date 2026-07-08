@@ -43,6 +43,7 @@ in
     neovim
     lefthook
     betterleaks
+    czg
 
     # Languages and tool version management
     go
@@ -78,6 +79,7 @@ in
 
   home.activation = {
     runMiseInstall = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      export PATH="${pkgs.mise}/bin:$PATH"
       ${pkgs.mise}/bin/mise install
     '';
   };

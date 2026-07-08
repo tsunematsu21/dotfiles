@@ -18,6 +18,9 @@ inputs.nix-darwin.lib.darwinSystem {
     {
       nixpkgs.overlays = [
         inputs.llm-agents.overlays.default
+        (final: _prev: {
+          czg = final.callPackage ../packages/czg.nix { };
+        })
       ];
       users.users.${username}.home = homeDirectory;
       home-manager = {
