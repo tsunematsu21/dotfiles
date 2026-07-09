@@ -29,53 +29,24 @@
     let
       system = "aarch64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
-      treefmtEval = treefmt-nix.lib.evalModule pkgs ./nix/treefmt.nix;
-
-      commonDarwinModules = [
-        ./nix/darwin.nix
-        inputs.home-manager.darwinModules.home-manager
-        inputs.nix-homebrew.darwinModules.nix-homebrew
-        {
-          nixpkgs.overlays = [
-            inputs.llm-agents.overlays.default
-            (final: _prev: {
-              czg = final.callPackage ./nix/packages/czg.nix { };
-              safe-chain = final.callPackage ./nix/packages/safe-chain.nix { };
-            })
-          ];
-        }
-      ];
-
-      mkDarwinConfiguration =
-        host:
-        inputs.nix-darwin.lib.darwinSystem {
-          inherit (host) system;
-          specialArgs = {
-            inherit self;
-            inherit (host) system username;
-          };
-          modules =
-            commonDarwinModules
-            ++ [
-              {
-                users.users.${host.username}.home = host.homeDirectory;
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = {
-                    inherit (host) username homeDirectory;
-                  };
-                  users.${host.username} = import ./nix/home.nix;
-                };
-              }
-            ]
-            ++ (host.modules or [ ]);
+      treefmtEval = treefmt-nix.lib.evalModule pkgs {
+        projectRootFile = "flake.nix";
+        programs = {
+          nixfmt.enable = true;
+          shfmt.enable = true;
+          taplo.enable = true;
+          yamlfmt.enable = true;
         };
+      };
+      mkSystem = import ./nix/mk-system.nix { inherit inputs self; };
     in
     {
       formatter.${system} = treefmtEval.config.build.wrapper;
       checks.${system}.formatting = treefmtEval.config.build.check self;
 
-      darwinConfigurations.mac = mkDarwinConfiguration (import ./nix/host/mac.nix);
+      darwinConfigurations.mac = mkSystem {
+        username = "masato.tsunematsu";
+        system = "aarch64-darwin";
+      };
     };
 }
