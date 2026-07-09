@@ -1,47 +1,4 @@
 {
-  self,
-  system,
-  username,
-  ...
-}:
-{
-  nixpkgs.hostPlatform = system;
-  system = {
-    stateVersion = 6;
-    configurationRevision = self.rev or self.dirtyRev or null;
-    primaryUser = username;
-    keyboard = {
-      enableKeyMapping = true;
-      remapCapsLockToControl = true;
-    };
-  };
-  nix.enable = false;
-  programs.zsh.enable = true;
-  security.pam.services.sudo_local.touchIdAuth = true;
-
-  nix-homebrew = {
-    enable = true;
-    user = username;
-    enableRosetta = false;
-    autoMigrate = true;
-  };
-
-  homebrew = {
-    enable = true;
-    user = username;
-    onActivation.cleanup = "none";
-    casks = [
-      "chatgpt"
-      "codex-app"
-      "font-hackgen-nerd"
-      "ghostty"
-      "google-chrome"
-      "notion"
-      "raycast"
-      "visual-studio-code"
-    ];
-  };
-
   system.defaults = {
     NSGlobalDomain = {
       AppleShowAllExtensions = true;

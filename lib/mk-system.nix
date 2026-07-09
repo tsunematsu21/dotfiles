@@ -14,8 +14,8 @@ let
     nixpkgs.overlays = [
       inputs.llm-agents.overlays.default
       (final: _prev: {
-        czg = final.callPackage ./packages/czg.nix { };
-        safe-chain = final.callPackage ./packages/safe-chain.nix { };
+        czg = final.callPackage ../packages/czg.nix { };
+        safe-chain = final.callPackage ../packages/safe-chain.nix { };
       })
     ];
   };
@@ -29,7 +29,7 @@ let
       extraSpecialArgs = {
         inherit username homeDirectory;
       };
-      users.${username} = import ./home.nix;
+      users.${username} = import ../home;
     };
   };
 in
@@ -41,7 +41,7 @@ inputs.nix-darwin.lib.darwinSystem {
   };
 
   modules = [
-    ./darwin.nix
+    ../darwin
     inputs.home-manager.darwinModules.home-manager
     inputs.nix-homebrew.darwinModules.nix-homebrew
     overlaysModule

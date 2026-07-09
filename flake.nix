@@ -38,7 +38,7 @@
           yamlfmt.enable = true;
         };
       };
-      mkSystem = import ./nix/mk-system.nix { inherit inputs self; };
+      mkSystem = import ./lib/mk-system.nix { inherit inputs self; };
     in
     {
       formatter.${system} = treefmtEval.config.build.wrapper;
