@@ -9,6 +9,29 @@
 }:
 let
   homeDirectory = "/Users/${username}";
+
+  overlaysModule = {
+    nixpkgs.overlays = [
+      inputs.llm-agents.overlays.default
+      (final: _prev: {
+        czg = final.callPackage ./packages/czg.nix { };
+        safe-chain = final.callPackage ./packages/safe-chain.nix { };
+      })
+    ];
+  };
+
+  homeManagerModule = {
+    users.users.${username}.home = homeDirectory;
+
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      extraSpecialArgs = {
+        inherit username homeDirectory;
+      };
+      users.${username} = import ./home.nix;
+    };
+  };
 in
 inputs.nix-darwin.lib.darwinSystem {
   inherit system;
@@ -21,26 +44,8 @@ inputs.nix-darwin.lib.darwinSystem {
     ./darwin.nix
     inputs.home-manager.darwinModules.home-manager
     inputs.nix-homebrew.darwinModules.nix-homebrew
-    {
-      nixpkgs.overlays = [
-        inputs.llm-agents.overlays.default
-        (final: _prev: {
-          czg = final.callPackage ./packages/czg.nix { };
-          safe-chain = final.callPackage ./packages/safe-chain.nix { };
-        })
-      ];
-
-      users.users.${username}.home = homeDirectory;
-
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        extraSpecialArgs = {
-          inherit username homeDirectory;
-        };
-        users.${username} = import ./home.nix;
-      };
-    }
+    overlaysModule
+    homeManagerModule
   ]
   ++ modules;
 }

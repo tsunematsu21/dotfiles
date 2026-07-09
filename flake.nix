@@ -45,8 +45,8 @@
       checks.${system}.formatting = treefmtEval.config.build.check self;
 
       darwinConfigurations.mac = mkSystem {
+        inherit system;
         username = "masato.tsunematsu";
-        system = "aarch64-darwin";
       };
     };
 }

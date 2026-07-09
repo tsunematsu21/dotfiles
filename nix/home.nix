@@ -7,8 +7,8 @@
   ...
 }:
 let
-  dotfilesPath = "${homeDirectory}/dotfiles";
-  mkLink = path: config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/${path}";
+  mkLink = path: config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/dotfiles/${path}";
+  mkLinks = paths: builtins.mapAttrs (_: path: { source = mkLink path; }) paths;
 in
 {
   home.username = username;
@@ -51,28 +51,28 @@ in
     herdr
   ];
 
-  home.file = {
-    ".zprofile".source = mkLink "config/zsh/.zprofile";
-    ".zshrc".source = mkLink "config/zsh/.zshrc";
-    ".ssh".source = mkLink "config/ssh/";
-    ".aws".source = mkLink "config/aws/";
+  home.file = mkLinks {
+    ".aws" = "config/aws";
+    ".ssh" = "config/ssh";
+    ".zprofile" = "config/zsh/.zprofile";
+    ".zshrc" = "config/zsh/.zshrc";
   };
 
-  xdg.configFile = {
-    "ghostty".source = mkLink "config/ghostty";
-    "herdr".source = mkLink "config/herdr";
-    "git".source = mkLink "config/git";
-    "gh".source = mkLink "config/gh";
-    "sheldon".source = mkLink "config/sheldon";
-    "starship.toml".source = mkLink "config/starship.toml";
-    "mise".source = mkLink "config/mise";
-    "lazygit".source = mkLink "config/lazygit";
-    "yazi".source = mkLink "config/yazi";
-    "nvim".source = mkLink "config/nvim";
+  xdg.configFile = mkLinks {
+    "gh" = "config/gh";
+    "ghostty" = "config/ghostty";
+    "git" = "config/git";
+    "herdr" = "config/herdr";
+    "lazygit" = "config/lazygit";
+    "mise" = "config/mise";
+    "nvim" = "config/nvim";
+    "sheldon" = "config/sheldon";
+    "starship.toml" = "config/starship.toml";
+    "yazi" = "config/yazi";
   };
 
   home.activation = {
-    runMiseInstall = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    setupSafeChainAndMise = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       ${pkgs.safe-chain}/bin/safe-chain setup-ci
       export PATH="$HOME/.safe-chain/shims:${pkgs.mise}/bin:$PATH"
       ${pkgs.mise}/bin/mise install
