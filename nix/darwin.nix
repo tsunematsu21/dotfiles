@@ -10,9 +10,14 @@
     stateVersion = 6;
     configurationRevision = self.rev or self.dirtyRev or null;
     primaryUser = username;
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToControl = true;
+    };
   };
   nix.enable = false;
   programs.zsh.enable = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   nix-homebrew = {
     enable = true;
@@ -44,11 +49,13 @@
       AppleShowScrollBars = "Always";
       InitialKeyRepeat = 15;
       KeyRepeat = 2;
+      ApplePressAndHoldEnabled = false;
       NSAutomaticCapitalizationEnabled = false;
       NSAutomaticPeriodSubstitutionEnabled = false;
       NSAutomaticSpellingCorrectionEnabled = false;
       NSAutomaticDashSubstitutionEnabled = false;
       NSAutomaticQuoteSubstitutionEnabled = false;
+      NSWindowShouldDragOnGesture = true;
       "com.apple.keyboard.fnState" = true;
       "com.apple.trackpad.scaling" = 3.0;
     };
@@ -59,7 +66,18 @@
 
     hitoolbox.AppleFnUsageType = "Change Input Source";
 
+    loginwindow = {
+      GuestEnabled = false;
+    };
+
+    menuExtraClock = {
+      Show24Hour = true;
+      ShowDate = 1;
+      ShowSeconds = false;
+    };
+
     trackpad = {
+      Clicking = true;
       FirstClickThreshold = 0;
       TrackpadThreeFingerDrag = true;
     };
@@ -70,17 +88,36 @@
       FXDefaultSearchScope = "SCcf"; # Current folder
       FXPreferredViewStyle = "Nlsv"; # List view
       FXRemoveOldTrashItems = true;
+      FXEnableExtensionChangeWarning = false;
       ShowPathbar = true;
       ShowStatusBar = true;
+      QuitMenuItem = true;
+      _FXShowPosixPathInTitle = true;
     };
 
     dock = {
       autohide = true;
-      autohide-delay = 0.2;
-      autohide-time-modifier = 1.0;
+      autohide-delay = 0.25;
+      autohide-time-modifier = 0.5;
+      expose-animation-duration = 0.1;
+      launchanim = false;
       mineffect = "suck";
+      minimize-to-application = true;
+      mru-spaces = false;
       orientation = "bottom";
+      persistent-apps = [
+        "/System/Applications/App Store.app"
+        "/System/Applications/Notes.app"
+        "/System/Applications/Photos.app"
+        "/System/Cryptexes/App/System/Applications/Safari.app"
+        "/System/Applications/Mail.app"
+        "/System/Applications/Music.app"
+        "/Applications/Visual Studio Code.app"
+        "/Applications/Ghostty.app"
+      ];
       scroll-to-open = true;
+      show-recents = false;
+      tilesize = 48;
       # Hot corner
       wvous-tl-corner = 2; # Mission Control
       wvous-tr-corner = 12; # Notification Center
@@ -92,8 +129,17 @@
       disable-shadow = true;
       include-date = true;
       location = "~/Pictures";
-      show-thumbnail = true;
+      show-thumbnail = false;
       type = "png";
+    };
+
+    screensaver = {
+      askForPassword = true;
+      askForPasswordDelay = 0;
+    };
+
+    WindowManager = {
+      EnableStandardClickToShowDesktop = false;
     };
   };
 
@@ -107,6 +153,10 @@
       wvous-tr-modifier = 262144; # Ctrl
       wvous-bl-modifier = 0; # None
       wvous-br-modifier = 262144; # Ctrl
+    };
+    com.apple.desktopservices = {
+      DSDontWriteNetworkStores = true;
+      DSDontWriteUSBStores = true;
     };
   };
 }
