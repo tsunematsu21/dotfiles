@@ -16,6 +16,10 @@ install: ## Install nix and run nix-darwin/rebuild
 check: ## Check flake outputs without building
 	nix flake check --no-build
 
+lint: ## Lint Nix files
+	statix check .
+	deadnix --fail .
+
 format: ## Format files
 	nix fmt
 

@@ -21,6 +21,8 @@
     git
     lazygit
     neovim
+    statix
+    deadnix
     lefthook
     betterleaks
     czg

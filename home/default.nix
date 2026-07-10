@@ -10,9 +10,10 @@
     ./packages.nix
   ];
 
-  home.username = username;
-  home.homeDirectory = homeDirectory;
-  home.stateVersion = "26.05";
+  home = {
+    inherit username homeDirectory;
+    stateVersion = "26.05";
+  };
 
   programs.home-manager.enable = true;
 }
