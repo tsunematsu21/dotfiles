@@ -1,3 +1,10 @@
 Include conf.d/*.conf
 
 Compression yes
+
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+
+Host github.com
+  IdentityFile ~/.ssh/id_ed25519_tsunematsu21
