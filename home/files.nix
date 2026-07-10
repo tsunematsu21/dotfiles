@@ -12,7 +12,6 @@ in
   };
 
   xdg.configFile = mkLinks {
-    "gh" = "config/gh";
     "ghostty" = "config/ghostty";
     "git" = "config/git";
     "herdr" = "config/herdr";

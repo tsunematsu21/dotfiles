@@ -17,6 +17,9 @@
 [init]
 	defaultbranch = main
 
+[ghq]
+	root = ~/ghq
+
 [alias]
 	logo = log --oneline
 	s = status --untracked-files

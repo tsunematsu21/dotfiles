@@ -7,6 +7,7 @@
   imports = [
     ./activation.nix
     ./files.nix
+    ./gh.nix
     ./packages.nix
   ];
 

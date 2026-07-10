@@ -17,7 +17,7 @@
 
     # Development tools
     awscli
-    gh
+    ghq
     git
     lazygit
     neovim

@@ -28,7 +28,7 @@ let
       useGlobalPkgs = true;
       useUserPackages = true;
       extraSpecialArgs = {
-        inherit username homeDirectory;
+        inherit inputs username homeDirectory;
       };
       users.${username} = import ../home;
     };
