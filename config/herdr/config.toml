@@ -17,45 +17,20 @@ delivery = "terminal"
 kitty_graphics = true
 switch_ascii_input_source_in_prefix = true
 
+[advanced]
+scrollback_limit_bytes = 10000000
+
 [keys]
 prefix = "ctrl+b"
 focus_pane_left = "alt+h"
 focus_pane_down = "alt+j"
 focus_pane_up = "alt+k"
 focus_pane_right = "alt+l"
-
-[[keys.command]]
-key = "alt+H"
-type = "shell"
-command = "herdr pane resize --current --direction left --amount 0.05"
-description = "resize pane left"
-
-[[keys.command]]
-key = "alt+J"
-type = "shell"
-command = "herdr pane resize --current --direction down --amount 0.05"
-description = "resize pane down"
-
-[[keys.command]]
-key = "alt+K"
-type = "shell"
-command = "herdr pane resize --current --direction up --amount 0.05"
-description = "resize pane up"
-
-[[keys.command]]
-key = "alt+L"
-type = "shell"
-command = "herdr pane resize --current --direction right --amount 0.05"
-description = "resize pane right"
+next_tab = "alt+tab"
+previous_tab = "alt+shift+tab"
 
 [[keys.command]]
 key = "alt+g"
 type = "pane"
 command = "lazygit"
 description = "run lazygit"
-
-[[keys.command]]
-key = "alt+,"
-type = "pane"
-command = "cd ~/dotfiles; nvim ~/dotfiles"
-description = "edit dotfiles"

@@ -13,6 +13,8 @@ vim.keymap.set('n', '<leader>w', '<cmd>write<cr>', { desc = 'Write' })
 vim.keymap.set('n', '<leader>q', '<cmd>quit<cr>', { desc = 'Quit' })
 vim.keymap.set('n', '<leader>Q', '<cmd>quitall<cr>', { desc = 'Quit All' })
 vim.keymap.set('n', '<leader>R', '<cmd>restart<cr>', { desc = 'Restart' })
+vim.keymap.set('n', '<C-/>', 'gcc', { remap = true, silent = true })
+vim.keymap.set('x', '<C-/>', 'gc', { remap = true, silent = true })
 
 -- Keymap suggest
 later(function()
