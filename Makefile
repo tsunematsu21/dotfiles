@@ -19,8 +19,12 @@ check: ## Check flake outputs without building
 format: ## Format files
 	nix fmt
 
-update: ## Update flake inputs and Homebrew packages
+update: update-nix update-brew ## Update flake inputs and Homebrew packages
+
+update-nix: ## Update flake inputs
 	nix flake update
+
+update-brew: ## Update Homebrew packages
 	brew update
 	brew upgrade
 	brew upgrade --cask
