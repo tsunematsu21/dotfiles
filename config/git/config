@@ -31,3 +31,11 @@
 	name = tsunematsu21
 	email = tsunematsu21@users.noreply.github.com
 	signingkey = ~/.ssh/id_ed25519_tsunematsu21.pub
+
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
