@@ -24,6 +24,7 @@
     lefthook
     betterleaks
     czg
+    plamo-translate
     safe-chain
 
     # Languages and tool version management

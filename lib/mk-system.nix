@@ -15,6 +15,7 @@ let
       inputs.llm-agents.overlays.default
       (final: _prev: {
         czg = final.callPackage ../packages/czg.nix { };
+        plamo-translate = final.callPackage ../packages/plamo-translate.nix { };
         safe-chain = final.callPackage ../packages/safe-chain.nix { };
       })
     ];
