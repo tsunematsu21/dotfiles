@@ -5,6 +5,7 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
+$sudo\
 $fill\
 $cmd_duration\
 $line_break\
@@ -13,8 +14,9 @@ $character"""
 [directory]
 truncation_length = 2
 truncate_to_repo = false
-format = '[$path]($style) '
+format = '[$path]($style)[$read_only]($read_only_style) '
 style = "cyan"
+read_only = ' 󰌾'
 fish_style_pwd_dir_length = 5
 use_logical_path = false
 
@@ -40,3 +42,9 @@ min_time = 0
 show_milliseconds = true
 format = '[\($duration\)]($style) '
 style = "bright-black"
+
+[sudo]
+style = 'bold blue'
+symbol = ' '
+format = 'with [sudo power! $symbol]($style)'
+disabled = false
