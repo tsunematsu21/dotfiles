@@ -16,6 +16,10 @@ install: ## Install nix and run nix-darwin/rebuild
 check: ## Check flake outputs without building
 	nix flake check --no-build
 
+doctor: check lint ## Run repository health checks
+	zsh -n config/zsh/.zprofile
+	zsh -n config/zsh/.zshrc
+
 lint: ## Lint Nix files
 	statix check .
 	deadnix --fail .
