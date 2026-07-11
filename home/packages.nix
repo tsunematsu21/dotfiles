@@ -14,6 +14,7 @@
     tlrc
     poppler
     yazi
+    bat
 
     # Development tools
     awscli
