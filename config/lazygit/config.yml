@@ -15,5 +15,5 @@ customCommands:
   - key: A
     context: files
     description: Commit with czg AI
-    command: czg ai -N=3
+    command: czg ai
     output: terminal
