@@ -13,7 +13,6 @@
     onActivation.cleanup = "none";
     casks = [
       "chatgpt"
-      "codex-app"
       "font-hackgen-nerd"
       "ghostty"
       "google-chrome"
