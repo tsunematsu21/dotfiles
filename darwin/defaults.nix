@@ -70,6 +70,7 @@
         "/System/Applications/Mail.app"
         "/System/Applications/Music.app"
         "/Applications/Visual Studio Code.app"
+        "/Applications/ChatGPT.app"
         "/Applications/Ghostty.app"
       ];
       scroll-to-open = true;
