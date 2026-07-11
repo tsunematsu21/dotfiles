@@ -32,6 +32,7 @@ autoload -Uz bashcompinit
 bashcompinit
 complete -C aws_completer aws
 
+# Lazy completions
 _mise() {
   unfunction "$0"
   eval "$(mise completion zsh)"
@@ -42,6 +43,7 @@ compdef _mise mise
 _npm() {
   unfunction "$0"
   eval "$(npm completion zsh)"
+  compdef _npm_completion npm
   _npm_completion "$@"
 }
 compdef _npm npm
