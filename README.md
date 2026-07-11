@@ -31,6 +31,11 @@ gh ssh-key add ~/.ssh/id_ed25519_tsunematsu21.pub \
   --title tsunematsu21.pub-`date '+%Y%m%d'` \
   --type signing
 
+# Configure czg AI commit message generation
+npx czg --api-key="ghp_xxxxxx" \
+  --api-endpoint="https://models.inference.ai.azure.com" \
+  --api-model="gpt-4o-mini"
+
 # Configure both an IAM Identity Center profile and sso-session 
 aws configure sso
 ```
