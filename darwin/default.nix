@@ -21,7 +21,8 @@
     };
   };
   nix.enable = false;
-  programs.zsh.enable = true;
+  # Disable /etc/zshrc and /etc/zshenv generation
+  programs.zsh.enable = false;
   security.pam.services.sudo_local.touchIdAuth = true;
   security.pam.services.sudo_local.watchIdAuth = true;
 }

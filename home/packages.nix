@@ -33,6 +33,7 @@
     # Languages and tool version management
     go
     mise
+    usage
     rustup
 
     # from llm-agents.nix

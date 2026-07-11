@@ -1,30 +1,22 @@
-# Sheldon
-eval "$(sheldon source)"
-
-# Starship
-eval "$(starship init zsh)"
-
-# mise
-eval "$(mise activate zsh --shims)"
-
-# Safe Chain
-export PATH="$HOME/.safe-chain/shims:$PATH"
-
-# fzf
-source <(fzf --zsh)
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
-
-# zoxide
-eval "$(zoxide init zsh --cmd cd)"
+# zmodload zsh/zprof
 
 # Environment variables
 export LANG=ja_JP.UTF-8
 export XDG_CONFIG_HOME="$HOME/.config"
-export PATH="$(go env GOPATH)/bin:$PATH"
 export EDITOR="nvim"
+export PATH="${GOPATH:-$HOME/go}/bin:$PATH"
+export PATH="$HOME/.safe-chain/shims:$PATH"
+
+# Sheldon
+eval "$(sheldon source)"
 
 # Completion
 setopt extendedglob
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*:make:*:targets' call-command true
+zstyle ':completion:*:*:make:*' tag-order 'targets'
 
 typeset -g ZCOMPDUMP="${ZDOTDIR:-$HOME}/.zcompdump"
 
@@ -36,18 +28,38 @@ else
   compinit -C
 fi
 
-autoload -Uz bashcompinit && bashcompinit
-
+autoload -Uz bashcompinit
+bashcompinit
 complete -C aws_completer aws
-source <(mise completion zsh)
-source <(npm completion zsh)
-source <(pnpm completion zsh)
 
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+_mise() {
+  unfunction "$0"
+  eval "$(mise completion zsh)"
+  _mise "$@"
+}
+compdef _mise mise
+
+_npm() {
+  unfunction "$0"
+  eval "$(npm completion zsh)"
+  _npm_completion "$@"
+}
+compdef _npm npm
+
+_pnpm() {
+  unfunction "$0"
+  # pnpm's generated script calls _pnpm_completion when eval'd from a function.
+  eval "$(pnpm completion zsh)"
+}
+compdef _pnpm pnpm
+
 _comp_options+=(globdots)
-zstyle ':completion:*:make:*:targets' call-command true
-zstyle ':completion:*:*:make:*' tag-order 'targets'
+
+# Tools
+eval "$(mise activate zsh --shims)"
+eval "$(fzf --zsh)"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+eval "$(zoxide init zsh --cmd cd)"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#555555,underline"
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history)
@@ -103,3 +115,8 @@ function ghq-fzf() {
 
 zle -N ghq-fzf
 bindkey '^g' ghq-fzf
+
+# Prompt
+eval "$(starship init zsh)"
+
+# zprof
