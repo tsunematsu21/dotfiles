@@ -13,11 +13,10 @@ $character"""
 
 [directory]
 truncation_length = 2
-truncate_to_repo = false
+truncate_to_repo = true
 format = '[$path]($style)[$read_only]($read_only_style) '
 style = "cyan"
 read_only = ' 󰌾'
-fish_style_pwd_dir_length = 5
 use_logical_path = false
 
 [character]
