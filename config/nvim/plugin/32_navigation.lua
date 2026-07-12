@@ -108,7 +108,8 @@ later(function()
     for _, mapping in ipairs(mappings) do
       local lhs, picker, desc = unpack(mapping)
       vim.keymap.set(mapping.mode or 'n', '<leader>' .. lhs, function()
-        fzf[picker](mapping.opts)
+        local opts = type(mapping.opts) == 'function' and mapping.opts() or mapping.opts
+        fzf[picker](opts)
       end, { desc = desc })
     end
   end
@@ -128,7 +129,7 @@ later(function()
     { 'ff', 'files',           'Files' },
     { 'fr', 'resume',          'Resume' },
     { 'fb', 'buffers',         'Buffers' },
-    { 'fh', 'history',         'Oldfiles (cwd)',        opts = { cwd = vim.uv.cwd() } },
+    { 'fh', 'history',         'Oldfiles (cwd)',        opts = function() return { cwd = vim.uv.cwd() } end },
     { 'fH', 'history',         'Oldfiles (All)',        opts = { include_current_session = true } },
     { 'fu', 'undotree',        'Undotree' },
     { 'fg', 'lgrep_curbuf',    'Grep (buf)' },
