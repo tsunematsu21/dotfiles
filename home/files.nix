@@ -5,8 +5,7 @@ let
 in
 {
   home.file = mkLinks {
-    ".aws" = "config/aws";
-    ".ssh" = "config/ssh";
+    ".ssh/config" = "config/ssh/config";
     ".zprofile" = "config/zsh/.zprofile";
     ".zshrc" = "config/zsh/.zshrc";
   };
@@ -14,7 +13,7 @@ in
   xdg.configFile = mkLinks {
     "ghostty" = "config/ghostty";
     "git" = "config/git";
-    "herdr" = "config/herdr";
+    "herdr/config.toml" = "config/herdr/config.toml";
     "lazygit" = "config/lazygit";
     "mise" = "config/mise";
     "nvim" = "config/nvim";

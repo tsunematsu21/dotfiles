@@ -5,18 +5,3 @@ Brewfile.lock.json
 config/git/**/*
 !config/git/config
 !config/git/ignore
-
-# SSH
-config/ssh/**/*
-!config/ssh/config
-!config/ssh/conf.d
-
-# AWS
-config/aws/**/*
-
-# Herdr
-config/herdr/**/*
-!config/herdr/config.toml
-
-# .gitkeep
-!**/*/.gitkeep
