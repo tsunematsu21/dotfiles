@@ -2,6 +2,12 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.filetype.add({
+  filename = {
+    [".czrc"] = "json",
+  },
+})
+
 vim.o.mouse = 'a'
 vim.o.clipboard = 'unnamedplus'
 
