@@ -1,8 +1,8 @@
+vim.loader.enable()
+
 vim.env.XDG_STATE_HOME = '/tmp'
 vim.env.NVIM_LOG_FILE = '/tmp/nvim/log'
 vim.opt.undodir = vim.env.XDG_STATE_HOME .. '/nvim/undo'
-
-vim.loader.enable()
 
 -- Define config table to be able to pass data between scripts
 _G.Config = {}
