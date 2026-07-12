@@ -12,6 +12,19 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     llm-agents.url = "github:numtide/llm-agents.nix";
+    skill-find-skills = {
+      url = "github:vercel-labs/skills";
+      flake = false;
+    };
+    skill-herdr = {
+      url = "github:ogulcancelik/herdr";
+      flake = false;
+    };
+    skill-systematic-debugging = {
+      url = "github:obra/superpowers";
+      flake = false;
+    };
+    skill-verification-before-completion.follows = "skill-systematic-debugging";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };

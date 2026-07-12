@@ -271,7 +271,61 @@
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs_2",
+        "skill-find-skills": "skill-find-skills",
+        "skill-herdr": "skill-herdr",
+        "skill-systematic-debugging": "skill-systematic-debugging",
+        "skill-verification-before-completion": [
+          "skill-systematic-debugging"
+        ],
         "treefmt-nix": "treefmt-nix_2"
+      }
+    },
+    "skill-find-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1783724639,
+        "narHash": "sha256-gL8uNkS3gsRGXIunIsYLYykLYs2c1gO9PFVTE69nWKU=",
+        "owner": "vercel-labs",
+        "repo": "skills",
+        "rev": "3176ae424e50bb7d3f20a7e085f31912b3f325d2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vercel-labs",
+        "repo": "skills",
+        "type": "github"
+      }
+    },
+    "skill-herdr": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1783821372,
+        "narHash": "sha256-foqnazFkRve37QrMfgT2CKfzJcmhMpVwxPUJiKf6woE=",
+        "owner": "ogulcancelik",
+        "repo": "herdr",
+        "rev": "4ca6cac445a6aa45eb3b8462f66cd595d0c01364",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ogulcancelik",
+        "repo": "herdr",
+        "type": "github"
+      }
+    },
+    "skill-systematic-debugging": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1783029415,
+        "narHash": "sha256-kHdQ9e44doBk2yYW88tMSCqVG8ycYcvJSZlrIziXhpA=",
+        "owner": "obra",
+        "repo": "superpowers",
+        "rev": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+        "type": "github"
+      },
+      "original": {
+        "owner": "obra",
+        "repo": "superpowers",
+        "type": "github"
       }
     },
     "systems": {
