@@ -38,6 +38,7 @@ vim.o.winborder = 'rounded'
 
 vim.o.autoread = true
 vim.o.swapfile = false
+vim.o.undofile = true
 
 -- listchars
 vim.o.list = true
