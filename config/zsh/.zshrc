@@ -118,6 +118,36 @@ function ghq-fzf() {
 zle -N ghq-fzf
 bindkey '^g' ghq-fzf
 
+function hw() {
+  local cwd label workspaces workspace_id
+
+  cwd=$(git rev-parse --show-toplevel 2>/dev/null) || cwd="$PWD"
+  label="${cwd:t}"
+
+  if ! workspaces=$(herdr workspace list 2>/dev/null); then
+    command herdr
+    return
+  fi
+
+  workspace_id=$(
+    jq -r --arg label "$label" '
+      first(
+        .result.workspaces[]
+        | select(.label == $label)
+        | .workspace_id
+      ) // empty
+    ' <<<"$workspaces"
+  )
+
+  if [[ -n "$workspace_id" ]]; then
+    herdr workspace focus "$workspace_id" >/dev/null
+  else
+    herdr workspace create --cwd "$cwd" --label "$label" --focus >/dev/null
+  fi
+
+  [[ "${HERDR_ENV:-}" == 1 ]] || command herdr
+}
+
 # Prompt
 eval "$(starship init zsh)"
 
