@@ -51,17 +51,3 @@ vim.opt.listchars = {
 
 -- Cursor line
 vim.o.cursorline = true
-vim.api.nvim_create_autocmd('InsertEnter', {
-  group = Config.augroup,
-  callback = function()
-    vim.o.cursorline = false
-  end,
-  desc = 'Disable cursorline',
-})
-vim.api.nvim_create_autocmd('InsertLeave', {
-  group = Config.augroup,
-  callback = function()
-    vim.o.cursorline = true
-  end,
-  desc = 'Enable cursorline',
-})

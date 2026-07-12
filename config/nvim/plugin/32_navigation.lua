@@ -104,45 +104,63 @@ later(function()
     ui_select = true,
   })
 
+  local function map_all(mappings)
+    for _, mapping in ipairs(mappings) do
+      local lhs, picker, desc = unpack(mapping)
+      vim.keymap.set(mapping.mode or 'n', '<leader>' .. lhs, function()
+        fzf[picker](mapping.opts)
+      end, { desc = desc })
+    end
+  end
+
+  map_all({
+    { '<leader>', 'global', 'Find Global' },
+  })
+
   -- Find
-  vim.keymap.set('n', '<leader>?', function() fzf.helptags() end, { desc = 'Help page' })
-  vim.keymap.set('n', '<leader><leader>', function() fzf.global() end, { desc = 'Find Global' })
-  vim.keymap.set('n', '<leader>k', function() fzf.keymaps() end, { desc = 'Keymaps' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>f?', function() fzf.builtin() end, { desc = 'FzfLua builtins' })
-  vim.keymap.set('n', '<leader>f/', function() fzf.search_history() end, { desc = 'Search History' })
-  vim.keymap.set('n', '<leader>f:', function() fzf.command_history() end, { desc = 'Command History' })
-  vim.keymap.set('n', '<leader>fx', function() fzf.commands() end, { desc = 'Commands' })
-  vim.keymap.set('n', '<leader>ff', function() fzf.files() end, { desc = 'Files' })
-  vim.keymap.set('n', '<leader>fr', function() fzf.resume() end, { desc = 'Resume' })
-  vim.keymap.set('n', '<leader>fb', function() fzf.buffers() end, { desc = 'Buffers' })
-  vim.keymap.set('n', '<leader>fh', function() fzf.history({ cwd = vim.uv.cwd() }) end, { desc = 'Oldfiles (cwd)' })
-  vim.keymap.set('n', '<leader>fH', function() fzf.history({ include_current_session = true }) end, { desc = 'Oldfiles (All)' })
-  vim.keymap.set('n', '<leader>fu', function() fzf.undotree() end, { desc = 'Undotree' })
-  vim.keymap.set('n', '<leader>fg', function() fzf.lgrep_curbuf() end, { desc = 'Grep (buf)' })
-  vim.keymap.set('n', '<leader>fG', function() fzf.live_grep() end, { desc = 'Grep' })
-  vim.keymap.set('n', '<leader>fl', function() fzf.blines() end, { desc = 'Line (buf)' })
-  vim.keymap.set('n', '<leader>fL', function() fzf.lines() end, { desc = 'Line' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>fw', function() fzf.grep_cword() end, { desc = 'Grep word' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>fW', function() fzf.grep_cWORD() end, { desc = 'Grep WORD' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>fv', function() fzf.grep_visual() end, { desc = 'Grep Visual selection' })
+  map_all({
+    { '?',  'helptags',        'Help page' },
+    { 'k',  'keymaps',         'Keymaps' },
+    { 'f?', 'builtin',         'FzfLua builtins',       mode = { 'n', 'v' } },
+    { 'f/', 'search_history',  'Search History' },
+    { 'f:', 'command_history', 'Command History' },
+    { 'fx', 'commands',        'Commands' },
+    { 'ff', 'files',           'Files' },
+    { 'fr', 'resume',          'Resume' },
+    { 'fb', 'buffers',         'Buffers' },
+    { 'fh', 'history',         'Oldfiles (cwd)',        opts = { cwd = vim.uv.cwd() } },
+    { 'fH', 'history',         'Oldfiles (All)',        opts = { include_current_session = true } },
+    { 'fu', 'undotree',        'Undotree' },
+    { 'fg', 'lgrep_curbuf',    'Grep (buf)' },
+    { 'fG', 'live_grep',       'Grep' },
+    { 'fl', 'blines',          'Line (buf)' },
+    { 'fL', 'lines',           'Line' },
+    { 'fw', 'grep_cword',      'Grep word',             mode = { 'n', 'v' } },
+    { 'fW', 'grep_cWORD',      'Grep WORD',             mode = { 'n', 'v' } },
+    { 'fv', 'grep_visual',     'Grep Visual selection', mode = { 'n', 'v' } },
+  })
 
   -- Git
-  vim.keymap.set('n', '<leader>gf', function() fzf.git_files() end, { desc = 'Git Files' })
-  vim.keymap.set('n', '<leader>gb', function() fzf.git_branches() end, { desc = 'Git Branches' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>gB', function() fzf.git_blame() end, { desc = 'Git Blame' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>gc', function() fzf.git_bcommits() end, { desc = 'Git Log (buf)' })
-  vim.keymap.set('n', '<leader>gl', function() fzf.git_commits() end, { desc = 'Git Log' })
-  vim.keymap.set('n', '<leader>gs', function() fzf.git_status() end, { desc = 'Git Status' })
-  vim.keymap.set('n', '<leader>gh', function() fzf.git_hunks() end, { desc = 'Git Diff (hunks)' })
-  vim.keymap.set('n', '<leader>gH', function() fzf.git_diff() end, { desc = 'Git Diff' })
+  map_all({
+    { 'gf', 'git_files',    'Git Files' },
+    { 'gb', 'git_branches', 'Git Branches' },
+    { 'gB', 'git_blame',    'Git Blame',       mode = { 'n', 'v' } },
+    { 'gc', 'git_bcommits', 'Git Log (buf)',   mode = { 'n', 'v' } },
+    { 'gl', 'git_commits',  'Git Log' },
+    { 'gs', 'git_status',   'Git Status' },
+    { 'gh', 'git_hunks',    'Git Diff (hunks)' },
+    { 'gH', 'git_diff',     'Git Diff' },
+  })
 
   -- LSP
-  vim.keymap.set('n', '<leader>la', function() fzf.lsp_code_actions() end, { desc = 'Code Actions' })
-  vim.keymap.set('n', '<leader>ll', function() fzf.lsp_finder() end, { desc = 'LSP Finder' })
-  vim.keymap.set('n', '<leader>lr', function() fzf.lsp_references() end, { desc = 'Goto Reference' })
-  vim.keymap.set('n', '<leader>ld', function() fzf.lsp_definitions() end, { desc = 'Goto Definition' })
-  vim.keymap.set('n', '<leader>ls', function() fzf.lsp_document_symbols() end, { desc = 'LSP Symbols (buffer)' })
-  vim.keymap.set('n', '<leader>lS', function() fzf.lsp_workspace_symbols() end, { desc = 'LSP Symbols (workspace)' })
-  vim.keymap.set('n', '<leader>lg', function() fzf.diagnostics_document() end, { desc = 'Buffer Diagnostics' })
-  vim.keymap.set('n', '<leader>lG', function() fzf.diagnostics_workspace() end, { desc = 'Workspace Diagnostics' })
+  map_all({
+    { 'la', 'lsp_code_actions',      'Code Actions' },
+    { 'll', 'lsp_finder',            'LSP Finder' },
+    { 'lr', 'lsp_references',        'Goto Reference' },
+    { 'ld', 'lsp_definitions',       'Goto Definition' },
+    { 'ls', 'lsp_document_symbols',  'LSP Symbols (buffer)' },
+    { 'lS', 'lsp_workspace_symbols', 'LSP Symbols (workspace)' },
+    { 'lg', 'diagnostics_document',  'Buffer Diagnostics' },
+    { 'lG', 'diagnostics_workspace', 'Workspace Diagnostics' },
+  })
 end)

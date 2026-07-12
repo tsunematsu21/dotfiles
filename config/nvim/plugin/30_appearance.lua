@@ -2,15 +2,6 @@ local now, later = Config.now, Config.later
 
 require("vim._core.ui2").enable({})
 
--- On yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = Config.augroup,
-  callback = function()
-    vim.highlight.on_yank({ timeout = 500 })
-  end,
-  desc = 'Highlight on yank',
-})
-
 -- Icons
 now(function()
   require('mini.icons').setup()
@@ -49,7 +40,7 @@ now(function()
         FloatBorder = { bg = 'none' },
         FloatTitle = { bg = 'none' },
 
-       -- https://github.com/saghen/blink.indent
+        -- https://github.com/saghen/blink.indent
         BlinkIndent = { fg = theme.ui.bg_p1 },
         BlinkIndentScope = { fg = theme.ui.bg_p2 },
       }
