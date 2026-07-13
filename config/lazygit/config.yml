@@ -12,8 +12,3 @@ customCommands:
     description: Commit with czg
     command: czg
     output: terminal
-  - key: A
-    context: files
-    description: Commit with czg AI
-    command: czg ai
-    output: terminal
