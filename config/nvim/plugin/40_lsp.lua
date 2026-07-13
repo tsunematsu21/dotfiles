@@ -17,6 +17,7 @@ now_if_args(function()
       'yamlls',
       'taplo',
       'nil_ls', -- Nix
+      'typos_lsp',
     }
   }
 end)
