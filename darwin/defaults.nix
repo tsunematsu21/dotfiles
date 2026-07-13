@@ -63,6 +63,7 @@
       mru-spaces = false;
       orientation = "bottom";
       persistent-apps = [
+        "/System/Applications/System Settings.app"
         "/System/Applications/App Store.app"
         "/System/Applications/Notes.app"
         "/System/Applications/Photos.app"
