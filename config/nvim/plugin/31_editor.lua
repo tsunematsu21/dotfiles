@@ -2,18 +2,18 @@ local now, later = Config.now, Config.later
 
 -- Restore cursor
 now(function()
-  require('mini.misc').setup()
+  require("mini.misc").setup()
   MiniMisc.setup_restore_cursor() ---@diagnostic disable-line: undefined-global
 end)
 
 -- Text objects
 later(function()
-  require('mini.surround').setup()
+  require("mini.surround").setup()
 end)
 
 later(function()
-  local gen_ai_spec = require('mini.extra').gen_ai_spec
-  require('mini.ai').setup({
+  local gen_ai_spec = require("mini.extra").gen_ai_spec
+  require("mini.ai").setup({
     custom_textobjects = {
       B = gen_ai_spec.buffer(),
       D = gen_ai_spec.diagnostic(),
@@ -26,22 +26,22 @@ end)
 
 -- Indent guide
 later(function()
-  require('mini.indentscope').setup({})
+  require("mini.indentscope").setup({})
 end)
 
 -- Quickfix list
 later(function()
-  vim.pack.add({ 'https://github.com/stevearc/quicker.nvim' })
+  vim.pack.add({ "https://github.com/stevearc/quicker.nvim" })
   require("quicker").setup()
 end)
 
 -- Completion
 now(function()
-  require('mini.completion').setup({})
-  vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'noinsert', 'fuzzy', 'popup' }
+  require("mini.completion").setup({})
+  vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert", "fuzzy", "popup" }
 end)
 
 -- Command line
 now(function()
-  require('mini.cmdline').setup({})
+  require("mini.cmdline").setup({})
 end)

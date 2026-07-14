@@ -4,7 +4,7 @@ require("vim._core.ui2").enable({})
 
 -- Icons
 now(function()
-  require('mini.icons').setup()
+  require("mini.icons").setup()
   later(function()
     MiniIcons.mock_nvim_web_devicons() ---@diagnostic disable-line: undefined-global
   end)
@@ -12,58 +12,58 @@ end)
 
 -- Color
 now(function()
-  vim.pack.add({ 'https://github.com/rebelot/kanagawa.nvim' })
-  require('kanagawa').setup({
+  vim.pack.add({ "https://github.com/rebelot/kanagawa.nvim" })
+  require("kanagawa").setup({
     transparent = true,
     colors = {
       theme = {
         all = {
           ui = {
-            bg_gutter = 'none' -- Remove gutter background
-          }
-        }
-      }
+            bg_gutter = "none", -- Remove gutter background
+          },
+        },
+      },
     },
     overrides = function(colors)
       local theme = colors.theme
       return {
-        Pmenu = { fg = theme.ui.shade0, bg = 'none' },
-        PmenuSel = { fg = 'none', bg = theme.ui.bg_p2 },
+        Pmenu = { fg = theme.ui.shade0, bg = "none" },
+        PmenuSel = { fg = "none", bg = theme.ui.bg_p2 },
         PmenuSbar = { bg = theme.ui.bg_m1 },
         PmenuThumb = { bg = theme.ui.bg_p2 },
-        PmenuKind = { fg = theme.ui.shade0, bg = 'none' },
-        PmenuKindSel = { fg = 'none', bg = theme.ui.bg_p2 },
-        PmenuExtra = { fg = theme.ui.shade0, bg = 'none' },
-        PmenuExtraSel = { fg = 'none', bg = theme.ui.bg_p2 },
-        MsgSeparator = { fg = 'none', bg = 'none' },
-        NormalFloat = { bg = 'none' },
-        FloatBorder = { bg = 'none' },
-        FloatTitle = { bg = 'none' },
+        PmenuKind = { fg = theme.ui.shade0, bg = "none" },
+        PmenuKindSel = { fg = "none", bg = theme.ui.bg_p2 },
+        PmenuExtra = { fg = theme.ui.shade0, bg = "none" },
+        PmenuExtraSel = { fg = "none", bg = theme.ui.bg_p2 },
+        MsgSeparator = { fg = "none", bg = "none" },
+        NormalFloat = { bg = "none" },
+        FloatBorder = { bg = "none" },
+        FloatTitle = { bg = "none" },
 
         -- https://github.com/saghen/blink.indent
         BlinkIndent = { fg = theme.ui.bg_p1 },
         BlinkIndentScope = { fg = theme.ui.bg_p2 },
       }
-    end
+    end,
   })
-  vim.cmd.colorscheme('kanagawa-dragon')
+  vim.cmd.colorscheme("kanagawa-dragon")
 end)
 
 -- Status line
 now(function()
-  vim.pack.add({ 'https://github.com/nvim-lualine/lualine.nvim' })
-  require('lualine').setup({
+  vim.pack.add({ "https://github.com/nvim-lualine/lualine.nvim" })
+  require("lualine").setup({
     options = {
-      section_separators = { left = '', right = '' },
-      component_separators = { left = '', right = '' },
+      section_separators = { left = "", right = "" },
+      component_separators = { left = "", right = "" },
     },
     sections = {
-      lualine_a = { 'mode' },
-      lualine_b = { 'branch', 'diff', 'diagnostics' },
-      lualine_c = { 'filename' },
-      lualine_x = { { 'encoding', show_bomb = true } },
-      lualine_y = { 'filetype' },
-      lualine_z = { 'location' },
+      lualine_a = { "mode" },
+      lualine_b = { "branch", "diff", "diagnostics" },
+      lualine_c = { "filename" },
+      lualine_x = { { "encoding", show_bomb = true } },
+      lualine_y = { "filetype" },
+      lualine_z = { "location" },
     },
     inactive_sections = {},
   })
@@ -71,14 +71,14 @@ end)
 
 -- Dim
 later(function()
-  vim.pack.add({ 'https://github.com/TaDaa/vimade' })
-  require('vimade').setup({
-    recipe = { 'default', { animate = true } },
+  vim.pack.add({ "https://github.com/TaDaa/vimade" })
+  require("vimade").setup({
+    recipe = { "default", { animate = true } },
     fadelevel = 0.6,
   })
 end)
 
 -- Notification
 now(function()
-  require('mini.notify').setup({})
+  require("mini.notify").setup({})
 end)

@@ -1,6 +1,6 @@
 -- Leader key
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.filetype.add({
   filename = {
@@ -8,13 +8,13 @@ vim.filetype.add({
   },
 })
 
-vim.o.mouse = 'a'
-vim.o.clipboard = 'unnamedplus'
+vim.o.mouse = "a"
+vim.o.clipboard = "unnamedplus"
 
 -- Gutter
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = "yes"
 
 -- Tab
 vim.o.expandtab = true
@@ -33,8 +33,8 @@ vim.o.splitright = true
 vim.o.cmdheight = 1
 vim.o.showtabline = 0
 vim.o.laststatus = 3
-vim.o.pumborder = 'rounded'
-vim.o.winborder = 'rounded'
+vim.o.pumborder = "rounded"
+vim.o.winborder = "rounded"
 
 vim.o.autoread = true
 vim.o.swapfile = false
@@ -43,11 +43,11 @@ vim.o.undofile = true
 -- listchars
 vim.o.list = true
 vim.opt.listchars = {
-  tab = '→ ',
-  trail = '·',
-  nbsp = '␣',
-  extends = '❯',
-  precedes = '❮',
+  tab = "→ ",
+  trail = "·",
+  nbsp = "␣",
+  extends = "❯",
+  precedes = "❮",
 }
 
 -- Cursor line
