@@ -10,17 +10,6 @@
 let
   homeDirectory = "/Users/${username}";
 
-  overlaysModule = {
-    nixpkgs.overlays = [
-      inputs.llm-agents.overlays.default
-      (final: _prev: {
-        czg = final.callPackage ../packages/czg.nix { };
-        plamo-translate = final.callPackage ../packages/plamo-translate.nix { };
-        safe-chain = final.callPackage ../packages/safe-chain.nix { };
-      })
-    ];
-  };
-
   homeManagerModule = {
     users.users.${username}.home = homeDirectory;
 
@@ -45,7 +34,6 @@ inputs.nix-darwin.lib.darwinSystem {
     ../darwin
     inputs.home-manager.darwinModules.home-manager
     inputs.nix-homebrew.darwinModules.nix-homebrew
-    overlaysModule
     homeManagerModule
   ]
   ++ modules;

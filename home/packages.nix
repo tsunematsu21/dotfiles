@@ -1,43 +1,41 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
+let
+  llm-agents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   home.packages = with pkgs; [
-    # Shell and terminal tools
+    awscli
+    bat
+    betterleaks
+    deadnix
+    fastfetch
     fd
     fzf
-    jq
-    ripgrep
-    zoxide
-    sheldon
-    starship
-    fastfetch
-    stow
-    tlrc
-    poppler
-    yazi
-    bat
-
-    # Development tools
-    awscli
     ghq
     git
-    lazygit
-    neovim
-    statix
-    deadnix
-    lefthook
-    betterleaks
-    czg
-    plamo-translate
-    safe-chain
-
-    # Languages and tool version management
     go
+    jq
+    lazygit
+    lefthook
     mise
-    usage
+    neovim
+    poppler
+    ripgrep
     rustup
+    sheldon
+    starship
+    statix
+    stow
+    tlrc
+    usage
+    yazi
+    zoxide
 
-    # from llm-agents.nix
-    codex
-    herdr
+    llm-agents.codex
+    llm-agents.herdr
+
+    (callPackage ../packages/czg.nix { })
+    (callPackage ../packages/plamo-translate.nix { })
+    (callPackage ../packages/safe-chain.nix { })
   ];
 }
