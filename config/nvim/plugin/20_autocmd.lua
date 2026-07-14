@@ -1,4 +1,4 @@
-local group = vim.api.nvim_create_augroup("25_autocmd", { clear = true })
+local group = vim.api.nvim_create_augroup("custom_autocmd", { clear = true })
 
 -- Cursor line
 vim.api.nvim_create_autocmd("InsertEnter", {
@@ -8,6 +8,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
   end,
   desc = "Hide cursor line in Insert mode",
 })
+
 vim.api.nvim_create_autocmd("InsertLeave", {
   group = group,
   callback = function()
