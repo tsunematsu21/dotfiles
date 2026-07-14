@@ -1,5 +1,17 @@
 local now, later = Config.now, Config.later
 
+-- Restore cursor
+now(function()
+  require("mini.misc").setup()
+  MiniMisc.setup_restore_cursor() ---@diagnostic disable-line: undefined-global
+end)
+
+-- Quickfix list
+later(function()
+  vim.pack.add({ "https://github.com/stevearc/quicker.nvim" })
+  require("quicker").setup()
+end)
+
 -- Explorer
 now(function()
   vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
