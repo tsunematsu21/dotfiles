@@ -1,5 +1,4 @@
 local now, later = Config.now, Config.later
-local now_if_args = Config.now_if_args
 
 -- Text objects
 later(function()
@@ -52,26 +51,4 @@ later(function()
   vim.keymap.set("v", "<leader>hr", function()
     gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
   end, { desc = "Reset hunk" })
-end)
-
--- LSP
-now_if_args(function()
-  vim.pack.add({
-    "https://github.com/neovim/nvim-lspconfig",
-    "https://github.com/mason-org/mason.nvim",
-    "https://github.com/mason-org/mason-lspconfig.nvim",
-  })
-
-  require("mason").setup({})
-
-  require("mason-lspconfig").setup({
-    ensure_installed = {
-      "lua_ls",
-      "ts_ls",
-      "yamlls",
-      "taplo",
-      "nil_ls", -- Nix
-      "typos_lsp",
-    },
-  })
 end)

@@ -27,6 +27,7 @@ in
     statix
     stow
     tlrc
+    tree-sitter
     usage
     yazi
     zoxide
