@@ -8,8 +8,7 @@
     ./activation.nix
     ./agent-skills.nix
     ./files.nix
-    ./gh.nix
-    ./packages.nix
+    ./tools.nix
   ];
 
   home = {
