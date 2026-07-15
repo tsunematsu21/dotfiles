@@ -7,6 +7,8 @@ vim.pack.add({
 })
 
 local languages = {
+  "astro",
+  "vue",
   "nix",
   "lua",
   "vim",
@@ -65,7 +67,12 @@ now_if_args(function()
   require("mason").setup({})
 
   require("mason-lspconfig").setup({
+    automatic_enable = {
+      exclude = { "astro" },
+    },
     ensure_installed = {
+      "astro",
+      "vue_ls",
       "lua_ls",
       "ts_ls",
       "yamlls",
@@ -74,4 +81,6 @@ now_if_args(function()
       "typos_lsp",
     },
   })
+
+  vim.lsp.enable("astro")
 end)
