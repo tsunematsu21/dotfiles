@@ -5,3 +5,6 @@ Brewfile.lock.json
 config/git/**/*
 !config/git/config
 !config/git/ignore
+
+# Nix
+/result

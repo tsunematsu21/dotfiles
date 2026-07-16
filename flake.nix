@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
 
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -14,9 +16,6 @@
 
     llm-agents.url = "github:numtide/llm-agents.nix";
 
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
-
     gh-q.url = "github:kawarimidoll/gh-q";
     gh-q.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -27,41 +26,66 @@
     skill-systematic-debugging.url = "github:obra/superpowers";
     skill-systematic-debugging.flake = false;
     skill-verification-before-completion.follows = "skill-systematic-debugging";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   nixConfig = {
     extra-substituters = [ "https://cache.numtide.com" ];
-    extra-trusted-public-keys = [ "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=" ];
+    extra-trusted-public-keys = [
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+    ];
   };
 
   outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      treefmt-nix,
-      ...
-    }:
-    let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-      treefmtEval = treefmt-nix.lib.evalModule pkgs {
-        projectRootFile = "flake.nix";
-        programs = {
-          nixfmt.enable = true;
-          stylua.enable = true;
-          taplo.enable = true;
-          yamlfmt.enable = true;
-        };
-      };
-      mkSystem = import ./lib/mk-system.nix { inherit inputs self; };
-    in
-    {
-      formatter.${system} = treefmtEval.config.build.wrapper;
-      checks.${system}.formatting = treefmtEval.config.build.check self;
+    inputs@{ self, flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      { config, ... }: {
+        systems = [ "aarch64-darwin" ];
 
-      darwinConfigurations.mac = mkSystem {
-        inherit system;
-        username = "masato.tsunematsu";
-      };
-    };
+        imports = [
+          inputs.flake-parts.flakeModules.modules
+          inputs.treefmt-nix.flakeModule
+          (inputs.import-tree ./modules)
+        ];
+
+        flake.darwinConfigurations."mac" = inputs.nix-darwin.lib.darwinSystem {
+          specialArgs = {
+            inherit inputs self;
+            hostConfig = {
+              username = "masato.tsunematsu";
+              platform = "aarch64-darwin";
+              homeDirectory = "/Users/masato.tsunematsu";
+              dotfilesDirectory = "/Users/masato.tsunematsu/dotfiles";
+              homeModules = with config.flake.modules.homeManager; [
+                base
+                activation
+                agent-skills
+                files
+                packages
+              ];
+            };
+          };
+          modules = with config.flake.modules; [
+            darwin.base
+            darwin.homebrew
+            darwin.defaults
+            darwin.home-manager
+          ];
+        };
+
+        perSystem = _: {
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs = {
+              nixfmt.enable = true;
+              stylua.enable = true;
+              taplo.enable = true;
+              yamlfmt.enable = true;
+            };
+          };
+        };
+      }
+    );
 }
