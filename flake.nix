@@ -1,32 +1,32 @@
 {
-  description = "Home Manager configuration of masato.tsunematsu";
+  description = "My dotfiles";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    gh-q.url = "github:kawarimidoll/gh-q";
-    gh-q.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     llm-agents.url = "github:numtide/llm-agents.nix";
-    skill-find-skills = {
-      url = "github:vercel-labs/skills";
-      flake = false;
-    };
-    skill-herdr = {
-      url = "github:ogulcancelik/herdr";
-      flake = false;
-    };
-    skill-systematic-debugging = {
-      url = "github:obra/superpowers";
-      flake = false;
-    };
-    skill-verification-before-completion.follows = "skill-systematic-debugging";
+
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    gh-q.url = "github:kawarimidoll/gh-q";
+    gh-q.inputs.nixpkgs.follows = "nixpkgs";
+
+    skill-find-skills.url = "github:vercel-labs/skills";
+    skill-find-skills.flake = false;
+    skill-herdr.url = "github:ogulcancelik/herdr";
+    skill-herdr.flake = false;
+    skill-systematic-debugging.url = "github:obra/superpowers";
+    skill-systematic-debugging.flake = false;
+    skill-verification-before-completion.follows = "skill-systematic-debugging";
   };
 
   nixConfig = {
