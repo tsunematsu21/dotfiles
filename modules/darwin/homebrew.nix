@@ -16,6 +16,7 @@
       user = hostConfig.username;
       onActivation.cleanup = "none";
       casks = [
+        # keep-sorted start
         "chatgpt"
         "font-hackgen-nerd"
         "ghostty"
@@ -23,6 +24,7 @@
         "notion"
         "raycast"
         "visual-studio-code"
+        # keep-sorted end
       ];
     };
   };

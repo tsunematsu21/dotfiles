@@ -8,6 +8,7 @@
     in
     {
       home.packages = with pkgs; [
+        # keep-sorted start
         awscli
         bat
         betterleaks
@@ -33,6 +34,7 @@
         usage
         yazi
         zoxide
+        # keep-sorted end
 
         llm-agents.codex
         llm-agents.herdr
