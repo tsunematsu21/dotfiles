@@ -11,7 +11,6 @@
         awscli
         bat
         betterleaks
-        deadnix
         fastfetch
         fd
         fzf
@@ -28,7 +27,6 @@
         rustup
         sheldon
         starship
-        statix
         stow
         tlrc
         tree-sitter

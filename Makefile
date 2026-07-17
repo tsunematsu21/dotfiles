@@ -13,16 +13,12 @@ install: ## Install nix and run nix-darwin/rebuild
 	. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh && \
 	sudo -E nix run 'nix-darwin/master#darwin-rebuild' -- switch --flake .#mac
 
-check: ## Check flake outputs without building
-	nix flake check --no-build
+check: ## Run flake checks
+	nix flake check
 
-doctor: check lint ## Run repository health checks
+doctor: check ## Run repository health checks
 	zsh -n config/zsh/.zprofile
 	zsh -n config/zsh/.zshrc
-
-lint: ## Lint Nix files
-	statix check .
-	deadnix --fail .
 
 format: ## Format files
 	nix fmt

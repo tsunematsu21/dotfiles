@@ -3,7 +3,5 @@ pre-commit:
     - name: format
       run: nix fmt -- {staged_files}
       stage_fixed: true
-    - name: lint
-      run: make lint
     - name: betterleaks
       run: betterleaks git --pre-commit --redact --staged --verbose
