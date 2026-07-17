@@ -53,11 +53,11 @@
         flake.darwinConfigurations."mac" = inputs.nix-darwin.lib.darwinSystem {
           specialArgs = {
             inherit inputs self;
-            hostConfig = {
+            hostConfig = rec {
               username = "masato.tsunematsu";
               platform = "aarch64-darwin";
-              homeDirectory = "/Users/masato.tsunematsu";
-              dotfilesDirectory = "/Users/masato.tsunematsu/dotfiles";
+              homeDirectory = "/Users/${username}";
+              dotfilesDirectory = "${homeDirectory}/dotfiles";
               homeModules = with config.flake.modules.homeManager; [
                 base
                 activation
