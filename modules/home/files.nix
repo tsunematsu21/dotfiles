@@ -16,7 +16,8 @@ _:
 
       xdg.configFile = mkLinks {
         "ghostty" = "config/ghostty";
-        "git" = "config/git";
+        "git/config" = "config/git/config";
+        "git/ignore" = "config/git/ignore";
         "herdr/config.toml" = "config/herdr/config.toml";
         "lazygit" = "config/lazygit";
         "mise" = "config/mise";
