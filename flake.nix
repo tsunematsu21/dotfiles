@@ -41,7 +41,7 @@
   outputs =
     inputs@{ self, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } (
-      { config, ... }: {
+      { config, lib, ... }: {
         systems = [ "aarch64-darwin" ];
 
         imports = [
@@ -74,6 +74,16 @@
             darwin.home-manager
           ];
         };
+
+        flake.checks = lib.foldlAttrs (
+          acc: name: darwin:
+          let
+            system = darwin.config.nixpkgs.hostPlatform.system;
+          in
+          lib.recursiveUpdate acc {
+            ${system}."darwin-${name}" = darwin.config.system.build.toplevel;
+          }
+        ) { } config.flake.darwinConfigurations;
 
         perSystem = _: {
           treefmt = {
