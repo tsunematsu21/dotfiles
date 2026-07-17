@@ -14,7 +14,11 @@
     homebrew = {
       enable = true;
       user = hostConfig.username;
-      onActivation.cleanup = "none";
+      onActivation = {
+        autoUpdate = true;
+        cleanup = "none";
+        upgrade = true;
+      };
       casks = [
         # keep-sorted start
         "chatgpt"

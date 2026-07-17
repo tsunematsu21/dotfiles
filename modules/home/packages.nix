@@ -2,7 +2,7 @@
 
 {
   flake.modules.homeManager.packages =
-    { pkgs, ... }:
+    { hostConfig, pkgs, ... }:
     let
       llm-agents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
     in
@@ -40,6 +40,9 @@
         llm-agents.herdr
 
         (callPackage ../../packages/czg.nix { })
+        (callPackage ../../packages/dotfiles.nix {
+          inherit (hostConfig) dotfilesDirectory hostname;
+        })
         (callPackage ../../packages/plamo-translate.nix { })
         (callPackage ../../packages/safe-chain.nix { })
       ];

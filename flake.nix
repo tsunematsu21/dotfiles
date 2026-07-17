@@ -41,7 +41,24 @@
   outputs =
     inputs@{ self, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } (
-      { config, lib, ... }: {
+      { config, lib, ... }:
+      let
+        hostConfig = rec {
+          hostname = "MacBook-Air";
+          username = "masato.tsunematsu";
+          platform = "aarch64-darwin";
+          homeDirectory = "/Users/${username}";
+          dotfilesDirectory = "${homeDirectory}/dotfiles";
+          homeModules = with config.flake.modules.homeManager; [
+            base
+            activation
+            agent-skills
+            files
+            packages
+          ];
+        };
+      in
+      {
         systems = [ "aarch64-darwin" ];
 
         imports = [
@@ -50,22 +67,9 @@
           (inputs.import-tree ./modules)
         ];
 
-        flake.darwinConfigurations."mac" = inputs.nix-darwin.lib.darwinSystem {
+        flake.darwinConfigurations.${hostConfig.hostname} = inputs.nix-darwin.lib.darwinSystem {
           specialArgs = {
-            inherit inputs self;
-            hostConfig = rec {
-              username = "masato.tsunematsu";
-              platform = "aarch64-darwin";
-              homeDirectory = "/Users/${username}";
-              dotfilesDirectory = "${homeDirectory}/dotfiles";
-              homeModules = with config.flake.modules.homeManager; [
-                base
-                activation
-                agent-skills
-                files
-                packages
-              ];
-            };
+            inherit inputs self hostConfig;
           };
           modules = with config.flake.modules; [
             darwin.base

@@ -28,6 +28,8 @@ else
   compinit -C
 fi
 
+source <(usage generate completion-init zsh)
+
 autoload -Uz bashcompinit
 bashcompinit
 complete -C aws_completer aws
