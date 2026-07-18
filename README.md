@@ -7,7 +7,7 @@ My macOS dotfiles.
 
 ```sh
 # Install Nix, set up the system, and deploy dotfiles
-DOTFILES_HOSTNAME=MacBook-Air \
+DOTFILES_HOSTNAME=matcha \
   sh -c "$(curl -sSfL https://github.com/tsunematsu21/dotfiles/raw/main/install.sh)"
 
 # Refresh shell

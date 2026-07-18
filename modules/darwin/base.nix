@@ -2,7 +2,7 @@ _:
 
 {
   flake.modules.darwin.base = { self, hostConfig, ... }: {
-    networking.computerName = hostConfig.hostname;
+    networking.computerName = hostConfig.codename;
     networking.hostName = hostConfig.hostname;
 
     nixpkgs.hostPlatform = hostConfig.platform;

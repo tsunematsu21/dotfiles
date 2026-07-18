@@ -44,7 +44,8 @@
       { config, lib, ... }:
       let
         hostConfig = rec {
-          hostname = "MacBook-Air";
+          codename = "Mantic Matcha";
+          hostname = "matcha";
           username = "masato.tsunematsu";
           platform = "aarch64-darwin";
           homeDirectory = "/Users/${username}";
