@@ -1,9 +1,0 @@
-[notebook]
-dir = "~/ghq/github.com/tsunematsu21/notebook"
-
-[alias]
-inbox = 'zk new inbox'
-
-[tool]
-fzf-preview = "bat -p --color always {-1}"
-fzf-options = "--tiebreak begin --exact --tabstop 4 --height 100% --layout default --no-hscroll --color hl:-1,hl+:-1 --preview-window wrap"

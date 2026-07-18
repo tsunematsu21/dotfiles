@@ -25,7 +25,6 @@ _:
         "sheldon" = "config/sheldon";
         "starship.toml" = "config/starship.toml";
         "yazi" = "config/yazi";
-        "zk/config.toml" = "config/zk/config.toml";
       };
     };
 }
