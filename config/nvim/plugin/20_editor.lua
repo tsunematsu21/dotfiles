@@ -22,6 +22,18 @@ end)
 now(function()
   require("mini.completion").setup({})
   vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert", "fuzzy", "popup" }
+
+  vim.keymap.set("i", "<Tab>", function()
+    return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
+  end, { expr = true, desc = "Select next completion item" })
+
+  vim.keymap.set("i", "<S-Tab>", function()
+    return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>"
+  end, { expr = true, desc = "Select previous completion item" })
+
+  vim.keymap.set("i", "<CR>", function()
+    return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>"
+  end, { expr = true, desc = "Confirm completion item" })
 end)
 
 -- Command line
