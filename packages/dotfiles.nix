@@ -1,5 +1,6 @@
 {
   lib,
+  neovim,
   nix,
   usage,
   writeTextFile,
@@ -15,10 +16,17 @@ writeTextFile {
   text = ''
     #!${lib.getExe usage} bash
     #USAGE about "Manage the dotfiles configuration"
+    #USAGE cmd "edit" help="Open the dotfiles directory in the editor"
     #USAGE cmd "rebuild" help="Apply the host configuration"
     #USAGE cmd "update" help="Update flake inputs and rebuild"
 
     case "$1" in
+      edit)
+        shift
+        editor="''${EDITOR:-${lib.getExe neovim}}"
+        exec "$editor" "${dotfilesDirectory}"
+        ;;
+
       rebuild)
         shift
         exec sudo /run/current-system/sw/bin/darwin-rebuild switch --flake "${dotfilesDirectory}#${hostname}" "$@"
