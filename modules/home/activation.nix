@@ -4,6 +4,7 @@ _:
   flake.modules.homeManager.activation =
     {
       config,
+      hostConfig,
       pkgs,
       lib,
       ...
@@ -22,6 +23,15 @@ _:
         ${config.home.path}/bin/safe-chain setup-ci
         export PATH="$HOME/.safe-chain/shims:${pkgs.mise}/bin:$PATH"
         ${pkgs.mise}/bin/mise install
+      '';
+
+      home.activation.installLefthook = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        if [ -d "${hostConfig.dotfilesDirectory}/.git" ]; then
+          (
+            cd "${hostConfig.dotfilesDirectory}"
+            $DRY_RUN_CMD ${pkgs.lefthook}/bin/lefthook install --force --reset-hooks-path
+          )
+        fi
       '';
     };
 }
