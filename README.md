@@ -6,9 +6,11 @@ My macOS dotfiles.
 ### 1. Command line operations
 
 ```sh
+# Select the host configuration
+export DOTFILES_HOSTNAME=matcha
+
 # Install Nix, set up the system, and deploy dotfiles
-DOTFILES_HOSTNAME=matcha \
-  sh -c "$(curl -sSfL https://github.com/tsunematsu21/dotfiles/raw/main/install.sh)"
+sh -c "$(curl -sSfL https://github.com/tsunematsu21/dotfiles/raw/main/bootstrap.sh)"
 
 # Refresh shell
 exec -l "$SHELL"
