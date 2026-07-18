@@ -33,6 +33,7 @@
         tree-sitter
         usage
         yazi
+        zk
         zoxide
         # keep-sorted end
 
