@@ -10,6 +10,13 @@ case "$(uname -s)" in
     ;;
 esac
 
+if ! xcode-select -p >/dev/null 2>&1; then
+  echo "Xcode Command Line Tools are required; opening the installer."
+  xcode-select --install
+  echo "Complete the installation, then run this script again."
+  exit 1
+fi
+
 host_name="${DOTFILES_HOSTNAME:-$(hostname -s)}"
 
 if [ -x /nix/nix-installer ]; then
