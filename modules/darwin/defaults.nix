@@ -69,6 +69,7 @@ _:
           "/System/Applications/System Settings.app"
           "/System/Applications/App Store.app"
           "/System/Applications/Notes.app"
+          "/Applications/Obsidian.app"
           "/System/Applications/Photos.app"
           "/System/Cryptexes/App/System/Applications/Safari.app"
           "/System/Applications/Mail.app"

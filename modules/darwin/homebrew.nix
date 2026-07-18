@@ -26,6 +26,7 @@
         "ghostty"
         "google-chrome"
         "notion"
+        "obsidian"
         "raycast"
         "visual-studio-code"
         # keep-sorted end
