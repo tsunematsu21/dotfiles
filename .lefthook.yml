@@ -5,3 +5,7 @@ pre-commit:
       stage_fixed: true
     - name: betterleaks
       run: betterleaks git --pre-commit --redact --staged --verbose
+pre-push:
+  jobs:
+    - name: flake-check
+      run: nix flake check --no-build
