@@ -6,25 +6,12 @@ My macOS dotfiles.
 ### 1. Command line operations
 
 ```sh
-# Get this repository
-git clone https://github.com/tsunematsu21/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-
-# Install Nix
-curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
-
-# Trust macOS admin users for Nix
-sudo touch /etc/nix/nix.custom.conf
-grep -qxF 'trusted-users = root @admin' /etc/nix/nix.custom.conf || \
-  echo 'trusted-users = root @admin' | sudo tee -a /etc/nix/nix.custom.conf > /dev/null
-sudo launchctl kickstart -k system/org.nixos.nix-daemon
-
-# Setup system preferences, Install packages, Deploy dotfiles
-. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-sudo -E nix run 'nix-darwin/master#darwin-rebuild' -- switch --flake .#MacBook-Air
+# Install Nix, set up the system, and deploy dotfiles
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/tsunematsu21/dotfiles/main/install.sh)" -- \
+  --hostname MacBook-Air
 
 # Refresh shell
-exec -l $SHELL
+exec -l "$SHELL"
 
 # Update or apply the configuration
 dotfiles update

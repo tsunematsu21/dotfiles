@@ -29,6 +29,7 @@ _:
         if [ -d "${hostConfig.dotfilesDirectory}/.git" ]; then
           (
             cd "${hostConfig.dotfilesDirectory}"
+            export PATH="${pkgs.git}/bin:$PATH"
             $DRY_RUN_CMD ${pkgs.lefthook}/bin/lefthook install --force --reset-hooks-path
           )
         fi
