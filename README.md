@@ -7,8 +7,8 @@ My macOS dotfiles.
 
 ```sh
 # Install Nix, set up the system, and deploy dotfiles
-sh -c "$(curl -sSfL https://raw.githubusercontent.com/tsunematsu21/dotfiles/main/install.sh)" -- \
-  --hostname MacBook-Air
+DOTFILES_HOSTNAME=MacBook-Air \
+  sh -c "$(curl -sSfL https://github.com/tsunematsu21/dotfiles/raw/main/install.sh)"
 
 # Refresh shell
 exec -l "$SHELL"

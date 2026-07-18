@@ -10,14 +10,7 @@ case "$(uname -s)" in
     ;;
 esac
 
-if [ "$#" -eq 0 ]; then
-  host_name="$(hostname -s)"
-elif [ "$#" -eq 2 ] && [ "$1" = "--hostname" ] && [ -n "$2" ]; then
-  host_name="$2"
-else
-  echo "Usage: install.sh [--hostname <hostname>]" >&2
-  exit 2
-fi
+host_name="${DOTFILES_HOSTNAME:-$(hostname -s)}"
 
 if [ -x /nix/nix-installer ]; then
   echo "Nix is already installed; skipping nix-installer."
