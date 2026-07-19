@@ -5,6 +5,7 @@
     { hostConfig, pkgs, ... }:
     let
       llm-agents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+      hunk = inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system};
     in
     {
       home.packages = with pkgs; [
@@ -38,6 +39,7 @@
 
         llm-agents.codex
         llm-agents.herdr
+        hunk.hunk
 
         (callPackage ../../packages/czg.nix { })
         (callPackage ../../packages/dotfiles.nix {

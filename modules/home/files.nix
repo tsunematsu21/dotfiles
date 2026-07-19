@@ -19,6 +19,7 @@ _:
         "git/config" = "config/git/config";
         "git/ignore" = "config/git/ignore";
         "herdr/config.toml" = "config/herdr/config.toml";
+        "hunk/config.toml" = "config/hunk/config.toml";
         "lazygit" = "config/lazygit";
         "mise" = "config/mise";
         "nvim" = "config/nvim";

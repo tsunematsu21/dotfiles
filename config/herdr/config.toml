@@ -40,3 +40,9 @@ key = "alt+shift+g"
 type = "pane"
 command = "gh dash"
 description = "run gh-dash"
+
+[[keys.command]]
+key = "alt+d"
+type = "pane"
+command = "hunk diff --watch"
+description = "review diff with hunk"

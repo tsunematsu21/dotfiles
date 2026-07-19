@@ -19,6 +19,12 @@
     gh-q.url = "github:kawarimidoll/gh-q";
     gh-q.inputs.nixpkgs.follows = "nixpkgs";
 
+    hunk.url = "github:modem-dev/hunk";
+    hunk.inputs.nixpkgs.follows = "nixpkgs";
+    hunk.inputs.bun2nix.inputs.systems.follows = "hunk-systems";
+    hunk-systems.url = "github:nix-systems/aarch64-darwin";
+    skill-hunk-review.follows = "hunk";
+
     skill-find-skills.url = "github:vercel-labs/skills";
     skill-find-skills.flake = false;
     skill-herdr.url = "github:ogulcancelik/herdr";
