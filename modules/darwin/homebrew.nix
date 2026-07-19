@@ -26,6 +26,7 @@
         "font-hackgen-nerd"
         "ghostty"
         "google-chrome"
+        "loop"
         "notion"
         "obsidian"
         "sol"
