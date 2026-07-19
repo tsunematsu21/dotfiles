@@ -25,6 +25,7 @@ _:
         "mise" = "config/mise";
         "nvim" = "config/nvim";
         "sheldon" = "config/sheldon";
+        "sol" = "config/sol";
         "starship.toml" = "config/starship.toml";
         "yazi" = "config/yazi";
       };

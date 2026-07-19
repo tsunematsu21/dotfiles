@@ -28,7 +28,7 @@
         "google-chrome"
         "notion"
         "obsidian"
-        "raycast"
+        "sol"
         "visual-studio-code"
         # keep-sorted end
       ];
