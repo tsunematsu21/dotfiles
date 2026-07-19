@@ -21,6 +21,7 @@ _:
         "herdr/config.toml" = "config/herdr/config.toml";
         "hunk/config.toml" = "config/hunk/config.toml";
         "lazygit" = "config/lazygit";
+        "leaf/config.toml" = "config/leaf/config.toml";
         "mise" = "config/mise";
         "nvim" = "config/nvim";
         "sheldon" = "config/sheldon";

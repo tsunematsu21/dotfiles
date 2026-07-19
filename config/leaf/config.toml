@@ -1,0 +1,3 @@
+theme = "ocean"
+editor = 'nvim +{$line} +"normal! zz"'
+watch = true

@@ -19,6 +19,7 @@
         cleanup = "none";
         upgrade = true;
       };
+      brews = [ "leaf-md" ];
       casks = [
         # keep-sorted start
         "chatgpt"
