@@ -15,8 +15,13 @@ sh -c "$(curl -sSfL https://github.com/tsunematsu21/dotfiles/raw/main/bootstrap.
 # Refresh shell
 exec -l "$SHELL"
 
-# Update or apply the configuration
+# Build and compare without applying the configuration
+dotfiles diff
+
+# Update flake inputs and compare without applying the configuration
 dotfiles update
+
+# Apply the configuration
 dotfiles rebuild
 
 # Create SSH key with passphrase
