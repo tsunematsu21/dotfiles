@@ -43,9 +43,8 @@ aws configure sso
 
 Configure application settings.
 
-* **Raycast**
-  * Settings > Advanced
-    * Import / Export: Import the exported `.rayconfig` file
+* **Loop**
+  * Configure shortcuts and appearance in the app
 
 ## Uninstall
 
