@@ -39,7 +39,7 @@ _:
       trackpad = {
         Clicking = true;
         FirstClickThreshold = 0;
-        TrackpadThreeFingerDrag = true;
+        TrackpadThreeFingerDrag = false;
       };
 
       finder = {

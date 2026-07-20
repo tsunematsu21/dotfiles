@@ -24,6 +24,7 @@ _:
         "leaf/config.toml" = "config/leaf/config.toml";
         "mise" = "config/mise";
         "nvim" = "config/nvim";
+        "omniwm" = "config/omniwm";
         "sheldon" = "config/sheldon";
         "sol" = "config/sol";
         "starship.toml" = "config/starship.toml";

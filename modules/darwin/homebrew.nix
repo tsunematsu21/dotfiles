@@ -19,14 +19,15 @@
         cleanup = "none";
         upgrade = true;
       };
+      taps = [ "BarutSRB/tap" ];
       brews = [ "leaf-md" ];
       casks = [
         # keep-sorted start
+        "barutsrb/tap/omniwm"
         "chatgpt"
         "font-hackgen-nerd"
         "ghostty"
         "google-chrome"
-        "loop"
         "notion"
         "obsidian"
         "sol"
