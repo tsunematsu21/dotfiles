@@ -21,8 +21,12 @@
           }
         else if builtins.pathExists "${rootSkill}/SKILL.md" then
           {
-            source = "${rootSkill}/SKILL.md";
-            target = ".agents/skills/${skillName}/SKILL.md";
+            source = builtins.path {
+              path = rootSkill;
+              name = "${skillName}-skill";
+              filter = path: _: builtins.baseNameOf path == "SKILL.md";
+            };
+            target = ".agents/skills/${skillName}";
           }
         else
           throw "No SKILL.md found for ${name}";
