@@ -1,0 +1,77 @@
+schemaVersion = 1
+
+[catalogs]
+sortOrders = []
+
+    [[catalogs.globalScopes]]
+    catalogIdentifier = 'Tuna.EffectsCatalog'
+    mode = 'none'
+    selectedItemKeys = []
+
+    [[catalogs.globalScopes]]
+    catalogIdentifier = 'TunaEmoji.EmojiCatalog'
+    mode = 'none'
+    selectedItemKeys = []
+
+[[comboMode.bindings]]
+key = 's'
+url = 'tuna://run/path.%252FApplications%252FSafari.app/Open'
+
+[[comboMode.bindings]]
+iconPath = '/Applications/Ghostty.app'
+key = 'g'
+url = 'tuna://run/TunaCore.ApplicationsCatalog.Ghostty/TunaCore.CommonActionsCatalog.Open'
+
+[[comboMode.bindings]]
+iconPath = '/Applications/ChatGPT.app'
+key = 'c'
+url = 'tuna://run/TunaCore.ApplicationsCatalog.ChatGPT/TunaCore.CommonActionsCatalog.Open'
+
+[[comboMode.bindings]]
+iconPath = '/Applications/Obsidian.app'
+key = 'o'
+url = 'tuna://run/TunaCore.ApplicationsCatalog.Obsidian/TunaCore.CommonActionsCatalog.Open'
+
+[[comboMode.bindings]]
+key = 'f'
+url = 'tuna://run/path.%252FSystem%252FLibrary%252FCoreServices%252FFinder.app/Open'
+
+[[comboMode.bindings]]
+key = 'm'
+url = 'tuna://run/path.%252FSystem%252FApplications%252FMessages.app/Open'
+
+[[comboMode.bindings]]
+key = 'n'
+url = 'tuna://run/path.%252FSystem%252FApplications%252FNotes.app/Open'
+
+[[comboMode.bindings]]
+key = 'd'
+url = 'tuna://run/path.%252FUsers%252Fmasato.tsunematsu%252FDownloads/Open'
+
+[[comboMode.bindings]]
+key = 'h'
+url = 'tuna://run/path.%252FUsers%252Fmasato.tsunematsu/Open'
+
+[hotkeys.app.activate]
+carbonKeyCode = 49
+carbonModifiers = 2048
+
+[hotkeys.app.comboMode]
+carbonKeyCode = 49
+carbonModifiers = 2560
+
+[[hotkeys.custom]]
+id = '04CE8E32-6123-4CB4-AFA8-4CD7D8B5832E'
+presentation = 'auto'
+
+    [hotkeys.custom.command]
+    actionIdentifier = 'TunaCore.CommonActionsCatalog.Browse'
+    subjectIdentifier = 'Tuna.Internal.ClipboardProxyCatalog.Clipboard History'
+
+    [hotkeys.custom.shortcut]
+    carbonKeyCode = 9
+    carbonModifiers = 768
+
+[settings]
+comboModeCheatsheetBehavior = 'always'
+themeIdentifier = 'com.brnbw.tuna.themes.default'

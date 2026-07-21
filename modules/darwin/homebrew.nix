@@ -30,7 +30,7 @@
         "google-chrome"
         "notion"
         "obsidian"
-        "sol"
+        "tuna"
         "visual-studio-code"
         # keep-sorted end
       ];

@@ -8,11 +8,18 @@ _:
       mkLinks = paths: builtins.mapAttrs (_: path: { source = mkLink path; }) paths;
     in
     {
-      home.file = mkLinks {
-        ".ssh/config" = "config/ssh/config";
-        ".zprofile" = "config/zsh/.zprofile";
-        ".zshrc" = "config/zsh/.zshrc";
-      };
+      home.file =
+        mkLinks {
+          ".ssh/config" = "config/ssh/config";
+          ".zprofile" = "config/zsh/.zprofile";
+          ".zshrc" = "config/zsh/.zshrc";
+        }
+        // {
+          "Library/Application Support/Tuna/config.toml" = {
+            source = mkLink "config/tuna/config.toml";
+            force = true;
+          };
+        };
 
       xdg.configFile = mkLinks {
         "ghostty" = "config/ghostty";
@@ -26,7 +33,6 @@ _:
         "nvim" = "config/nvim";
         "omniwm" = "config/omniwm";
         "sheldon" = "config/sheldon";
-        "sol" = "config/sol";
         "starship.toml" = "config/starship.toml";
         "yazi" = "config/yazi";
       };

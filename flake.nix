@@ -110,6 +110,7 @@
               yamlfmt.enable = true;
               # keep-sorted end
             };
+            settings.formatter.taplo.excludes = [ "config/tuna/config.toml" ];
           };
         };
       }
