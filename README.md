@@ -48,8 +48,11 @@ aws configure sso
 
 Configure application settings.
 
-* **Loop**
-  * Configure shortcuts and appearance in the app
+* **OmniWM**
+  * Allow OmniWM in System Settings > Privacy & Security > Accessibility
+  * Turn off Displays have separate Spaces in System Settings > Desktop & Dock > Mission Control, then log out and back in
+* **Tuna**
+  * Launch Tuna once to complete onboarding and confirm the managed hotkeys
 
 ## Uninstall
 
