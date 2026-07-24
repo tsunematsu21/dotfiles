@@ -28,5 +28,10 @@ _:
       touchIdAuth = true;
       watchIdAuth = true;
     };
+
+    system.activationScripts.postActivation.text = ''
+      echo >&2 "restarting Dock after Homebrew..."
+      killall -qu ${hostConfig.username} Dock || true
+    '';
   };
 }
