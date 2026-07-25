@@ -23,5 +23,6 @@ window-padding-color = extend-always
 mouse-hide-while-typing = true
 
 # macOS
-macos-titlebar-style = tabs
+macos-titlebar-style = hidden
 macos-option-as-alt = true
+confirm-close-surface = false
