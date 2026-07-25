@@ -46,6 +46,21 @@ fi
 
 cd "$HOME/dotfiles"
 
+available_hosts="$(
+  /nix/var/nix/profiles/default/bin/nix eval --raw \
+    "$HOME/dotfiles#darwinConfigurations" \
+    --apply 'attrs: builtins.concatStringsSep " " (builtins.attrNames attrs)'
+)"
+
+case " $available_hosts " in
+  *" $host_name "*) ;;
+  *)
+    echo "Unknown host configuration: $host_name" >&2
+    echo "Available host configurations: $available_hosts" >&2
+    exit 1
+    ;;
+esac
+
 sudo /nix/var/nix/profiles/default/bin/nix run 'nix-darwin/master#darwin-rebuild' -- \
   switch --flake "$HOME/dotfiles#$host_name"
 
