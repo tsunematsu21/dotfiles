@@ -1,58 +1,95 @@
 # dotfiles
+
 My macOS dotfiles.
 
-## Setup instructions
+## Install
 
-### 1. Command line operations
+Use the name of a host configuration in `flake.nix`. This installs Nix, clones this repository, and
+applies the configuration.
 
 ```sh
-# Select the host configuration
+# Choose a host
 export DOTFILES_HOSTNAME=matcha
 
-# Install Nix, set up the system, and deploy dotfiles
+# Install and apply
 sh -c "$(curl -sSfL https://github.com/tsunematsu21/dotfiles/raw/main/bootstrap.sh)"
 
-# Refresh shell
+# Restart the shell
 exec -l "$SHELL"
+```
 
-# Build and compare without applying the configuration
-dotfiles diff
+## Set up accounts
 
-# Update flake inputs and compare without applying the configuration
-dotfiles update
+These steps are optional. Run them only when you use the service.
 
-# Apply the configuration
-dotfiles rebuild
+### GitHub
 
-# Create SSH key with passphrase
+Create an SSH key, add it to the macOS keychain, and use it for GitHub commit signing.
+
+```sh
+# Create an SSH key
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_tsunematsu21
 
-# Add SSH key to ssh-agent with passphrase
+# Add the key to the macOS keychain
 eval "$(ssh-agent -s)"
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519_tsunematsu21
 
-# Login to GitHub using CLI
+# Log in to GitHub
 gh auth login
 
-# Add signing key to GitHub
+# Add the signing key to GitHub
 gh auth refresh -h github.com -s admin:ssh_signing_key
 gh ssh-key add ~/.ssh/id_ed25519_tsunematsu21.pub \
   --title tsunematsu21.pub-`date '+%Y%m%d'` \
   --type signing
+```
 
-# Configure both an IAM Identity Center profile and sso-session 
+### AWS
+
+Configure an IAM Identity Center profile and SSO session.
+
+```sh
 aws configure sso
 ```
 
-### 2. Manual operations
+## Configure apps manually
 
-Configure application settings.
+### [OmniWM](https://github.com/BarutSRB/OmniWM)
 
-* **OmniWM**
-  * Allow OmniWM in System Settings > Privacy & Security > Accessibility
-  * Turn off Displays have separate Spaces in System Settings > Desktop & Dock > Mission Control, then log out and back in
-* **Tuna**
-  * Launch Tuna once to complete onboarding and confirm the managed hotkeys
+- Allow OmniWM in **System Settings > Privacy & Security > Accessibility**.
+- Turn off **Displays have separate Spaces** in **System Settings > Desktop & Dock > Mission Control**.
+- Log out and log back in.
+
+### [Tuna](https://tunaformac.com/)
+
+- Launch Tuna once to finish onboarding.
+- Confirm that the managed hotkeys work.
+
+## Daily commands
+
+### See pending changes
+
+Build the configuration and compare it with the current system. This does not apply changes.
+
+```sh
+dotfiles diff
+```
+
+### Apply changes
+
+Build and apply the current configuration.
+
+```sh
+dotfiles rebuild
+```
+
+### Update dependencies
+
+Update `flake.lock`, then show the system changes. This modifies the working tree.
+
+```sh
+dotfiles update
+```
 
 ## Uninstall
 
