@@ -131,17 +131,17 @@ widthPercent = 50.0
 mode = "macOS"
 
 [statusBar]
-showAppNames = false
-showWorkspaceName = false
-useWorkspaceId = false
+showAppNames = true
+showWorkspaceName = true
+useWorkspaceId = true
 
 [workspaceBar]
 backgroundOpacity = 0.1
 deduplicateAppIcons = false
-enabled = false
+enabled = true
 excludedBundleIDs = []
 height = 24.0
-hideEmptyWorkspaces = false
+hideEmptyWorkspaces = true
 notchActiveZoneWidth = 180.0
 notchMode = "moveBelowMenuBar"
 position = "overlappingMenuBar"
@@ -150,7 +150,7 @@ revealHoldMilliseconds = 200.0
 revealModifier = "off"
 showFloatingWindows = false
 showLabels = true
-systemStatsButton = false
+systemStatsButton = true
 windowLevel = "popup"
 xOffset = 0.0
 yOffset = 0.0
@@ -210,6 +210,7 @@ minHeight = 600.0
 minWidth = 800.0
 
 [[appRules]]
+assignToWorkspace = "2"
 bundleId = "com.hnc.Discord"
 id = "AF752D95-8497-4844-BE20-4C93E73BAEF2"
 minHeight = 500.0
@@ -233,28 +234,40 @@ id = "552FB77D-BF0E-4737-90A6-B5BC6986C579"
 minHeight = 320.0
 minWidth = 660.0
 
+[[appRules]]
+assignToWorkspace = "2"
+bundleId = "com.tinyspeck.slackmacgap"
+id = "07EA9040-E957-4856-911F-1F58CE89DA80"
+minHeight = 500.0
+minWidth = 800.0
+
+[[appRules]]
+bundleId = "com.apple.Music"
+id = "E9784CBD-6746-41AC-85A9-C056C2468E71"
+layout = "float"
+
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+1"
 id = "switchWorkspace.0"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+Shift+1"
 id = "moveToWorkspace.0"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+2"
 id = "switchWorkspace.1"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+Shift+2"
 id = "moveToWorkspace.1"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+3"
 id = "switchWorkspace.2"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+Shift+3"
 id = "moveToWorkspace.2"
 
 [[hotkeys]]
@@ -833,6 +846,14 @@ id = "toggleSystemStats"
 id = "AD36F001-C57E-41A5-AC1D-DF5249D007F0"
 layoutType = "default"
 name = "1"
+
+[workspaces.monitorAssignment]
+type = "main"
+
+[[workspaces]]
+id = "54334758-E5EE-41D2-8DE3-1B3348EDE852"
+layoutType = "default"
+name = "2"
 
 [workspaces.monitorAssignment]
 type = "main"
