@@ -74,6 +74,7 @@ _:
           "/System/Cryptexes/App/System/Applications/Safari.app"
           "/System/Applications/Mail.app"
           "/Applications/Discord.app"
+          "/Applications/Slack.app"
           "/System/Applications/Music.app"
           "/Applications/Visual Studio Code.app"
           "/Applications/ChatGPT.app"

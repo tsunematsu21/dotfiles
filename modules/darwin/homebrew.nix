@@ -31,6 +31,7 @@
         "google-chrome"
         "notion"
         "obsidian"
+        "slack"
         "tuna"
         "visual-studio-code"
         # keep-sorted end
