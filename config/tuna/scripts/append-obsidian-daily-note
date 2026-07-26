@@ -1,0 +1,21 @@
+#!/bin/sh
+# @tuna.name Append to Obsidian Daily Note
+# @tuna.subtitle Append text to today's daily note
+# @tuna.icon app:/Applications/Obsidian.app
+# @tuna.input stdin
+# @tuna.mode inline
+# @tuna.output none
+
+input="$(cat)"
+[ -n "$input" ] || exit 0
+
+label="[Tuna · $(/bin/date '+%H:%M:%S')]"
+
+content="$(
+  printf '%s' "$input" |
+    /usr/bin/perl -0pe 's/\r\n?/\n/g; s/\\/\\\\/g; s/\n/\\n/g'
+)"
+
+content="${label}\\n${content}\\n[/Tuna]\\n"
+
+exec /opt/homebrew/bin/obsidian daily:append content="$content"

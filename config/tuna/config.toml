@@ -13,6 +13,11 @@ sortOrders = []
     mode = 'none'
     selectedItemKeys = []
 
+    [[catalogs.globalScopes]]
+    catalogIdentifier = 'TunaSystem.MenuItemsCatalog'
+    mode = 'all'
+    selectedItemKeys = [ 'Menu Items' ]
+
 [[comboMode.bindings]]
 key = 's'
 url = 'tuna://run/path.%252FApplications%252FSafari.app/Open'
@@ -58,6 +63,10 @@ carbonModifiers = 2048
 
 [hotkeys.app.comboMode]
 carbonKeyCode = 49
+carbonModifiers = 6656
+
+[hotkeys.app.textMode]
+carbonKeyCode = 49
 carbonModifiers = 2560
 
 [[hotkeys.custom]]
@@ -75,3 +84,51 @@ presentation = 'auto'
 [settings]
 comboModeCheatsheetBehavior = 'always'
 themeIdentifier = 'com.brnbw.tuna.themes.default'
+
+[[smartLinks.entries]]
+enabled = false
+name = 'Bing'
+requiresInput = true
+template = 'https://www.bing.com/search?q={{input}}'
+
+[[smartLinks.entries]]
+enabled = false
+name = 'DuckDuckGo'
+requiresInput = true
+template = 'https://duckduckgo.com/?q={{input}}'
+
+[[smartLinks.entries]]
+enabled = true
+name = 'GitHub'
+requiresInput = true
+template = 'https://github.com/search?q={{input}}'
+
+[[smartLinks.entries]]
+enabled = true
+name = 'Google'
+requiresInput = true
+template = 'https://www.google.com/search?q={{input}}'
+
+[[smartLinks.entries]]
+enabled = true
+name = 'Stack Overflow'
+requiresInput = true
+template = 'https://stackoverflow.com/search?q={{input}}'
+
+[[smartLinks.entries]]
+enabled = true
+name = 'Wikipedia'
+requiresInput = true
+template = 'https://en.wikipedia.org/wiki/Special:Search?search={{input}}'
+
+[[smartLinks.entries]]
+enabled = true
+name = 'YouTube'
+requiresInput = true
+template = 'https://www.youtube.com/results?search_query={{input}}'
+
+[[catalogSettings]]
+catalogIdentifier = 'com.brnbw.TunaPrompts'
+
+    [catalogSettings.values]
+    Provider = 'disabled'

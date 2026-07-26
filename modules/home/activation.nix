@@ -19,6 +19,16 @@ _:
               "${config.xdg.configHome}/herdr"
           '';
 
+      home.activation.installTunaScripts = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        $DRY_RUN_CMD ${pkgs.coreutils}/bin/install -d -m 755 \
+          "${config.home.homeDirectory}/Library/Scripts"
+        $DRY_RUN_CMD ${pkgs.coreutils}/bin/rm -f \
+          "${config.home.homeDirectory}/Library/Scripts/append-obsidian-daily-note"
+        $DRY_RUN_CMD ${pkgs.coreutils}/bin/install -m 755 \
+          "${hostConfig.dotfilesDirectory}/config/tuna/scripts/append-obsidian-daily-note" \
+          "${config.home.homeDirectory}/Library/Scripts/append-obsidian-daily-note"
+      '';
+
       home.activation.setupSafeChainAndMise = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         ${config.home.path}/bin/safe-chain setup-ci
         export PATH="$HOME/.safe-chain/shims:${pkgs.mise}/bin:$PATH"
