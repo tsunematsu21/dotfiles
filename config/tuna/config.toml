@@ -19,43 +19,69 @@ sortOrders = []
     selectedItemKeys = [ 'Menu Items' ]
 
 [[comboMode.bindings]]
-key = 's'
-url = 'tuna://run/path.%252FApplications%252FSafari.app/Open'
-
-[[comboMode.bindings]]
-iconPath = '/Applications/Ghostty.app'
-key = 'g'
-url = 'tuna://run/TunaCore.ApplicationsCatalog.Ghostty/TunaCore.CommonActionsCatalog.Open'
-
-[[comboMode.bindings]]
-iconPath = '/Applications/ChatGPT.app'
-key = 'c'
-url = 'tuna://run/TunaCore.ApplicationsCatalog.ChatGPT/TunaCore.CommonActionsCatalog.Open'
-
-[[comboMode.bindings]]
-iconPath = '/Applications/Obsidian.app'
-key = 'o'
-url = 'tuna://run/TunaCore.ApplicationsCatalog.Obsidian/TunaCore.CommonActionsCatalog.Open'
-
-[[comboMode.bindings]]
-key = 'f'
-url = 'tuna://run/path.%252FSystem%252FLibrary%252FCoreServices%252FFinder.app/Open'
-
-[[comboMode.bindings]]
-key = 'm'
-url = 'tuna://run/path.%252FSystem%252FApplications%252FMessages.app/Open'
-
-[[comboMode.bindings]]
+iconPath = 'note.text'
 key = 'n'
-url = 'tuna://run/path.%252FSystem%252FApplications%252FNotes.app/Open'
+label = 'Note'
+
+    [[comboMode.bindings.children]]
+    iconPath = '/Applications/Obsidian.app'
+    key = 'o'
+    url = 'tuna://run/TunaCore.ApplicationsCatalog.Obsidian/TunaCore.CommonActionsCatalog.Open'
 
 [[comboMode.bindings]]
-key = 'd'
-url = 'tuna://run/path.%252FUsers%252Fmasato.tsunematsu%252FDownloads/Open'
+iconPath = 'text.and.command.macwindow'
+key = 'b'
+label = 'Browser'
+
+    [[comboMode.bindings.children]]
+    iconPath = '/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app'
+    key = 's'
+    url = 'tuna://run/TunaCore.ApplicationsCatalog.Safari/TunaCore.CommonActionsCatalog.Open'
+
+    [[comboMode.bindings.children]]
+    iconPath = '/Applications/Google Chrome.app'
+    key = 'c'
+    url = 'tuna://run/TunaCore.ApplicationsCatalog.Google%20Chrome/TunaCore.CommonActionsCatalog.Open'
 
 [[comboMode.bindings]]
-key = 'h'
-url = 'tuna://run/path.%252FUsers%252Fmasato.tsunematsu/Open'
+iconPath = 'brain'
+key = 'a'
+label = 'AI'
+
+    [[comboMode.bindings.children]]
+    iconPath = '/Applications/ChatGPT.app'
+    key = 'g'
+    url = 'tuna://run/TunaCore.ApplicationsCatalog.ChatGPT/TunaCore.CommonActionsCatalog.Open'
+
+[[comboMode.bindings]]
+iconPath = 'apple.terminal'
+key = 't'
+label = 'Terminal'
+
+    [[comboMode.bindings.children]]
+    iconPath = '/Applications/Ghostty.app'
+    key = 'g'
+    url = 'tuna://run/TunaCore.ApplicationsCatalog.Ghostty/TunaCore.CommonActionsCatalog.Open'
+
+[[comboMode.bindings]]
+iconPath = 'envelope'
+key = 'c'
+label = 'Communication'
+
+    [[comboMode.bindings.children]]
+    iconPath = '/System/Applications/Mail.app'
+    key = 'm'
+    url = 'tuna://run/TunaCore.ApplicationsCatalog.Mail/TunaCore.CommonActionsCatalog.Open'
+
+    [[comboMode.bindings.children]]
+    iconPath = '/Applications/Discord.app'
+    key = 'd'
+    url = 'tuna://run/TunaCore.ApplicationsCatalog.Discord/TunaCore.CommonActionsCatalog.Open'
+
+    [[comboMode.bindings.children]]
+    iconPath = '/Applications/Slack.app'
+    key = 's'
+    url = 'tuna://run/TunaCore.ApplicationsCatalog.Slack/TunaCore.CommonActionsCatalog.Open'
 
 [hotkeys.app.activate]
 carbonKeyCode = 49
@@ -82,7 +108,13 @@ presentation = 'auto'
     carbonModifiers = 768
 
 [settings]
+backspaceBehavior = 'deleteCharacters'
+comboModeBackspaceBehavior = 'stepBack'
 comboModeCheatsheetBehavior = 'always'
+comboModeCheatsheetShowDetails = false
+comboModeDoublePressTrigger = 'leftCommand'
+comboModeModifierTrigger = 'leftCommand'
+comboModeTriggerType = 'doublePress'
 themeIdentifier = 'com.brnbw.tuna.themes.default'
 
 [[smartLinks.entries]]
@@ -108,6 +140,18 @@ enabled = true
 name = 'Google'
 requiresInput = true
 template = 'https://www.google.com/search?q={{input}}'
+
+[[smartLinks.entries]]
+enabled = true
+name = 'Nix Options'
+requiresInput = true
+template = 'https://search.nixos.org/options?channel=unstable&query={{input}}'
+
+[[smartLinks.entries]]
+enabled = true
+name = 'Nixpkgs'
+requiresInput = true
+template = 'https://search.nixos.org/packages?channel=unstable&query={{input}}'
 
 [[smartLinks.entries]]
 enabled = true
