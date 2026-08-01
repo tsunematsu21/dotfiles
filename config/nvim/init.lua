@@ -168,11 +168,6 @@ require("kanagawa").setup({
 })
 vim.cmd.colorscheme("kanagawa-dragon")
 
--- Icon
-vim.pack.add({
-  { src = "https://github.com/nvim-tree/nvim-web-devicons" },
-})
-
 -- Dim
 vim.pack.add({ "https://github.com/tadaa/vimade" })
 require("vimade").setup({
