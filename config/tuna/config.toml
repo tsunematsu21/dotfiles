@@ -1,22 +1,4 @@
-schemaVersion = 1
-
-[catalogs]
-sortOrders = []
-
-    [[catalogs.globalScopes]]
-    catalogIdentifier = 'Tuna.EffectsCatalog'
-    mode = 'none'
-    selectedItemKeys = []
-
-    [[catalogs.globalScopes]]
-    catalogIdentifier = 'TunaEmoji.EmojiCatalog'
-    mode = 'none'
-    selectedItemKeys = []
-
-    [[catalogs.globalScopes]]
-    catalogIdentifier = 'TunaSystem.MenuItemsCatalog'
-    mode = 'all'
-    selectedItemKeys = [ 'Menu Items' ]
+schemaVersion = 4
 
 [[comboMode.bindings]]
 iconPath = 'note.text'
@@ -26,7 +8,7 @@ label = 'Note'
     [[comboMode.bindings.children]]
     iconPath = '/Applications/Obsidian.app'
     key = 'o'
-    url = 'tuna://run/TunaCore.ApplicationsCatalog.Obsidian/TunaCore.CommonActionsCatalog.Open'
+    url = 'tuna://run?subject=tuna.applications//Applications/Obsidian.app&action=tuna.common-actions/open'
 
 [[comboMode.bindings]]
 iconPath = 'text.and.command.macwindow'
@@ -36,12 +18,12 @@ label = 'Browser'
     [[comboMode.bindings.children]]
     iconPath = '/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app'
     key = 's'
-    url = 'tuna://run/TunaCore.ApplicationsCatalog.Safari/TunaCore.CommonActionsCatalog.Open'
+    url = 'tuna://run?subject=tuna.applications//System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app&action=tuna.common-actions/open'
 
     [[comboMode.bindings.children]]
     iconPath = '/Applications/Google Chrome.app'
     key = 'c'
-    url = 'tuna://run/TunaCore.ApplicationsCatalog.Google%20Chrome/TunaCore.CommonActionsCatalog.Open'
+    url = 'tuna://run?subject=tuna.applications//Applications/Google%20Chrome.app&action=tuna.common-actions/open'
 
 [[comboMode.bindings]]
 iconPath = 'brain'
@@ -51,7 +33,7 @@ label = 'AI'
     [[comboMode.bindings.children]]
     iconPath = '/Applications/ChatGPT.app'
     key = 'g'
-    url = 'tuna://run/TunaCore.ApplicationsCatalog.ChatGPT/TunaCore.CommonActionsCatalog.Open'
+    url = 'tuna://run?subject=tuna.applications//Applications/ChatGPT.app&action=tuna.common-actions/open'
 
 [[comboMode.bindings]]
 iconPath = 'apple.terminal'
@@ -61,7 +43,7 @@ label = 'Terminal'
     [[comboMode.bindings.children]]
     iconPath = '/Applications/Ghostty.app'
     key = 'g'
-    url = 'tuna://run/TunaCore.ApplicationsCatalog.Ghostty/TunaCore.CommonActionsCatalog.Open'
+    url = 'tuna://run?subject=tuna.applications//Applications/Ghostty.app&action=tuna.common-actions/open'
 
 [[comboMode.bindings]]
 iconPath = 'envelope'
@@ -71,17 +53,17 @@ label = 'Communication'
     [[comboMode.bindings.children]]
     iconPath = '/System/Applications/Mail.app'
     key = 'm'
-    url = 'tuna://run/TunaCore.ApplicationsCatalog.Mail/TunaCore.CommonActionsCatalog.Open'
+    url = 'tuna://run?subject=tuna.applications//System/Applications/Mail.app&action=tuna.common-actions/open'
 
     [[comboMode.bindings.children]]
     iconPath = '/Applications/Discord.app'
     key = 'd'
-    url = 'tuna://run/TunaCore.ApplicationsCatalog.Discord/TunaCore.CommonActionsCatalog.Open'
+    url = 'tuna://run?subject=tuna.applications//Applications/Discord.app&action=tuna.common-actions/open'
 
     [[comboMode.bindings.children]]
     iconPath = '/Applications/Slack.app'
     key = 's'
-    url = 'tuna://run/TunaCore.ApplicationsCatalog.Slack/TunaCore.CommonActionsCatalog.Open'
+    url = 'tuna://run?subject=tuna.applications//Applications/Slack.app&action=tuna.common-actions/open'
 
 [hotkeys.app.activate]
 carbonKeyCode = 49
@@ -100,8 +82,8 @@ id = '04CE8E32-6123-4CB4-AFA8-4CD7D8B5832E'
 presentation = 'auto'
 
     [hotkeys.custom.command]
-    actionIdentifier = 'TunaCore.CommonActionsCatalog.Browse'
-    subjectIdentifier = 'Tuna.Internal.ClipboardProxyCatalog.Clipboard History'
+    actionIdentifier = 'tuna.common-actions/browse'
+    subjectIdentifier = 'tuna.clipboard/clipboard.history.root'
 
     [hotkeys.custom.shortcut]
     carbonKeyCode = 9
@@ -115,7 +97,6 @@ comboModeCheatsheetShowDetails = false
 comboModeDoublePressTrigger = 'leftCommand'
 comboModeModifierTrigger = 'leftCommand'
 comboModeTriggerType = 'doublePress'
-themeIdentifier = 'com.brnbw.tuna.themes.default'
 
 [[smartLinks.entries]]
 enabled = false
