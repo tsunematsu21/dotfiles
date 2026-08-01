@@ -91,6 +91,20 @@ Update `flake.lock`, then show the system changes. This modifies the working tre
 dotfiles update
 ```
 
+### Update Homebrew packages
+
+Homebrew packages are not updated by `dotfiles rebuild`. Update them explicitly,
+review any application-generated configuration changes, then rebuild to restore
+the declarative links.
+
+```sh
+brew update
+brew outdated
+brew upgrade
+dotfiles rebuild
+git diff
+```
+
 ## Uninstall
 
 ```sh

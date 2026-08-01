@@ -15,9 +15,9 @@
       enable = true;
       user = hostConfig.username;
       onActivation = {
-        autoUpdate = true;
+        autoUpdate = false;
         cleanup = "none";
-        upgrade = true;
+        upgrade = false;
       };
       taps = [ "BarutSRB/tap" ];
       brews = [ "leaf-md" ];
