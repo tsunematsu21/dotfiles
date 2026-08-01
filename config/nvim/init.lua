@@ -299,6 +299,10 @@ MiniIcons.mock_nvim_web_devicons() ---@diagnostic disable-line: undefined-global
 require("mini.indentscope").setup({})
 require("mini.misc").setup()
 MiniMisc.setup_restore_cursor() ---@diagnostic disable-line: undefined-global
+require("mini.ai").setup({})
+require("mini.operators").setup({})
+require("mini.surround").setup({})
+require("mini.pairs").setup({})
 
 -- Status line
 vim.pack.add({ "https://github.com/nvim-lualine/lualine.nvim" })
