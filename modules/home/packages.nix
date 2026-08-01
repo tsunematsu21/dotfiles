@@ -23,6 +23,7 @@
         lazygit
         lefthook
         mise
+        mprocs
         neovim
         poppler
         ripgrep
