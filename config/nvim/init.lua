@@ -233,6 +233,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+-- IME select
+vim.pack.add({ "https://github.com/keaising/im-select.nvim" })
+require("im_select").setup({})
+
 -- Quickfix list
 vim.pack.add({ "https://github.com/stevearc/quicker.nvim" })
 require("quicker").setup()
@@ -240,9 +244,7 @@ require("quicker").setup()
 -- Explorer
 vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
 require("oil").setup({
-  view_options = {
-    show_hidden = true,
-  },
+  view_options = { show_hidden = true },
   delete_to_trash = true,
 })
 vim.keymap.set("n", "<leader>e", "<cmd>Oil<cr>", { desc = "File Explorer" })
@@ -278,9 +280,7 @@ end, { desc = "Diagnostics (buffer)" }) vim.keymap.set("n", "<leader>lG", functi
 -- Git signs
 vim.pack.add({ "https://github.com/lewis6991/gitsigns.nvim" })
 local gs = require("gitsigns")
-gs.setup({
-  current_line_blame = true,
-})
+gs.setup({ current_line_blame = true })
 
 -- stylua: ignore start
 vim.keymap.set("n", "<leader>h]", function() gs.nav_hunk("next") end, { desc = "Next Hunk" })
@@ -303,6 +303,30 @@ require("mini.ai").setup({})
 require("mini.operators").setup({})
 require("mini.surround").setup({})
 require("mini.pairs").setup({})
+
+-- Increment/Decrement
+vim.pack.add({ "https://github.com/monaqa/dial.nvim" })
+local augend = require("dial.augend")
+require("dial.config").augends:register_group({
+  default = {
+    augend.integer.alias.decimal,
+    augend.integer.alias.hex,
+    augend.constant.alias.bool,
+    augend.date.alias["%Y/%m/%d"],
+    augend.date.alias["%Y-%m-%d"],
+  },
+})
+
+-- stylua: ignore start
+vim.keymap.set("n", "<C-a>", function() require("dial.map").manipulate("increment", "normal") end)
+vim.keymap.set("n", "<C-x>", function() require("dial.map").manipulate("decrement", "normal") end)
+vim.keymap.set("n", "g<C-a>", function() require("dial.map").manipulate("increment", "gnormal") end)
+vim.keymap.set("n", "g<C-x>", function() require("dial.map").manipulate("decrement", "gnormal") end)
+vim.keymap.set("x", "<C-a>", function() require("dial.map").manipulate("increment", "visual") end)
+vim.keymap.set("x", "<C-x>", function() require("dial.map").manipulate("decrement", "visual") end)
+vim.keymap.set("x", "g<C-a>", function() require("dial.map").manipulate("increment", "gvisual") end)
+vim.keymap.set("x", "g<C-x>", function() require("dial.map").manipulate("decrement", "gvisual") end)
+-- stylua: ignore end
 
 -- Status line
 vim.pack.add({ "https://github.com/nvim-lualine/lualine.nvim" })

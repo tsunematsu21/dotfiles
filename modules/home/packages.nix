@@ -22,6 +22,7 @@
         jq
         lazygit
         lefthook
+        macism
         mise
         mprocs
         neovim
