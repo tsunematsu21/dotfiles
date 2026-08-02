@@ -189,6 +189,20 @@ vim.pack.add({
 })
 
 require("mason").setup({})
+vim.lsp.config("astro", {
+  init_options = {
+    typescript = {
+      tsdk = vim.fs.joinpath(
+        vim.fn.expand("$MASON"),
+        "packages",
+        "typescript-language-server",
+        "node_modules",
+        "typescript",
+        "lib"
+      ),
+    },
+  },
+})
 require("mason-lspconfig").setup({
   ensure_installed = {
     "astro",
@@ -200,7 +214,9 @@ require("mason-lspconfig").setup({
     "nil_ls",
     "typos_lsp",
   },
+  automatic_enable = { exclude = { "astro" } },
 })
+vim.lsp.enable("astro")
 
 vim.api.nvim_create_autocmd("LspProgress", {
   group = augroup,
