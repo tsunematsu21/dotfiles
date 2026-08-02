@@ -28,6 +28,7 @@ focus_pane_up = "alt+k"
 focus_pane_right = "alt+l"
 next_tab = "alt+tab"
 previous_tab = "alt+shift+tab"
+zoom = "alt+z"
 
 [[keys.command]]
 key = "alt+g"
