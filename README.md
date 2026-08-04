@@ -105,6 +105,19 @@ dotfiles rebuild
 git diff
 ```
 
+### Nix store cleanup
+
+Nix keeps system and profile generations for seven days to preserve a practical
+rollback window. A scheduled garbage collection runs every Sunday at 03:00 and
+removes generations older than that, then removes store paths they no longer
+reference. Store optimisation is not run automatically.
+
+To reclaim space immediately, run the same policy manually:
+
+```sh
+sudo nix-collect-garbage --delete-older-than 7d
+```
+
 ## Uninstall
 
 ```sh

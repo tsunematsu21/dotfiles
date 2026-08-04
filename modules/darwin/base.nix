@@ -19,6 +19,20 @@ _:
 
     nix.enable = false;
 
+    # Nix is installed outside nix-darwin, so schedule its garbage collector
+    # directly instead of using nix.gc (which requires nix.enable).
+    launchd.daemons.nix-gc = {
+      command = "/nix/var/nix/profiles/default/bin/nix-collect-garbage --delete-older-than 7d";
+      serviceConfig = {
+        RunAtLoad = false;
+        StartCalendarInterval = {
+          Weekday = 0;
+          Hour = 3;
+          Minute = 0;
+        };
+      };
+    };
+
     programs.zsh = {
       enable = true;
       enableGlobalCompInit = false;
