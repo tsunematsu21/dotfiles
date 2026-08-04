@@ -1,2 +1,6 @@
-transparent_background = true
+theme = "kanagawa-dragon"
+mode = "auto"
+watch = true
 agent_notes = true
+transparent_background = true
+color_moved = true
