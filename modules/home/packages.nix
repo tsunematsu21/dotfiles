@@ -13,6 +13,7 @@
         awscli
         bat
         betterleaks
+        chafa
         fastfetch
         fd
         fzf
