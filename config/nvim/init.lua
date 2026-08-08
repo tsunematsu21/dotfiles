@@ -246,8 +246,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client and client:supports_method("textDocument/completion") then
       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
     end
+    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = ev.buf })
   end,
 })
+
+vim.o.pumborder = "rounded"
+local orig_complete_set = vim.api.nvim__complete_set
+---@diagnostic disable-next-line: duplicate-set-field
+vim.api.nvim__complete_set = function(...)
+  local result = orig_complete_set(...)
+  if result and result.winid then
+    pcall(vim.api.nvim_win_set_config, result.winid, { border = "rounded" })
+  end
+  return result
+end
 
 -- IME select
 vim.pack.add({ "https://github.com/keaising/im-select.nvim" })
@@ -316,7 +328,6 @@ require("mini.indentscope").setup({})
 require("mini.misc").setup()
 MiniMisc.setup_restore_cursor() ---@diagnostic disable-line: undefined-global
 require("mini.ai").setup({})
-require("mini.operators").setup({})
 require("mini.surround").setup({})
 require("mini.pairs").setup({})
 
@@ -374,6 +385,7 @@ wk.setup({
     { "<leader>l", group = "LSP Actions" },
     { "<leader>W", function() wk.show({ keys = "<C-w>", loop = true }) end, desc = "Window menu (hydra)" },
     { "<leader>H", function() wk.show({ keys = "<leader>h", loop = true }) end, desc = "Git Hunk (hydra)" },
+    { 'gr', group = 'LSP Actions', mode = { 'n' } },
     -- stylua: ignore end
   },
 })
