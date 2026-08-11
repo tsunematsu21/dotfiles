@@ -34,6 +34,7 @@
         "slack"
         "tuna"
         "visual-studio-code"
+        "zen"
         # keep-sorted end
       ];
     };
