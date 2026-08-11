@@ -25,6 +25,7 @@
         # keep-sorted start
         "barutsrb/tap/omniwm"
         "chatgpt"
+        "codexbar"
         "discord"
         "font-hackgen-nerd"
         "ghostty"
