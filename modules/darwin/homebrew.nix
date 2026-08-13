@@ -23,6 +23,7 @@
       brews = [ "leaf-md" ];
       casks = [
         # keep-sorted start
+        "affinity"
         "barutsrb/tap/omniwm"
         "chatgpt"
         "codexbar"
