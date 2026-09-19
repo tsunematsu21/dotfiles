@@ -279,6 +279,7 @@ vim.keymap.set("n", "<leader>e", "<cmd>Oil<cr>", { desc = "File Explorer" })
 
 -- Fuzzy finder
 vim.pack.add({ "https://github.com/ibhagwan/fzf-lua" })
+vim.g.fzf_lua_server = vim.fn.serverstart()
 local fzf = require("fzf-lua")
 fzf.setup({
   grep = { hidden = true },
