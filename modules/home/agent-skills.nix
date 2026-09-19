@@ -2,7 +2,7 @@
 
 {
   flake.modules.homeManager.agent-skills =
-    { lib, ... }:
+    { lib, pkgs, ... }:
     let
       skillPrefix = "skill-";
       agentSkills = lib.filterAttrs (name: _: lib.hasPrefix skillPrefix name) inputs;
@@ -32,15 +32,22 @@
           throw "No SKILL.md found for ${name}";
     in
     {
-      home.file = lib.mapAttrs' (
-        name: source:
-        let
-          skill = resolveSkill name source;
-        in
-        lib.nameValuePair skill.target {
-          inherit (skill) source;
-          force = true;
-        }
-      ) agentSkills;
+      home.file =
+        lib.mapAttrs' (
+          name: source:
+          let
+            skill = resolveSkill name source;
+          in
+          lib.nameValuePair skill.target {
+            inherit (skill) source;
+            force = true;
+          }
+        ) agentSkills
+        // {
+          ".agents/skills/hunk-review" = {
+            source = "${inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk}/skills/hunk-review";
+            force = true;
+          };
+        };
     };
 }
