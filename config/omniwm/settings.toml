@@ -533,7 +533,7 @@ binding = "Option+Right Arrow"
 id = "focus.right"
 
 [[hotkeys]]
-binding = "Option+Tab"
+binding = "Unassigned"
 id = "focusPrevious"
 
 [[hotkeys]]
